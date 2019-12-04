@@ -1,0 +1,32 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/* ------ BEGIN MAINTHREAD COMPONENT------ */
+.topButtons {
+	display: flex;
+	justify-content: space-between;
+}
+.navbar {
+	display: flex;
+	justify-content: space-between;
+}
+.cardList {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+/* ------ END MAINTHREAD COMPONENT------ */
+
+/* ------ BEGIN POSCARD COMPONENT------ */
+.Card {
+	width: 90%;
+	min-height: 5em;
+	border: solid red 2px;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+/* ------ END POSCARD COMPONENT------ */

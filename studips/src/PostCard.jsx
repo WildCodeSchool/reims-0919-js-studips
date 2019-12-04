@@ -1,9 +1,10 @@
 import React from 'react';
+import './App.css'
 
 function Card() {
 	return (
-		<div>
-			<p>Card</p>
+		<div className='Card'>
+			<p>PostCard</p>
 		</div>
 	);
 }
