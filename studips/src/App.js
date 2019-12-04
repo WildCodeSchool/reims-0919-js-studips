@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import postCard from './postCard.jsx'
+import PostCard from './component/PostCard.jsx'
 
 function App() {
   return (
     <div className="App">
-      <postCard/>
+      <PostCard />
     </div>
   );
 }
