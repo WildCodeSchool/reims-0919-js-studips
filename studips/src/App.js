@@ -1,9 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import MainThread from './MainThread';
 import './App.css';
 
 function App() {
-	return <div className='App'></div>;
+	return (
+		<div className='App'>
+			<MainThread />
+		</div>
+	);
 }
 
 export default App;
