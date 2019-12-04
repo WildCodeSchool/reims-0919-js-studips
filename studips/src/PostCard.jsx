@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css'
 
-function Card() {
+function PostCard() {
 	return (
-		<div className='Card'>
+		<div className='postCard'>
 			<p>PostCard</p>
 		</div>
 	);
 }
 
-export default Card;
+export default PostCard;
