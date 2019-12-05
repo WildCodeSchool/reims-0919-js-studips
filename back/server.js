@@ -3,23 +3,23 @@ const app = express();
 const port = 8000;
 
 app.get('/', (request, response) => {
-	response.send(`Fil d'acctualités`);
+	response.send(`Fil d'actualités`);
 });
 
 app.get('/jobs', (request, response) => {
-	response.send(`jobs`);
+	response.send(`Jobs`);
 });
 
 app.get('/accomodations', (request, response) => {
-	response.send(`logements`);
+	response.send(`Logements`);
 });
 
-app.get('/cours', (request, response) => {
-	response.send(`cours`);
+app.get('/courses', (request, response) => {
+	response.send(`Cours`);
 });
 
 app.get('/supplies', (request, response) => {
-	response.send(`équipement scolaire`);
+	response.send(`Fournitures scolaire`);
 });
 
 app.listen(port, err => {
