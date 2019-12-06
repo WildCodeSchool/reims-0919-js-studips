@@ -1,25 +1,21 @@
 const express = require('express');
 const app = express();
 const port = 8000;
+const connection = require('./conf');
 
-app.get('/', (request, response) => {
-	response.send(`Fil d'actualités`);
-});
-
-app.get('/jobs', (request, response) => {
-	response.send(`Jobs`);
-});
-
-app.get('/accomodations', (request, response) => {
-	response.send(`Logements`);
-});
-
-app.get('/courses', (request, response) => {
-	response.send(`Cours`);
-});
-
-app.get('/supplies', (request, response) => {
-	response.send(`Fournitures scolaire`);
+// listen to "/posts"
+app.get('/posts', (req, res) => {
+  // connection to the database, and selection of posts
+  connection.query('SELECT * from post', (err, results) => {
+    if (err) {
+      //  If an error has occurred, then the user is informed of the error
+      res.status(500).send('Erreur lors de la récupération des posts');
+    } else {
+      // If everything went well, we send the result of the SQL query as JSON.
+      console.log("on posts")
+      res.json(results);
+    }
+  });
 });
 
 app.listen(port, err => {
