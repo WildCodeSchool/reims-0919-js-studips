@@ -1,7 +1,94 @@
 /* postCard.js*/
-postCard{
-    width : 20rem;
-    height: 10rem;
+.postCard{
+    display: flex;
+    flex-direction: column;
+    width : 95vw;
+    min-height: 50px;
+    background-color:#EFEFEF ;
+    align-items: center;
     
 }
+.informations{
+
+    width: 70%;
+    max-height:20vw ;
+    padding: 3%;
+    color:
+}
+
+
+.informations p{
+
+    text-align: left;
+    font-size: 3vw;
+    margin:0;
+}
+#category{
+    color:#A40032;
+    margin-left: 3vw;
+    margin-top: 1vw;
+}
+#name{
+    font-weight: bold;
+}
+.avatar {
+    max-width: 15vw;
+    max-height: 20vw;
+    border-radius:500%;
+    margin:10px;
+    margin-left: 30px;
+    border: 2px solid black;
+    
+}
+
+.actions{
+    width: 95vw;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1vw;
+    margin-left: 7vw;
+    
+}
+.lss{
+    justify-content: space-around;
+    display: flex;
+    width: 69%;
+}
+.like{
+    max-width:10vw;
+    max-height: 10vw;
+}
+.search{
+    max-width: 10vw;
+    max-height: 10vw;
+}
+.share{
+    max-width: 9vw;
+    max-height: 9vw;
+}
+
+.saveBox{
+    justify-content: center;
+    width: 35%;
+    padding-left: 30%;
+}
+.save{
+    max-width: 12vw;
+    max-height: 12vw;
+}
+.entete{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.message{
+    width: 88%;
+    align-items: center;
+    padding: 1%;
+    background-color:#A40032 ;
+    color:white;
+    font-size: 12px;
+    box-shadow: 0px 2px 4px black;
+}
+
 /* postCard.js*/
