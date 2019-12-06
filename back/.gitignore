@@ -1,2 +1,6 @@
 /node_modules
+<<<<<<< HEAD
 /conf.js
+=======
+conf.js
+>>>>>>> origin/dev
