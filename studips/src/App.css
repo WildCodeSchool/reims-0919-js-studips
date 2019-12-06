@@ -8,9 +8,15 @@
 	display: flex;
 	justify-content: space-between;
 }
+.menuIcon {
+	width: 10vw;
+}
 .navbar {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
+}
+.navbarIcons {
+	width: 10vw;
 }
 .cardList {
 	display: flex;
