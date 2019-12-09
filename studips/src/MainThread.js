@@ -37,12 +37,11 @@ class MainThread extends React.Component {
 					<button>Poster un message</button>
 				</div>
 				<div className='cardList'>
-					<PostCard />
-					<PostCard />
-					<PostCard />
-					<PostCard />
-					<PostCard />
-					<PostCard />
+					{this.state.posts.map(post => {
+						return (
+							<PostCard postData={post} />
+						)
+					})}
 				</div>
 				<div className='navbar'>
 					<img 
