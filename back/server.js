@@ -89,8 +89,8 @@ const posts = [
       city: "Reims"
   }
 
-app.get('/posts', (request, response) => {
-	response.send(`Fil d'actualités`);
+app.get('/posts', (req, res) => {
+  res.send(posts)
 });
 
 app.listen(port, err => {
