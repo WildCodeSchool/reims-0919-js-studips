@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 
-function PostCard() {
+function PostCard({postData}) {
 	return (
 		<div className='postCard'>
 			<div className = 'entete'>
