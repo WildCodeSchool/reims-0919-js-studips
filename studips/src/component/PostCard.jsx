@@ -5,17 +5,15 @@ function PostCard({postData}) {
 	return (
 		<div className='postCard'>
 			<div className = 'entete'>
-				<img className = 'avatar' src = 'https://expatenvrac.com/wp-content/uploads/2013/03/Les-plus-belles-femmes-du-monde-Colombie-300x300.png'alt = 'photo de profile'/>	
+				<img className = 'avatar' src = {postData.picture} alt = 'photo de profile'/>	
 				<div className='informations'>
-					<p id="name">LICHETTE Mannon</p>
-					<p>Faculté de massages, Amsterdam</p>
-					<p id = 'category'>Evènement</p>
+	<p id="name">{postData.firstname} {postData.lastname}</p>
+					<p>{postData.studies}, {postData.city}</p>
+					<p id = 'category'>{postData.category}</p>
 				</div>
 			</div>
 			<div className='message'>
-				<p>Hello, j’ai un bon plan à vous proposer! Ce soir, il y a une soirée à thèmeorganisée par la faculté des sciences de Reims , 
-					c’est ouvert à tous et c’est seulement 5$ l’entrée!!! Venez nombreux
-				</p>
+				<p>{postData.content}</p>
 			</div>
 			<div className='actions'>
 				<div className = 'lss'>

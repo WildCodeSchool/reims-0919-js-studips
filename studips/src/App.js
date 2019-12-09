@@ -1,5 +1,5 @@
 import React from 'react';
-import MainThread from './MainThread';
+import MainThread from './component/MainThread';
 import './App.css';
 import PostCard from './component/PostCard.jsx'
 
