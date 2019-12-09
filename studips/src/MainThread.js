@@ -18,9 +18,13 @@ class MainThread extends React.Component {
 	}
 	componentDidMount() {
 		axios
-			.get("localhost:8000/posts")
-			.then (data => response.data)
-			
+			.get("http://localhost:8000/posts")
+			.then(response => response.data)
+			.then(data => {
+				this.setState({
+                    posts: data
+				})
+			})
 	}
 	render() {
 		return (
