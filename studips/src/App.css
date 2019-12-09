@@ -59,9 +59,9 @@
     
 }
 .lss{
-    justify-content: space-around;
     display: flex;
     width: 69%;
+    margin-left: 10%;
 }
 .like{
     max-width:10vw;
@@ -79,7 +79,7 @@
 .saveBox{
     justify-content: center;
     width: 35%;
-    padding-left: 30%;
+
 }
 .save{
     max-width: 12vw;

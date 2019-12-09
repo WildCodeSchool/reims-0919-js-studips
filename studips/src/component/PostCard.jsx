@@ -1,5 +1,9 @@
 import React from 'react';
 import '../App.css';
+import heartIcon from '../images/heart-solid .svg';
+import commentIcon from '../images/comments-regular.svg';
+import shareIcon from '../images/share-alt-solid.svg';
+import saveIcon from '../images/download-solid.svg';
 
 function PostCard({postData}) {
 	return (
@@ -17,12 +21,12 @@ function PostCard({postData}) {
 			</div>
 			<div className='actions'>
 				<div className = 'lss'>
-					<img className = 'like' src='https://publicdomainvectors.org/photos/Heart_Gloss_5.png'alt = 'like'/>
-					<img className = 'search'src= 'https://www.icone-png.com/png/25/25214.png' alt= ' search'/>
-					<img className ='share' src = 'https://image.freepik.com/icones-gratuites/sharethis-logo_318-50326.jpg' alt = 'share' />
+					<img className = 'like' src={heartIcon} alt = 'like'/>
+					<img className = 'search'src= {commentIcon} alt= ' search'/>
+					<img className ='share' src = {shareIcon} alt = 'share' />
 				</div>
 				<div className = 'saveBox'>
-					<img className ='save' src = 'http://www.abyssal-solutions.fr/wp-content/uploads/2016/06/sauvegarde-de-donnees-380x380.png' alt = 'save' />
+					<img className ='save' src = {saveIcon} alt = 'save' />
 				</div>
 			</div>
 		</div>
