@@ -1,0 +1,133 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Eric",
+            "lastname": "Antonnai",
+            "city": "Marseille",
+            "birthday": "12/12/12",
+            "hobbies": "Moto cross",
+            "study": "Faculté des sciences",
+            "bio": "je suis actif , j'aime sortir le soir et rencontrer des nouvelles personnes"
+        },
+        {
+            "id": 2,
+            "name": "Youri",
+            "lastname": "Ligateme",
+            "city": "Paris",
+            "birthday": "11/11/11",
+            "hobbies": "Jeux vidéos, cinema",
+            "study": "Science PO",
+            "bio": "je voudrai instaurer un nouvel ordre mondial"
+        },
+        {
+            "id": "3",
+            "name": "Barack",
+            "lastname": "Aphrite",
+            "city": "Lille",
+            "birthday": "10/10/10",
+            "hobbies": "Cinéma , sport , voiture",
+            "study": "BEP cuisine",
+            "bio": "Futur manager chez Macdo, ma passion est de faire des frites"
+        },
+        {
+            "id": "4",
+            "name": "Agathe",
+            "lastname": "Zeblouse",
+            "city": "Reims",
+            "birthday": "12/04/09",
+            "hobbies": "Musique , art",
+            "study": "Faculté LEA",
+            "bio": "Je compose de la musique lors de mes temps libre"
+        },
+        {
+            "id": "5",
+            "name": "Jeremy",
+            "lastname": "Lepandulaleur",
+            "city": "Paris",
+            "birthday": "08/09/10",
+            "hobbies": "Cinema, sport, jeux videos",
+            "study": "DUT génie civil",
+            "bio": "Amical et enthousiaste, j\"aime rencontrer des personnes"
+        },
+        {
+            "id": "6",
+            "name": "Harry",
+            "lastname": "Cover",
+            "city": "Lille",
+            "birthday": "23/02/11",
+            "hobbies": "Cuisine , PotterHead",
+            "study": "Faculté des sciences",
+            "bio": "Je suis de Gryffondor"
+        },
+        {
+            "id": "7",
+            "name": "Sylvain",
+            "lastname": "Duriff",
+            "city": "Reims",
+            "birthday": "01/01/05",
+            "hobbies": "Politique, Course à pied",
+            "study": "Faculté de droit",
+            "bio": "je suis le grand monarque cosmique"
+        }
+    ],
+    "post": [
+        {
+            "id": "1",
+            "user-id": "1",
+            "title": "Recherche appartement",
+            "category": "Logement",
+            "content": "Bonjour amis dipser, je suis actuellement à la recherche d'un appartement dans la région de Marseille, si possible pret du vieux port pour contempler la vue et respirer le vent salé. Contactez moi si vous avez des pistes, merci à tous",
+            "city": "Marseille"
+        },
+        {
+            "id": "2",
+            "user-id": "2",
+            "title": "Recherche d'un job",
+            "category": "Job",
+            "content": "Bonjour cher amis, je suis actuellement à la recherche d'un job étudiant avec des horaires modulable dans le Xe arrondissement. Contactez moi si vous avez des offres , merci les copains",
+            "city": "Paris"
+        },
+        {
+            "id": "3",
+            "user-id": "3",
+            "title": "Donne livre de cuisine",
+            "category": "Fournitures",
+            "content": "Bonsoir les dipser, j'ai 2 livres de cuisine qui traitent principalement sur la cuisson des frites, j'offre cela aux personnes ayant vraiment besoin , contactez moi si vous etes intéréssé, bisoux",
+            "city": "Lille"
+        },
+        {
+            "id": "4",
+            "user-id": "4",
+            "title": "Recherche Serveur",
+            "category": "Job",
+            "content": "Coucou , mon patron recherche un deuxieme étudiant pour le service du soir dans un bar/restaurants au niveau de la place d\"Erlon. Si vous avez déja une experience dans la restauration contactez moi ou envoyé un mail avec votre CV et lettre de motivation à cmonmail@mail.com. Bonne chance !",
+            "city": "Reims"
+        },
+        {
+            "id": "5",
+            "user-id": "5",
+            "title": "Mega Teuf",
+            "category": "Event",
+            "date": "12/04/19",
+            "content": "Salut les dipser, ma mère organise une super fiesta pour l'anniversaire de notre chat dans son sous-sol , pas de dress-code. MP moi si vous voulez une invitation, A plus !",
+            "city": "Paris"
+        },
+        {
+            "id": "6",
+            "user-id": "6",
+            "title": "Je quitte mon appart",
+            "category": "Logement",
+            "content": "Hey les copains, je quitte mon appartement car je retourne chez mes parents, c'est un F2 en plein centre ville (plus d'info sur www.logement.com). ",
+            "city": "Lille"
+        },
+        {
+            "id": "7",
+            "user-id": "7",
+            "title": "Cours de Tai-chi cosmique",
+            "category": "Cours",
+            "content": "Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).",
+            "city": "Reims"
+        }
+    ]
+}
