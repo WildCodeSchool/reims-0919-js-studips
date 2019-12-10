@@ -109,7 +109,17 @@
 	justify-content: space-between;
 }
 .menuIcon {
-	width: 10vw;
+    width: 10vw;
+}
+.postButton {
+    width: 12em;
+    color: white;
+    background-color: #a40032;
+    border: none;
+    border-radius: 1em;
+}
+.postButton:hover {
+    cursor: pointer;
 }
 .navbar {
 	display: flex;
