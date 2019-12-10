@@ -114,3 +114,56 @@
 	align-items: center;
 }
 /***************************************** END MainThread.js *****************************************/
+
+
+/**************************************** debut de MENU **************************************************/
+.menu{
+	transition: 10s;
+}
+.menu{
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	height: 80%;
+	background-color: #a40032;
+	justify-content: space-around;
+	
+
+}
+
+.menu img{
+	max-width: 30%;
+	border-radius: 500%;
+}
+.menu button{
+	border-radius: 0px 48px 48px 0px;
+	width: 80%;
+	height: 10vw;
+	font-size: 24px;
+}
+.menu hr{
+	width: 60%;
+	margin-left: 20%;
+}
+
+.profile{
+	display: flex;
+	color: white;
+}
+.profile p{
+	display: flex;
+	width: 70%;
+	font-size: 28px;
+	align-items: center;
+	justify-content:center ;
+}
+
+
+
+
+
+
+
+
+/**************************************** fin de MENU **************************************************/
