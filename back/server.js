@@ -1,6 +1,8 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 8000;
+const connection = require('./conf.js');
 
 const posts = [
   {
@@ -89,11 +91,8 @@ const posts = [
       city: "Reims"
   }
 ]
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
+app.use(cors());
 
 app.get('/posts', (req, res) => {
   res.send(posts)
