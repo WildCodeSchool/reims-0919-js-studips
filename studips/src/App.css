@@ -122,11 +122,13 @@
     cursor: pointer;
 }
 .navbar {
-	display: flex;
-	justify-content: space-around;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 .navbarIcons {
-	width: 10vw;
+    width: 12vw;
+    margin: 0.5em;
 }
 .cardList {
 	display: flex;
