@@ -26,7 +26,7 @@
 	max-height: 20vw;
 	border-radius: 500%;
 	margin: 10px;
-	margin-left: 30px;
+	margin-left: 1em;
 	border: 1px solid black;
 }
 .informations {
@@ -46,6 +46,16 @@
 	color: #a40032;
 	margin-left: 3vw;
 	margin-top: 1vw;
+}
+.triangle {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;    
+    border-bottom: 10px solid #a40032;
+    align-self: flex-start;
+    margin-left: 2em;
+    z-index: 10;
 }
 .message {
 	width: 95%;

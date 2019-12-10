@@ -24,6 +24,7 @@ function PostCard({ postData }) {
 					<p id='category'>{postData.category}</p>
 				</div>
 			</div>
+			<div className='triangle'></div>
 			<div className='message'>
 				<p>{postData.content}</p>
 			</div>
