@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 8000;
-const connection = require('./conf.js');
 
 const posts = [
 	{
@@ -110,6 +109,17 @@ app.use(cors());
 
 app.get('/posts', (req, res) => {
 	res.send(posts);
+});
+
+app.post('/posts', (req, res) => {
+	const lastItem = posts[posts.length - 1];
+	const lastId = lastItem.id;
+	const post = {
+		id: lastId + 1,
+		name: req.body.name,
+	};
+	posts.push(post);
+	res.send(post);
 });
 
 app.listen(port, err => {
