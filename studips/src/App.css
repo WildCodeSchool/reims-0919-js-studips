@@ -106,10 +106,14 @@
 /***************************************** BEGIN MaintThread.js *****************************************/
 .topButtons {
 	display: flex;
-	justify-content: space-between;
+    justify-content: space-between;
+    margin: 0.8em;
 }
 .menuIcon {
-    width: 10vw;
+    width: 2em;
+}
+.menuIcon:hover {
+    cursor: pointer;
 }
 .postButton {
     width: 12em;
