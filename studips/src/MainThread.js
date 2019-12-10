@@ -8,7 +8,6 @@ import messageIcon from './images/comments-solid.svg';
 import notifIcon from './images/bell-solid.svg';
 import axios from 'axios';
 
-
 class MainThread extends React.Component {
 	constructor(props) {
 		super(props)
