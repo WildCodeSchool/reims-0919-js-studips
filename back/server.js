@@ -116,7 +116,15 @@ app.post('/posts', (req, res) => {
 	const lastId = lastItem.id;
 	const post = {
 		id: lastId + 1,
-		name: req.body.name,
+		user_id: lastId + 1,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        studies: req.body.studies,
+        picture: req.body.picture,
+        title: req.body.title,
+        category: req.body.category,
+        content: req.body.content,
+        city: req.body.city,
 	};
 	posts.push(post);
 	res.send(post);
