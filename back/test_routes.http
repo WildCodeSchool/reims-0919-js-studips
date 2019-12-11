@@ -6,14 +6,14 @@ POST http://localhost:8000/posts
 Content-Type: application/json
 
 {
-    "id": 1,
-    "user_id": 1,
-    "firstname": "Isabella",
-    "lastname": "Laizieu-Bleu",
-    "studies": "Fac de musicologie",
-    "picture": "https://www.orthodiv.org/wp-content/uploads/2017/08/emma-plater-250x.jpg",
-    "title": "Recherche appartement",
-    "category": "Logement",
-    "content": "Bonjour amis dipser, je suis actuellement à la recherche d'un appartement dans la région de Marseille, si possible pret du vieux port pour contempler la vue et respirer le vent salé. Contactez moi si vous avez des pistes, merci à tous",
-    "city": "Marseille"
+    "id": 8,
+    "user_id": 8,
+    "firstname": "Eddy",
+    "lastname": "Patou",
+    "studies": "EPITECH",
+    "picture": "",
+    "title": "Cours de maths",
+    "category": "Cours",
+    "content": "Bonjour, pour ceux que cela peut intéresser, je peux donner des cours de maths. Me contacter par MP !",
+    "city": "Paris"
 }
