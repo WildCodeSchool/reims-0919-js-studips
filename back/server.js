@@ -119,22 +119,27 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/posts', (req, res) => {
-	const lastItem = posts[posts.length - 1];
-	const lastId = lastItem.id;
+	const formData = req.body
 	const post = {
-		id: lastId + 1,
-		user_id: lastId + 1,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        studies: req.body.studies,
-        picture: req.body.picture,
-        title: req.body.title,
-        category: req.body.category,
-        content: req.body.content,
-        city: req.body.city,
+		id: formData.id,
+		user_id: formData.user_id,
+        firstname: formData.firstname,
+        lastname: formData.lastname,
+        studies: formData.studies,
+        picture: formData.picture,
+        title: formData.title,
+        category: formData.category,
+        content: formData.content,
+        city: formData.city,
 	};
 	posts.push(post);
 	res.send(post);
+	if (err) {
+      console.log(err);
+      res.status(500).send("Error posting");
+    } else {
+      res.sendStatus(200);
+    }
 });
 
 app.listen(port, err => {
