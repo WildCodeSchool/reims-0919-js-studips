@@ -9,11 +9,7 @@ function PostCard({ postData }) {
 	return (
 		<div className='postCard'>
 			<div className='entete'>
-				<img
-					className='avatar'
-					src={postData.picture}
-					alt='profil'
-				/>
+				<img className='avatar' src={postData.picture} alt='profil' />
 				<div className='informations'>
 					<p id='name'>
 						{postData.firstname} {postData.lastname}
@@ -21,11 +17,12 @@ function PostCard({ postData }) {
 					<p>
 						{postData.studies}, {postData.city}
 					</p>
-					<p id='category'>{postData.category}</p>
 				</div>
+				<p id='category'>{postData.category}</p>
 			</div>
 			<div className='triangle'></div>
 			<div className='message'>
+				<p className='postTitle'>"{postData.title}"</p>
 				<p>{postData.content}</p>
 			</div>
 			<div className='actions'>
