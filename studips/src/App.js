@@ -1,5 +1,5 @@
 import React from 'react';
-import MainThread from './MainThread';
+import MainThread from './component/MainThread';
 
 function App() {
 	return (
