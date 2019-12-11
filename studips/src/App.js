@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MainThread from './component/MainThread';
 
 function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+	return (
+		<div className='App'>
+			<MainThread />
+		</div>
+	);
 }
 
 export default App;
