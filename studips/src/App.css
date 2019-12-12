@@ -141,10 +141,6 @@
 	width: 80%;
 	height: 10vw;
 	font-size: 24px;
-        -moz-transition: all .2s ease-in-out;
-        -ms-transition: all .2s ease-in-out;
-        -o-transition: all .2s ease-in-out;
-        transition: all .2s ease-in-out;
 }
 .menu hr{
 	width: 60%;

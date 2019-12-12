@@ -15,7 +15,6 @@ class Menu extends Component{
 	}
 
 	showMenu (event){
-		event.preventDefault();
 
 		this.setState({showMenu : true , showMenuBoutton: false}, ()=>{
 			document.addEventListener('click', this.closeMenu, this.showMenuBoutton);

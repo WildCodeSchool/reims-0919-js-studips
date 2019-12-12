@@ -1,14 +1,13 @@
 import React from 'react';
 import PostCard from './PostCard';
 import '../App.css';
-// import menuIcon from '../images/bars-solid.svg';
+import menuIcon from '../images/bars-solid.svg';
 import homeIcon from '../images/home-solid.svg';
 import searchIcon from '../images/search-solid.svg';
 import messageIcon from '../images/comments-solid.svg';
 import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
 import Menu from './Menu.js'
-
 
 class MainThread extends React.Component {
 	constructor(props) {
