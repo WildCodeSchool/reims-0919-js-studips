@@ -145,9 +145,55 @@
 /***************************************** BEGIN PostModal.jsx *****************************************/
 
 .overlay {
+	display: flex;
+	position: fixed;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(151, 151, 151, 0.062);
+	background-color: rgba(85, 85, 85, 0.5);	
+}
+.newPostCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 90vw;
+	background-color: #e2e2e2;
+	border: solid rgb(219, 219, 219) 2px;
+}
+.categoryChoice {
+	display: flex;
+	flex-direction: column;
+}
+.categoryChoice p {
+	margin: 0.2em 0px;
+}
+.categoryName {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	margin: 0.3em;
+}
+.categoryName p {
+	margin-left: 0.5em;
+}
+.newPostTitle {
+	margin: 0.5em 0px;
+}
+.newMessageBox {
+	background-color: #a40032;
+	color: white;
+	border: none;
+	min-height: 10vh;
+	margin: 0.5em 0px;
+	border-radius: 1em;
+
+}
+.newPostCard button {
+	margin: 0.5em 0px;
+	height: 2em;
 }
 
 /***************************************** END PostModal.jsx *****************************************/
