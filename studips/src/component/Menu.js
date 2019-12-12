@@ -15,7 +15,6 @@ class Menu extends Component{
 				<button>Cours</button>
 				<button>Fournitures</button>
 				<hr></hr>
-				<button>Modifier mon profil</button>
 				<button>Enregistrement</button>
 				<button>Paramètres</button>
 			</div>
