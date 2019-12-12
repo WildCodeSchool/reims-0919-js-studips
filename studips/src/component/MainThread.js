@@ -33,7 +33,7 @@ class MainThread extends React.Component {
 						className="menuIcon"
 						src={menuIcon}
 						alt="menu"/>
-					<button>Poster un message</button>
+					<button className='postButton'>Poster un message</button>
 				</div>
 				<div className='cardList'>
 					{this.state.posts.map(post => {

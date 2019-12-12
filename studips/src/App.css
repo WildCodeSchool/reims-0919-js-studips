@@ -1,4 +1,143 @@
-/* postCard.js*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
+/***************************************** BEGIN postCard.js *****************************************/
+.postCard {
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	background-color: #e2e2e2;
+	border: solid rgb(219, 219, 219) 2px;
+	align-items: center;
+	padding: 0.5rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+.entete {
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+.avatar {
+	max-width: 15vw;
+	max-height: 20vw;
+	border-radius: 500%;
+	margin: 10px;
+	margin-left: 1em;
+	border: 1px solid black;
+}
+.informations {
+	width: 70%;
+	max-height: 20vw;
+	padding: 3%;
+}
+.informations p {
+	text-align: left;
+	font-size: 12px;
+	margin: 0;
+}
+#name {
+	font-weight: bold;
+}
+#category {
+	color: #a40032;
+	margin-left: 3vw;
+	margin-top: 1vw;
+	margin-bottom: 15vw;
+}
+.triangle {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;    
+    border-bottom: 10px solid #a40032;
+    align-self: flex-start;
+    margin-left: 2em;
+    z-index: 10;
+}
+.message {
+	width: 95%;
+	align-items: center;
+	padding: 1%;
+	background-color: #a40032;
+	color: white;
+	font-size: 12px;
+	box-shadow: 0px 2px 4px black;
+}
+.actions {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 0.5em;
+}
+.postReactions {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+	margin-left: 0.5em;
+}
+.like {
+	max-width: 10vw;
+	max-height: 10vw;
+}
+.comment {
+	max-width: 10vw;
+	max-height: 10vw;
+}
+.share {
+	max-width: 9vw;
+	max-height: 9vw;
+}
+.saveBox {
+    display: flex;
+	justify-content: flex-end;
+    width: 35%;
+    margin-right: 0.5em;
+}
+.save {
+	max-width: 10vw;
+	max-height: 10vw;
+}
 
-/* postCard.js*/
+/***************************************** END postCard.js *****************************************/
+
+/***************************************** BEGIN MaintThread.js *****************************************/
+.topButtons {
+	display: flex;
+    justify-content: space-between;
+    margin: 0.8em;
+}
+.menuIcon {
+    width: 2em;
+}
+.menuIcon:hover {
+    cursor: pointer;
+}
+.postButton {
+    width: 12em;
+    color: white;
+    background-color: #a40032;
+    border: none;
+    border-radius: 1em;
+}
+.postButton:hover {
+    cursor: pointer;
+}
+.navbar {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.navbarIcons {
+    width: 12vw;
+    margin: 0.5em;
+}
+.cardList {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+/***************************************** END MainThread.js *****************************************/
