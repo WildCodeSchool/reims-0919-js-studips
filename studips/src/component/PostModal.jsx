@@ -1,8 +1,8 @@
 import React from 'react';
 import '../App.css';
 
-function PostModal({ showPostModal }) {
-	return showPostModal ? (
+function PostModal({ isPostModalVisible }) {
+	return isPostModalVisible ? (
 		<div className='overlay'>
             <div className='newPostCard'>
                 <div className='categoryChoice'>

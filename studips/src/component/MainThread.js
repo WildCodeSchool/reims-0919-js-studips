@@ -1,22 +1,25 @@
 import React from 'react';
 import PostCard from './PostCard';
 import '../App.css';
-import menuIcon from '../images/bars-solid.svg';
 import homeIcon from '../images/home-solid.svg';
 import searchIcon from '../images/search-solid.svg';
 import messageIcon from '../images/comments-solid.svg';
+import menuIcon from '../images/bars-solid.svg';
 import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal'
+import Menu from './Menu'
 
 class MainThread extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			posts: [],
-			showPostModal: false,
+			isPostModalVisible: false,
+			isMenuVisible:false
 		};
 		this.postHandle = this.postHandle.bind(this);
+		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
 	}
 	componentDidMount() {
 		axios
@@ -24,22 +27,33 @@ class MainThread extends React.Component {
 			.then(response => response.data)
 			.then(data => {
 				this.setState({
-					posts: data,
-				});
+                    posts: data
+				})
 			});
 	}
 	postHandle() {
-		this.setState({ showPostModal: !this.state.showPostModal });
+		this.setState({ isPostModalVisible: !this.state.isPostModalVisible });
+	}
+	toggleMenuVisible() {
+		this.setState((prevState) => {
+			return {isMenuVisible: !prevState.isMenuVisible}
+		});
 	}
 	render() {
 		return (
-			<div>
-				<PostModal showPostModal={this.state.showPostModal}/>
+			<>
+				<PostModal isPostModalVisible={this.state.isPostModalVisible}/>
+				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
+					<Menu/>
+				</div>}
 				<div className='topButtons'>
-					<img className='menuIcon' src={menuIcon} alt='menu' />
-					<button className='postButton' onClick={this.postHandle}>
-						Poster un message
-					</button>
+					<img className="icon"
+					src={menuIcon}
+					alt="menu"					
+					onClick={this.toggleMenuVisible} />
+					<button 
+						className='postButton'
+						onClick={this.postHandle}>Poster un message</button>
 				</div>
 				<div className='cardList'>
 					{this.state.posts.map(post => {
@@ -47,18 +61,27 @@ class MainThread extends React.Component {
 					})}
 				</div>
 				<div className='navbar'>
-					<img className='navbarIcons' src={homeIcon} alt='to home' />
-					<img className='navbarIcons' src={searchIcon} alt='search' />
-					<img className='navbarIcons' src={messageIcon} alt='messages' />
+					<img 
+						className="icon"
+						src={homeIcon}
+						alt="to home"/>
 					<img
-						className='navbarIcons'
+						className="icon"
+						src={searchIcon}
+						alt="search"/>
+					<img
+						className="icon"
+						src={messageIcon}
+						alt="messages"/>	
+					<img
+						className="icon"
 						src={notifIcon}
 						alt='notifications'
 					/>
 				</div>
-			</div>
-		);
-	}
+			</>
+		)
+	}	
 }
 
 export default MainThread;
