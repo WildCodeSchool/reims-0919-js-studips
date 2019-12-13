@@ -1,5 +1,7 @@
 import React from 'react';
 import MainThread from './component/MainThread';
+import './App.css';
+
 
 function App() {
 	return (
