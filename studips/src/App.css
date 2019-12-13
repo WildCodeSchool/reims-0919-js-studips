@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap');
+
 * {
+	font-family: 'Hind Siliguri', sans-serif;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
