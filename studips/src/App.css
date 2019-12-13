@@ -160,7 +160,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 90vw;
+	width: 95vw;
 	background-color: #e2e2e2;
 	border: solid rgb(219, 219, 219) 2px;
 }
@@ -174,7 +174,6 @@
 .categoryName {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
 	margin: 0.3em;
 }
 .categoryName p {
@@ -189,8 +188,9 @@
 	border: none;
 	min-height: 10vh;
 	margin: 0.5em 0px;
+	width: 95%;
 	border-radius: 1em;
-
+	text-align: left;	
 }
 .newPostCard button {
 	margin: 0.5em 0px;

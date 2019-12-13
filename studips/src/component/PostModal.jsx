@@ -4,45 +4,31 @@ import '../App.css';
 function PostModal({ showPostModal }) {
 	return showPostModal ? (
 		<div className='overlay'>
-			<div className='newPostCard'>
+            <div className='newPostCard'>
                 <div className='categoryChoice'>
-                    <p>Choisir une catégorie :</p>
-                    <div className='categoryName'>
-                        <label for='choiceEvent'></label>
-                        <input type='radio' id='choiceEvent' name='category' value='event' />
-                        <p >Evènements</p>
-                    </div>
-                    <div className='categoryName'>
-                        <label for='choiceAccomodation'></label>
-                        <input type='radio' id='choiceAccomodation' name='category' value='accomodation' />
-                        <p >Logements</p>
-                    </div>
-                    <div className='categoryName'>       
-                        <label for='choiceClass'></label>
-                        <input type='radio' id='choiceClass' name='category' value='class' />
-                        <p >Cours</p>
-                    </div>
-                    <div className='categoryName'>                    
-                        <label for='choiceJob'></label>             
-                        <input type='radio' id='choiceJob' name='category' value='job' />
-                        <p >Jobs / stages</p>
-                    </div>
-                    <div className='categoryName'>
-                        <label for='choicesupply'></label>
-                        <input type='radio' id='choicesupply' name='category' value='supply' />
-                        <p >Fournitures</p>
-                    </div>
+                    <p className='categoryName'>Catégorie :</p>
+                    <label className='categoryName' for='choiceEvent'>
+                    <input type='radio' id='choiceEvent' name='category' value='event'/>Evènements</label>
+                    <label className='categoryName' for='choiceAccomodation'>
+                    <input type='radio' id='choiceAccomodation' name='category' value='accomodation' />Logements</label>
+                    <label className='categoryName'for='choiceClass'>
+                    <input type='radio' id='choiceClass' name='category' value='class' />Cours</label>
+                    <label className='categoryName' for='choiceJob'>           
+                    <input  type='radio' id='choiceJob' name='category' value='job' />Jobs / stages</label>  
+                    <label className='categoryName'for='choicesupply'>
+                    <input  type='radio' id='choicesupply' name='category' value='supply' />Fournitures</label>
                 </div>
                 <div className='newPostTitle'>
-                    <p>Titre :</p>
+                    <p className='categoryName'>Titre :</p>
                     <label for='postTitle'></label>
-                    <input type='textarea' id="postTitle" />
+                    <textarea id="postTitle"></textarea>
                 </div>
                 <div>
-                    <input className='newMessageBox' type='textarea' id='newPost' />
+                    <label for='newPost'></label>
+                    <textarea className='newMessageBox' id='newPost'></textarea>
                 </div>
                 <button className='postButton'>Envoyer</button>
-			</div>
+            </div>
 		</div>
 	) : null;
 }
