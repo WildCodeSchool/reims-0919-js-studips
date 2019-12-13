@@ -14,7 +14,7 @@ class Menu extends Component{
 				<button>Events / Sorties</button>
 				<button>Cours</button>
 				<button>Fournitures</button>
-				<hr></hr>
+				<hr />
 				<button>Enregistrement</button>
 				<button>Paramètres</button>
 			</div>
