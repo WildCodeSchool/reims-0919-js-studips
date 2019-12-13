@@ -9,27 +9,27 @@ function PostModal({ showPostModal }) {
                     <p>Choisir une catégorie :</p>
                     <div className='categoryName'>
                         <label for='choiceEvent'></label>
-                        <input type='radio' id='choiceEvent' value='event' />
+                        <input type='radio' id='choiceEvent' name='category' value='event' />
                         <p >Evènements</p>
                     </div>
                     <div className='categoryName'>
                         <label for='choiceAccomodation'></label>
-                        <input type='radio' id='choiceAccomodation' value='accomodation' />
+                        <input type='radio' id='choiceAccomodation' name='category' value='accomodation' />
                         <p >Logements</p>
                     </div>
                     <div className='categoryName'>       
                         <label for='choiceClass'></label>
-                        <input type='radio' id='choiceClass' value='class' />
+                        <input type='radio' id='choiceClass' name='category' value='class' />
                         <p >Cours</p>
                     </div>
                     <div className='categoryName'>                    
                         <label for='choiceJob'></label>             
-                        <input type='radio' id='choiceJob' value='job' />
+                        <input type='radio' id='choiceJob' name='category' value='job' />
                         <p >Jobs / stages</p>
                     </div>
                     <div className='categoryName'>
                         <label for='choicesupply'></label>
-                        <input type='radio' id='choicesupply' value='supply' />
+                        <input type='radio' id='choicesupply' name='category' value='supply' />
                         <p >Fournitures</p>
                     </div>
                 </div>
