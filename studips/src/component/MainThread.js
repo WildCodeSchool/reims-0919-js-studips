@@ -18,7 +18,7 @@ class MainThread extends React.Component {
 			isPostModalVisible: false,
 			isMenuVisible:false
 		};
-		this.postHandle = this.postHandle.bind(this);
+		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
 	}
 	componentDidMount() {
@@ -31,8 +31,10 @@ class MainThread extends React.Component {
 				})
 			});
 	}
-	postHandle() {
-		this.setState({ isPostModalVisible: !this.state.isPostModalVisible });
+	toggleNewPost() {
+		this.setState((prevState) => {
+			return {isPostModalVisible: !prevState.isPostModalVisible}
+		})
 	}
 	toggleMenuVisible() {
 		this.setState((prevState) => {
@@ -42,18 +44,22 @@ class MainThread extends React.Component {
 	render() {
 		return (
 			<>
-				<PostModal isPostModalVisible={this.state.isPostModalVisible}/>
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
 					<Menu/>
 				</div>}
+				{this.state.isPostModalVisible && <div onClick={this.toggleNewPost}>
+					<PostModal
+						isPostModalVisible={this.state.isPostModalVisible}/>
+				</div>}
 				<div className='topButtons'>
-					<img className="icon"
-					src={menuIcon}
-					alt="menu"					
-					onClick={this.toggleMenuVisible} />
-					<button 
+					<img 
+						className="icon"
+						src={menuIcon}
+						alt="menu"					
+						onClick={this.toggleMenuVisible} />
+					<button
 						className='postButton'
-						onClick={this.postHandle}>Poster un message</button>
+						onClick={this.toggleNewPost}>Poster un message</button>
 				</div>
 				<div className='cardList'>
 					{this.state.posts.map(post => {
