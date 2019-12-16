@@ -4,6 +4,7 @@ const app = express();
 const port = 8000;
 const connection = require('./conf.js');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 app.use(bodyParser.json());
 
