@@ -3,6 +3,17 @@ const cors = require('cors');
 const app = express();
 const port = 8000;
 const connection = require('./conf.js');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+app.use(
+	bodyParser.urlencoded({
+		extended: true,
+	}),
+);
+
+app.use(cors());
 
 const posts = [
 	{
@@ -106,10 +117,32 @@ const posts = [
 	},
 ];
 
-app.use(cors());
-
 app.get('/posts', (req, res) => {
 	res.send(posts);
+});
+
+app.post('/posts', (req, res) => {
+	const formData = req.body;
+	const post = {
+		id: formData.id,
+		user_id: formData.user_id,
+		firstname: formData.firstname,
+		lastname: formData.lastname,
+		studies: formData.studies,
+		picture: formData.picture,
+		title: formData.title,
+		category: formData.category,
+		content: formData.content,
+		city: formData.city,
+	};
+	posts.push(post);
+	res.send(post);
+	if (err) {
+		console.log(err);
+		res.status(500).send('Error posting');
+	} else {
+		res.sendStatus(200);
+	}
 });
 
 app.listen(port, err => {

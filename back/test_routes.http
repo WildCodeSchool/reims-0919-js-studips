@@ -1,0 +1,19 @@
+### GET all posts
+GET http://localhost:8000/posts
+
+### POST a new post : json
+POST http://localhost:8000/posts
+Content-Type: application/json
+
+{
+    "id": 8,
+    "user_id": 8,
+    "firstname": "Eddy",
+    "lastname": "Patou",
+    "studies": "EPITECH",
+    "picture": "",
+    "title": "Cours de maths",
+    "category": "Cours",
+    "content": "Bonjour, pour ceux que cela peut intéresser, je peux donner des cours de maths. Me contacter par MP !",
+    "city": "Paris"
+}
