@@ -246,6 +246,22 @@ app.post('/register', (req, res) => {
 	}
 })
 
+app.post('/login', (req, res) => {
+	const formData = req.body;
+	const userId = formData.id;
+	const userPassword = formData.password;
+	for (let i = 0 ; i < users.length ; i++) {
+		if (userId === users[i].id) {
+			if (users[i].password === userPassword) {
+				res.send('Login succeeded')
+				res.sendStatus(200)
+			} else {
+				res.send('Wrong username or password')
+			}
+		}
+	}
+})
+
 app.listen(port, err => {
 	if (err) {
 		throw new Error('Something bad happened...');

@@ -33,3 +33,21 @@ Content-Type: application/json
     "bio": "Passionné d'art, je m'intéresse tout particulièrement à la BD",
     "city": "Grenoble"
 }
+
+### POST : user login (RIGHT LOGIN), json
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "id": 1,
+    "password": "pouet"
+}
+
+### POST : user login (WRONG LOGIN), json
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "id": 1,
+    "password": "toto"
+}
