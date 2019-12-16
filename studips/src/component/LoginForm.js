@@ -58,7 +58,7 @@ class LoginForm extends React.Component{
                 <p>Inscription</p>
                 <form onSubmit = {this.submitForm}/>
                 <div className="form-data">
-                    <label htmlFor="title">Prénom</label>
+                    <label htmlFor="firstname">Prénom</label>
                     <input
                         type="text"
                         id="firstname"
