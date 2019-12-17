@@ -18,7 +18,8 @@ create table user
     hobbies varchar(100) null,
     study varchar(50) not null,
     bio varchar(250) null,
-    city varchar(30) not null,
+    city_id int not null,
+    foreign key (city_id) references city(id)
     
 );
 create table post
