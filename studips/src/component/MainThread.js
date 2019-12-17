@@ -7,6 +7,7 @@ import messageIcon from '../images/comments-solid.svg';
 import menuIcon from '../images/bars-solid.svg';
 import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
+import PostModal from './PostModal'
 import Menu from './Menu'
 
 class MainThread extends React.Component {
@@ -14,19 +15,26 @@ class MainThread extends React.Component {
 		super(props);
 		this.state = {
 			posts: [],
-			isMenuVisible:false,
+			isPostModalVisible: false,
+			isMenuVisible:false
 		};
+		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
 	}
 	componentDidMount() {
 		axios
-			.get("http://localhost:8000/posts")
+			.get('http://localhost:8000/posts')
 			.then(response => response.data)
 			.then(data => {
 				this.setState({
                     posts: data
 				})
 			});
+	}
+	toggleNewPost() {
+		this.setState((prevState) => {
+			return {isPostModalVisible: !prevState.isPostModalVisible}
+		})
 	}
 	toggleMenuVisible() {
 		this.setState((prevState) => {
@@ -39,19 +47,23 @@ class MainThread extends React.Component {
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
 					<Menu/>
 				</div>}
+				{this.state.isPostModalVisible && <div onClick={this.toggleNewPost}>
+					<PostModal
+						isPostModalVisible={this.state.isPostModalVisible}/>
+				</div>}
 				<div className='topButtons'>
-					<img className="icon"
-					src={menuIcon}
-					alt="menu"
-					
-					onClick={this.toggleMenuVisible} />
-					<button className='postButton'>Poster un message</button>
+					<img 
+						className="icon"
+						src={menuIcon}
+						alt="menu"					
+						onClick={this.toggleMenuVisible} />
+					<button
+						className='postButton'
+						onClick={this.toggleNewPost}>Poster un message</button>
 				</div>
 				<div className='cardList'>
 					{this.state.posts.map(post => {
-						return (
-							<PostCard postData={post} />
-						)
+						return <PostCard postData={post} />;
 					})}
 				</div>
 				<div className='navbar'>
@@ -70,7 +82,8 @@ class MainThread extends React.Component {
 					<img
 						className="icon"
 						src={notifIcon}
-						alt="notifications"/>
+						alt='notifications'
+					/>
 				</div>
 			</>
 		)
