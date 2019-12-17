@@ -239,6 +239,26 @@ app.post('/login', (req, res) => {
 	if (match === 0) {
 		res.send('Wrong username or password')
 	}
+});
+
+app.post('/register', (req, res) => {
+	const formData = req.body;
+	let newId = users.length + 1
+	const newUser = {
+		id: newId,
+		firstname: formData.firstname,
+		lastname: formData.lastname,
+		password: formData.password,
+		email: formData.email,
+		birthday: formData.birthday,
+		hobbies: formData.hobbies,
+		study: formData.study,
+		bio: formData.bio,
+		city: formData.city,
+		tel: formData.tel
+	}
+	users.push(newUser)
+	res.send(users)
 })
 
 app.listen(port, err => {
