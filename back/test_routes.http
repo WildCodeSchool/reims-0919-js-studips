@@ -39,7 +39,7 @@ POST http://localhost:8000/login
 Content-Type: application/json
 
 {
-    "id": 1,
+    "email": "yligotmi@msn.com",
     "password": "pouet"
 }
 
@@ -48,6 +48,6 @@ POST http://localhost:8000/login
 Content-Type: application/json
 
 {
-    "id": 1,
-    "password": "toto"
+    "email": "yligotmi@cara.com",
+    "password": "pouet"
 }

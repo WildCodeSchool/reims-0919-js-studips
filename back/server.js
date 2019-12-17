@@ -235,7 +235,8 @@ app.post('/register', (req, res) => {
 		hobbies: formData.hobbies,
 		study: formData.study,
 		bio: formData.bio,
-		city: formData.city
+		city: formData.city,
+		tel: formData.tel
 	}
 	users.push(newUser)
 	res.send(users)
@@ -249,17 +250,22 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
 	const formData = req.body;
-	const userId = formData.id;
+	const userEmail = formData.email;
+	const userTel = formData.tel;
 	const userPassword = formData.password;
+	let match = 0
 	for (let i = 0 ; i < users.length ; i++) {
-		if (userId === users[i].id) {
+		if (userEmail === users[i].email) {
 			if (users[i].password === userPassword) {
-				res.send('Login succeeded')
-				res.sendStatus(200)
+				res.status(200).send('Login succeeded')
 			} else {
 				res.send('Wrong username or password')
 			}
+			match++
 		}
+	}
+	if (match === 0) {
+		res.send('Wrong username or password')
 	}
 })
 
