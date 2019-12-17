@@ -4,6 +4,7 @@ const app = express();
 const port = 8000;
 const connection = require('./conf.js');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 
 app.use(bodyParser.json());
 
@@ -151,3 +152,56 @@ app.listen(port, err => {
 	}
 	console.log(`Server is listening on ${port}`);
 });
+
+
+//####################test
+
+
+app.post('/api/login', (req, res) => {
+	const {email, password} = req.body;
+	console.log(email, password);
+	if (email && password) {
+		// fake user claims
+		const user = {
+			id: 1,
+			username: 'Jhondo',
+			email: 'jhondo@gmail.com',
+			password:'toto'
+		}
+		// token creation
+		jwt.sign({user}, 'secret', (err, token) => {
+			res.json({
+				token
+			})
+		})
+	}
+	else {
+		res.status(400).send();
+	}
+})
+
+function verifyToken(req, res, next){
+   const bearerHeader = req.headers.authorization
+   if(typeof bearerHeader !== 'undefined'){
+       const bearer = bearerHeader.split(' ') // split bearerHeader in a new Array
+       const bearerToken = bearer[1] // store index 1 of the newly created array in a new variable bearToken
+       req.token = bearerToken
+       next() // step to the next middleware
+   } else{
+       res.sendStatus(403)
+   }
+}
+app.post('/api/post', verifyToken, (req, res) => {
+	jwt.verify(req.token, 'secret', (err, authData) => {
+		if (err) {
+			res.sendStatus(401)
+		}
+		else {
+			res.json({
+				message: 'Post created',
+				authData
+			})
+		}
+	})
+ })
+ 
