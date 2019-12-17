@@ -238,12 +238,6 @@ app.post('/register', (req, res) => {
 	}
 	users.push(newUser)
 	res.send(users)
-	if (err) {
-		console.log(err);
-		res.status(500).send('Error registering user');
-	} else {
-		res.sendStatus(200);
-	}
 })
 
 app.listen(port, err => {
