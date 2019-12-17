@@ -220,6 +220,27 @@ app.post('/posts', (req, res) => {
 	}
 });
 
+app.post('/login', (req, res) => {
+	const formData = req.body;
+	const userEmail = formData.email;
+	const userTel = formData.tel;
+	const userPassword = formData.password;
+	let match = 0
+	for (let i = 0 ; i < users.length ; i++) {
+		if (userEmail === users[i].email) {
+			if (users[i].password === userPassword) {
+				res.status(200).send('Login succeeded')
+			} else {
+				res.send('Wrong username or password')
+			}
+			match++
+		}
+	}
+	if (match === 0) {
+		res.send('Wrong username or password')
+	}
+});
+
 app.post('/register', (req, res) => {
 	const formData = req.body;
 	let newId = users.length + 1

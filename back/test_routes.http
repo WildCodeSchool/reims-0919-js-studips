@@ -18,6 +18,24 @@ Content-Type: application/json
     "city": "Paris"
 }
 
+### POST : user login (RIGHT LOGIN), json
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email": "yligotmi@msn.com",
+    "password": "pouet"
+}
+
+### POST : user login (WRONG LOGIN), json
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email": "yligotmi@cara.com",
+    "password": "pouet"
+}
+
 ### POST : register new user : json
 POST http://localhost:8000/register
 Content-Type: application/json
