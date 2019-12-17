@@ -202,6 +202,71 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	align-items: center;
 }
-
+#return{
+	display: none;
+	width: 10%;
+	margin-left: 5%;
+	margin-top: 5%;
+}
+#secondPageInscription{
+	display: none;
+}
+.loginFormu{
+	background-color: #a40032;
+	height: 100vh;
+	
+}
+.titlePage{
+	color: white;
+	font-size: 5vh;
+	text-align: center;
+	margin-bottom: 15%;
+	margin-top: 5%;
+}
+.form-data input{
+	background-color: #a40032;
+	border-style: none none solid none;
+	width: 70%;
+	margin: 5%;
+}
+.nextButton{
+	margin-top: 15%;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+.nextButton button{
+	width: 70%;
+	border-radius: 22px;
+	height: 7vh;
+	font-size: 5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.form-data ::placeholder{
+	color: white;
+	font-size: 3vh;
+}
+.form-data ::placeholder{
+	color: white;
+	font-size: 3vh;
+}
+.validButton{
+	margin-top: 15%;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+.validButton button{
+	width: 70%;
+	border-radius: 22px;
+	height: 7vh;
+	font-size: 5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 /******************************************* Fin du formulaire *************************************/
