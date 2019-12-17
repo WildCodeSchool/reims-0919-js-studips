@@ -145,6 +145,33 @@ app.post('/posts', (req, res) => {
 	}
 });
 
+app.post('/register', (req, res) => {
+	const formData = req.body;
+	let lastId = users.length - 1;
+	let newId = lastId + 1;
+	const newUser = {
+		id: newId,
+		firstname: formData.firstname,
+		lastname: formData.lastname,
+		password: formData.password,
+		email: formData.email,
+		birthday: formData.birthday,
+		hobbies: formData.hobbies,
+		study: formData.study,
+		bio: formData.bio,
+		city: formData.city,
+		tel: formData.tel
+	}
+	users.push(newUser)
+	res.send(users)
+	if (err) {
+		console.log(err);
+		res.status(500).send('Error registering user');
+	} else {
+		res.sendStatus(200);
+	}
+})
+
 app.listen(port, err => {
 	if (err) {
 		throw new Error('Something bad happened...');
