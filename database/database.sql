@@ -19,8 +19,7 @@ create table user
     study varchar(50) not null,
     bio varchar(250) null,
     city_id int not null,
-    foreign key (city_id) references city(id)
-    
+    foreign key (city_id) references city(id)  
 );
 create table post
 (
