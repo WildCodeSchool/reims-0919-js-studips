@@ -197,3 +197,54 @@
 	border-bottom: solid 1px black;
 	padding: 1rem;
 }
+
+/**************************************** debut page de connection **************************************************/
+
+.form{
+	display: flex;
+	flex-direction: column;
+	background-color: #A40032;
+	align-items: center;
+	height: 100vh;	
+}
+.bottomPage{
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10%;
+}
+.bottomPage button{
+	width: 80%;
+	border-radius: 22px;
+	padding: 2%;
+	font-size: 5vw;
+}
+.form p {
+	color: white;
+}
+.titleConnection{
+	color: white;
+	font-size: 8vh;
+}
+.form label{
+	color: white;
+}
+.form input{
+	background-color: #A40032;
+	border-color: #A40032 #A40032 white;
+	border-style: none none solid none;
+	width: 80%;
+	color: white;
+	margin: 8%;
+}
+.forgotPass{
+	text-decoration: underline;
+	margin-top: 10%;
+}
+.or{
+	font-size: 8vh;
+	margin: 5%;
+}
+
+/***************************** ********** fin de page de connection **************************************************/
