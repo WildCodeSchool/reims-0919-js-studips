@@ -138,9 +138,6 @@
 .icon{
 	width: 32px;
 }
-
-
-
 .menu{
 	position: fixed;
 	display: flex;
@@ -150,10 +147,7 @@
 	height: 100%;
 	background-color: #a40032;
 	justify-content: space-around;
-	
-
 }
-
 .menu img{
 	max-width: 30%;
 	border-radius: 500%;
@@ -197,3 +191,75 @@
 	border-bottom: solid 1px black;
 	padding: 1rem;
 }
+/***************************************** END MainThread.js *****************************************/
+
+/***************************************** BEGIN PostModal.jsx *****************************************/
+
+.overlay {
+	display: flex;
+	position: fixed;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(85, 85, 85, 0.65);
+	z-index: 12;
+}
+.newPostCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 95vw;
+	background-color: #e2e2e2;
+	border: solid rgb(219, 219, 219) 2px;
+	padding: 0.5rem;
+}
+.subTitle {
+	align-self: flex-start;
+}
+.categoryChoice p {
+	margin: 0.1rem 0;
+}
+.categoryChoice {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+	margin: 0.2rem 0;
+	width: 80vw;
+}
+.categoryList {
+	display: flex;
+	flex-direction: column;
+	margin: 0.2rem auto;
+}
+.newPostTitle {
+	margin: 0.2rem 0;
+}
+.newTitleBox {
+	background-color: #a40032;
+	color: white;
+	border: none;
+	border-radius: 1em;
+	text-align: left;
+	height: 5vh;
+	width: 80vw;
+	padding: 0.5rem;
+}
+.newMessageBox {
+	background-color: #a40032;
+	color: white;
+	border: none;
+	border-radius: 1em;
+	text-align: left;
+	margin: 0.5rem 0px;
+	padding: 0.5rem;
+	width: 80vw;
+	min-height: 30vh;
+}
+
+
+/***************************************** END PostModal.jsx *****************************************/
+
