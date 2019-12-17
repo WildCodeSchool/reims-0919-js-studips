@@ -15,6 +15,81 @@ app.use(
 
 app.use(cors());
 
+let users = [
+	{
+		id: 1,			
+		firstname: 'Youri',
+		lastname: 'Ligotmi',
+		password: 'pouet',
+		email: 'yligotmi@msn.com',
+		birthday: '11/11/11',
+		hobbies: 'Jeux vidéos, cinema',
+		study: 'Science PO',
+		bio: 'Je voudrais instaurer un nouvel ordre mondial',
+		city: 'Angers'
+	},
+	{
+		id: 2,			
+		firstname: 'Barack',
+		lastname: 'Aphrite',
+		password: 'pouet',
+		email: 'baphrite@msn.com',
+		birthday: '10/10/10',
+		hobbies: 'Cinéma , sport , voiture',
+		study: 'BEP cuisine',
+		bio: 'Futur manager chez Macdo, ma passion est de faire des frites',
+		city: 'Caen'
+	},
+	{
+		id: 3,			
+		firstname: 'Agathe',
+		lastname: 'Zeblouse',
+		password: 'pouet',
+		email: 'agathe@msn.com',
+		birthday: '12/04/09',
+		hobbies: 'Musique , art',
+		study: 'Faculté LEA',
+		bio: 'Je compose de la musique lors de mes temps libre',
+		city: 'Paris'
+	},
+	{
+		id: 4,			
+		firstname: 'Jeremy',
+		lastname: 'Lepandulaleur',
+		password: 'pouet',
+		email: 'jeremy@msn.com',
+		birthday: '08/09/10',
+		hobbies: 'Cinema, sport, jeux videos',
+		study: 'DUT génie civil',
+		bio: 'Amical et enthousiaste, j\'aime rencontrer des personnes',
+		city: 'Lille'
+	},
+	{
+		id: 5,			
+		firstname: 'Harry',
+		lastname: 'Cover',
+		password: 'pouet',
+		email: 'hpotter@msn.com',
+		birthday: '23/02/11',
+		hobbies: 'Cuisine , PotterHead',
+		study: 'Faculté des sciences',
+		bio: 'Je suis de Gryffondor',
+		city: 'Lille'
+	},
+	{
+		id: 6,			
+		firstname: 'Sylvain',
+		lastname: 'Duriff',
+		password: 'pouet',
+		email: 'sdurif@msn.com',
+		birthday: '01/01/05',
+		hobbies: 'Politique, Course à pied',
+		study: 'Faculté de droit',
+		bio: 'je suis le grand monarque cosmique',
+		city: 'Strasbourg'
+	}
+]
+
 const posts = [
 	{
 		id: 1,
@@ -144,6 +219,26 @@ app.post('/posts', (req, res) => {
 		res.sendStatus(200);
 	}
 });
+
+app.post('/register', (req, res) => {
+	const formData = req.body;
+	let newId = users.length + 1
+	const newUser = {
+		id: newId,
+		firstname: formData.firstname,
+		lastname: formData.lastname,
+		password: formData.password,
+		email: formData.email,
+		birthday: formData.birthday,
+		hobbies: formData.hobbies,
+		study: formData.study,
+		bio: formData.bio,
+		city: formData.city,
+		tel: formData.tel
+	}
+	users.push(newUser)
+	res.send(users)
+})
 
 app.listen(port, err => {
 	if (err) {
