@@ -19,7 +19,7 @@ class LoginForm extends React.Component{
             city : '',
             nextPage : true,
         };
-        this.submitForm = this.submitForm.bind(this);
+        
         this.onChange = this.onChange.bind(this);
         this.postForm = this.postForm.bind(this);
         this.secondPageAppear = this.secondPageAppear.bind(this);
