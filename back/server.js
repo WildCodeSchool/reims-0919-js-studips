@@ -193,7 +193,13 @@ const posts = [
 ];
 
 app.get('/posts', (req, res) => {
-	res.send(posts);
+  connection.query('SELECT * from post', (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la récupération des posts');
+    } else {
+      res.json(results);
+    }
+  });
 });
 
 app.post('/posts', (req, res) => {
