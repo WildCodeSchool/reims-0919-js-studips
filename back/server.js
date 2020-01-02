@@ -4,6 +4,7 @@ const app = express();
 const port = 8000;
 const connection = require('./conf.js');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 
 app.use(bodyParser.json());
 
@@ -14,6 +15,18 @@ app.use(
 );
 
 app.use(cors());
+
+function verifyToken(req, res, next){
+   const bearerHeader = req.headers.authorization
+   if (typeof bearerHeader !== 'undefined') {
+       const bearer = bearerHeader.split(' ') // split bearerHeader in a new Array
+       const bearerToken = bearer[1] // store index 1 of the newly created array in a new variable bearToken
+       req.token = bearerToken
+       next() // step to the next middleware
+   } else {
+       res.sendStatus(403)
+   }
+}
 
 let users = [
 	{
@@ -230,6 +243,11 @@ app.post('/login', (req, res) => {
 		if (userEmail === users[i].email) {
 			if (users[i].password === userPassword) {
 				res.status(200).send('Login succeeded')
+				jwt.sign({ userEmail }, 'choucroute', {expiresIn: '180sec'}, (err, token) => {
+					res.json({
+						token
+					});
+				});
 			} else {
 				res.send('Wrong username or password')
 			}
