@@ -278,13 +278,15 @@
 	margin-top: 10%;
 	margin-bottom: 30%;
 }
-.welcome button{
+.bouton{
 	background-color: #a40032;
 	color: white;
 	border-radius: 22px;
 	width: 70%;
 	height: 6vh;
 	font-size: 6vw;
+	text-align: center;
+	text-decoration: none;
 }
 /***************************************** fin welcome page *****************************************/
 
