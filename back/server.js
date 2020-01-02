@@ -204,27 +204,16 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/posts', (req, res) => {
-	const formData = req.body;
-	const post = {
-		id: formData.id,
-		user_id: formData.user_id,
-		firstname: formData.firstname,
-		lastname: formData.lastname,
-		studies: formData.studies,
-		picture: formData.picture,
-		title: formData.title,
-		category: formData.category,
-		content: formData.content,
-		city: formData.city,
-	};
-	posts.push(post);
-	res.send(post);
-	if (err) {
-		console.log(err);
-		res.status(500).send('Error posting');
-	} else {
-		res.sendStatus(200);
-	}
+  	const formData = req.body;
+	let sqlQuery = 'INSERT INTO post SET ?';
+  	connection.query(sqlQuery, formData, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error sending a new post");
+    } else {
+      res.sendStatus(200);
+    }
+  	});
 });
 
 app.post('/login', (req, res) => {

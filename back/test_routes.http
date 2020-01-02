@@ -6,16 +6,10 @@ POST http://localhost:8000/posts
 Content-Type: application/json
 
 {
-    "id": 8,
-    "user_id": 8,
-    "firstname": "Eddy",
-    "lastname": "Patou",
-    "studies": "EPITECH",
-    "picture": "",
+    "user_id": 6,
     "title": "Cours de maths",
     "category": "Cours",
-    "content": "Bonjour, pour ceux que cela peut intéresser, je peux donner des cours de maths. Me contacter par MP !",
-    "city": "Paris"
+    "content": "Bonjour, pour ceux que cela peut intéresser, je peux donner des cours de maths. Me contacter par MP !"
 }
 
 ### POST : user login (RIGHT LOGIN), json
