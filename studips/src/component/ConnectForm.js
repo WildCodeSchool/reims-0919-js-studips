@@ -49,7 +49,7 @@ class connectForm extends React.Component{
                     <button type='submit'  onClick= {this.postForm}>Valider</button>
                     <p className = 'forgotPass'>Mot de passe oublié?</p>
                     <p className = 'or'>Ou</p>
-                    <button  type = 'submit' >Créer un compte</button>
+                    <button  type = 'button' >Créer un compte</button>
                     </div>
                  </div>
             </div>
