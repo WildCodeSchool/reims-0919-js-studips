@@ -25,15 +25,14 @@ class LoginForm extends React.Component{
         this.secondPageAppear = this.secondPageAppear.bind(this);
         this.returnFonction = this.returnFonction.bind(this);
     }
-    submitForm(e){
-        e.preventDefault();
-    };
+   
     onChange(e){
         this.setState({
             [e.target.name] : e.target.value,
         });
     }
-    postForm (){
+    postForm (e){
+        e.preventDefault();
         const config = {
             method : "POST",
             headers : {
@@ -73,7 +72,7 @@ class LoginForm extends React.Component{
                 {this.state.nextPage ?
                 <div className= 'loginFormu'>
                 <p className='titlePage'>Création d'un compte</p>
-                <form onSubmit = {this.submitForm}/>
+                <form onSubmit = {this.postForm}/>
                 <div id ='firstPageInscription'>
                     <div className="form-data">   
                         <input placeholder='Prénom'
