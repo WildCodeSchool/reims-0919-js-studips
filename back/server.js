@@ -5,6 +5,7 @@ const port = 8000;
 const connection = require('./conf.js');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const signature = require('./signature.js');
 
 app.use(bodyParser.json());
 
@@ -241,7 +242,8 @@ app.post('/login', (req, res) => {
 		if (userEmail === users[i].email) {
 			if (users[i].password === userPassword) {
 				res.status(200).send('Login succeeded')
-				jwt.sign({ userEmail }, 'choucroute', {expiresIn: '180sec'}, (err, token) => {
+				jwt.sign({ userEmail }, signature, {expiresIn: '180sec'}, (err, token) => {
+					console.log(token)
 					res.json({
 						token
 					});
