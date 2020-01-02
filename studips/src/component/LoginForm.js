@@ -17,22 +17,22 @@ class LoginForm extends React.Component{
             study : '',
             bio : '',
             city : '',
+            nextPage : true,
         };
-        this.submitForm = this.submitForm.bind(this);
+        
         this.onChange = this.onChange.bind(this);
         this.postForm = this.postForm.bind(this);
         this.secondPageAppear = this.secondPageAppear.bind(this);
         this.returnFonction = this.returnFonction.bind(this);
     }
-    submitForm(e){
-        e.preventDefault();
-    };
+   
     onChange(e){
         this.setState({
             [e.target.name] : e.target.value,
         });
     }
-    postForm (){
+    postForm (e){
+        e.preventDefault();
         const config = {
             method : "POST",
             headers : {
@@ -40,7 +40,7 @@ class LoginForm extends React.Component{
             },
             body: JSON.stringify(this.state),
         };
-    const url = "http://localhost8000/user";
+    const url = "http://localhost8000/users";
     fetch(url, config)
         .then(res => res.json())
         .then(res => {
@@ -54,23 +54,25 @@ class LoginForm extends React.Component{
         alert('Erreur lors de la création de votre compte');
       });
     }
-    secondPageAppear(){
-        document.getElementById('firstPageInscription').style.display = 'none';
-        document.getElementById('secondPageInscription').style.display = 'block'; 
-        document.getElementById('return').style.display = 'block';  
+    secondPageAppear = () => {
+         this.setState({
+             nextPage: false
+         })
     }
-    returnFonction(){
-        document.getElementById('firstPageInscription').style.display = 'block';
-        document.getElementById('secondPageInscription').style.display = 'none'; 
-        document.getElementById('return').style.display = 'none';  
+    returnFonction= () => {
+        this.setState({
+            nextPage: true
+        })  
     }
     
     render(){
         return(
             <div className = 'loginFormu' >
-                <img src='https://zupimages.net/up/19/51/wege.png' id = 'return' onClick= {this.returnFonction}></img>
+                
+                {this.state.nextPage ?
+                <div className= 'loginFormu'>
                 <p className='titlePage'>Création d'un compte</p>
-                <form onSubmit = {this.submitForm}/>
+                <form onSubmit = {this.postForm}/>
                 <div id ='firstPageInscription'>
                     <div className="form-data">   
                         <input placeholder='Prénom'
@@ -118,9 +120,12 @@ class LoginForm extends React.Component{
                         </div>
                         
                     </div>
-                </div>    
+                </div> 
+                </div>
+                :   
                     <div id='secondPageInscription'>
-                        <div className="form-data">
+                        <img src='https://zupimages.net/up/19/51/wege.png' id = 'return' onClick= {this.returnFonction}></img>
+                        <div className="form-dataSecond">
                             
                             <input placeholder = 'Date de naissance'
                                 type="date"
@@ -162,7 +167,10 @@ class LoginForm extends React.Component{
                             </div>
                         </div>
                     </div>
+                    
+                }
             </div>
+        
         )
     }
 }

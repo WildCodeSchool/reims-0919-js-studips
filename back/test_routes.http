@@ -17,3 +17,37 @@ Content-Type: application/json
     "content": "Bonjour, pour ceux que cela peut intéresser, je peux donner des cours de maths. Me contacter par MP !",
     "city": "Paris"
 }
+
+### POST : user login (RIGHT LOGIN), json
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email": "yligotmi@msn.com",
+    "password": "pouet"
+}
+
+### POST : user login (WRONG LOGIN), json
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email": "yligotmi@cara.com",
+    "password": "pouet"
+}
+
+### POST : register new user : json
+POST http://localhost:8000/register
+Content-Type: application/json
+
+{
+    "firstname": "Eddy",
+    "lastname": "Patou",
+    "password": "pouet",
+    "email": "eddypatou@hotmail.com",
+    "birthday": "10/11/00",
+    "hobbies": "BD, arts",
+    "study": "Histoire de l'art",
+    "bio": "Passionné d'art, je m'intéresse tout particulièrement à la BD",
+    "city": "Grenoble"
+}

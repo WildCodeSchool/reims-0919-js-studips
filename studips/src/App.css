@@ -208,11 +208,25 @@
 	align-items: center;
 	margin-top: 10%;
 }
-.bottomPage button{
-	width: 80%;
+.validationButton{
+	width: 70%;
 	border-radius: 22px;
 	padding: 2%;
 	font-size: 5vw;
+	background-color: white;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+.loginButton{
+	width: 70%;
+	border-radius: 22px;
+	padding: 2%;
+	font-size: 5vw;
+	background-color: white;
+	text-decoration: none;
+	text-align: center;
+	color: black;
 }
 .form p {
 	color: white;
@@ -243,6 +257,89 @@
 
 /***************************** ********** fin de page de connection **************************************************/
 /***************************************** END MainThread.js *****************************************/
+/******************************************* Debut du formulaire *************************************/
+.form-data{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	
+}
+.form-dataSecond{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20%;
+}
+
+#return{
+	
+	width: 10%;
+	margin-left: 5%;
+	margin-top: 5%;
+}
+
+.loginFormu{
+	background-color: #a40032;
+	height: 100vh;
+	
+}
+.titlePage{
+	color: white;
+	font-size: 5vh;
+	text-align: center;
+	margin-bottom: 15%;
+	margin-top: 5%;
+}
+.form-data input{
+	background-color: #a40032;
+	border-style: none none solid none;
+	width: 70%;
+	margin: 5%;
+}
+.form-dataSecond input{
+	background-color: #a40032;
+	border-style: none none solid none;
+	width: 70%;
+	margin: 5%;
+}
+.nextButton{
+	margin-top: 15%;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+.nextButton button{
+	width: 70%;
+	border-radius: 22px;
+	height: 7vh;
+	font-size: 5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.form-data ::placeholder{
+	color: white;
+	font-size: 3vh;
+}
+
+.validButton{
+	margin-top: 15%;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+.validButton button{
+	width: 70%;
+	border-radius: 22px;
+	height: 7vh;
+	font-size: 5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/******************************************* Fin du formulaire *************************************/
 
 /***************************************** BEGIN PostModal.jsx *****************************************/
 
@@ -313,4 +410,31 @@
 
 
 /***************************************** END PostModal.jsx *****************************************/
+/***************************************** debut welcome page *****************************************/
+.welcome{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.welcome img{
+	width: 50%;
+	margin-bottom: 40%;
+}
+.welcome h1{
+	color: #a40032;
+	margin-top: 10%;
+	margin-bottom: 30%;
+}
+.bouton{
+	background-color: #a40032;
+	color: white;
+	border-radius: 22px;
+	width: 70%;
+	height: 6vh;
+	font-size: 6vw;
+	text-align: center;
+	text-decoration: none;
+}
+/***************************************** fin welcome page *****************************************/
 

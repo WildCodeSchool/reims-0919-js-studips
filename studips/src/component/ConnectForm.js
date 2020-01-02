@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import {Link} from 'react-router-dom';
 
 class connectForm extends React.Component{
     constructor(props){
@@ -46,10 +47,11 @@ class connectForm extends React.Component{
                         onChange={this.onChange}
                         value={this.state.password}/>
                     <div className = 'bottomPage'>
-                    <button type='submit'  onClick= {this.postForm}>Valider</button>
-                    <p className = 'forgotPass'>Mot de passe oublié?</p>
-                    <p className = 'or'>Ou</p>
-                    <button  type = 'button' >Créer un compte</button>
+
+                        <Link className='validationButton' type='submit' to='/mainthread'  onClick= {this.postForm}>Valider </Link>
+                        <p className = 'forgotPass'>Mot de passe oublié?</p>
+                        <p className = 'or'>Ou</p>
+                        <Link className='loginButton' type = 'button' to='/login' >Créer un compte</Link>
                     </div>
                  </div>
             </div>
