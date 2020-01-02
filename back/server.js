@@ -217,25 +217,24 @@ app.post('/posts', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-	const formData = req.body;
-	const userEmail = formData.email;
-	const userTel = formData.tel;
-	const userPassword = formData.password;
-	let match = 0
-	for (let i = 0 ; i < users.length ; i++) {
-		if (userEmail === users[i].email) {
-			if (users[i].password === userPassword) {
-				res.status(200).send('Login succeeded')
+	let userPassword = req.body.password;
+	let userEmail = req.body.email
+	let sqlQuery = `SELECT email, password from user where user.email='${userEmail}'`
+	connection.query(sqlQuery, (err, results) => {
+		if (!results.length) {
+			res.status(400).send('Wrong email or password')
+		} else {
+			if (results[0].password === userPassword) {
+				res.sendStatus(200)
 			} else {
-				res.send('Wrong username or password')
+				res.status(400).send('Wrong email or password')
 			}
-			match++
 		}
-	}
-	if (match === 0) {
-		res.send('Wrong username or password')
-	}
-});
+		if (err) {
+			res.status(500).send('error')
+		}		
+	})
+})
 
 app.post('/register', (req, res) => {
 	const formData = req.body;
