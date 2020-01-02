@@ -11,6 +11,7 @@ function App() {
 		<div className='App'>
 			<Switch>
 				<Route exact path ='/' component={Welcome} />
+				<Route path='/login' component={LoginForm} />
 				<Route path ='/mainthread' component={MainThread} />
       		</Switch>
 		</div>
