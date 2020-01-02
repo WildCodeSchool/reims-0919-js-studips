@@ -54,7 +54,10 @@ INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
 VALUES
 ('Sylvain', 'Duriff', 'pouet', 'sdurif@msn.com', '2001-05-05', 'Politique, Course à pied', 'Faculté de droit', 'je suis le grand monarque cosmique', 'Strasbourg');
-
+INSERT INTO `user`
+(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
+VALUES
+('Eric', 'Antonnai', 'cassoulet', 'ericantonnai@gmail.com', '2000-01-01', 'Motocross', 'Faculté des sciences', "je suis actif, j'aime sortir le soir et rencontrer des nouvelles personnes", 'Paris');
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`) 
 VALUES
