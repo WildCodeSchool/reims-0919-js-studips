@@ -344,4 +344,31 @@
 
 
 /***************************************** END PostModal.jsx *****************************************/
+/***************************************** debut welcome page *****************************************/
+.welcome{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.welcome img{
+	width: 50%;
+	margin-bottom: 40%;
+}
+.welcome h1{
+	color: #a40032;
+	margin-top: 10%;
+	margin-bottom: 30%;
+}
+.bouton{
+	background-color: #a40032;
+	color: white;
+	border-radius: 22px;
+	width: 70%;
+	height: 6vh;
+	font-size: 6vw;
+	text-align: center;
+	text-decoration: none;
+}
+/***************************************** fin welcome page *****************************************/
 
