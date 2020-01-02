@@ -17,6 +17,7 @@ class LoginForm extends React.Component{
             study : '',
             bio : '',
             city : '',
+            nextPage : true,
         };
         this.submitForm = this.submitForm.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -54,21 +55,23 @@ class LoginForm extends React.Component{
         alert('Erreur lors de la création de votre compte');
       });
     }
-    secondPageAppear(){
-        document.getElementById('firstPageInscription').style.display = 'none';
-        document.getElementById('secondPageInscription').style.display = 'block'; 
-        document.getElementById('return').style.display = 'block';  
+    secondPageAppear = () => {
+         this.setState({
+             nextPage: false
+         })
     }
-    returnFonction(){
-        document.getElementById('firstPageInscription').style.display = 'block';
-        document.getElementById('secondPageInscription').style.display = 'none'; 
-        document.getElementById('return').style.display = 'none';  
+    returnFonction= () => {
+        this.setState({
+            nextPage: true
+        })  
     }
     
     render(){
         return(
             <div className = 'loginFormu' >
-                <img src='https://zupimages.net/up/19/51/wege.png' id = 'return' onClick= {this.returnFonction}></img>
+                
+                {this.state.nextPage ?
+                <div className= 'loginFormu'>
                 <p className='titlePage'>Création d'un compte</p>
                 <form onSubmit = {this.submitForm}/>
                 <div id ='firstPageInscription'>
@@ -118,9 +121,12 @@ class LoginForm extends React.Component{
                         </div>
                         
                     </div>
-                </div>    
+                </div> 
+                </div>
+                :   
                     <div id='secondPageInscription'>
-                        <div className="form-data">
+                        <img src='https://zupimages.net/up/19/51/wege.png' id = 'return' onClick= {this.returnFonction}></img>
+                        <div className="form-dataSecond">
                             
                             <input placeholder = 'Date de naissance'
                                 type="date"
@@ -162,7 +168,10 @@ class LoginForm extends React.Component{
                             </div>
                         </div>
                     </div>
+                    
+                }
             </div>
+        
         )
     }
 }
