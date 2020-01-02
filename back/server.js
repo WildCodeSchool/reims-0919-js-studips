@@ -193,7 +193,8 @@ const posts = [
 ];
 
 app.get('/posts', (req, res) => {
-  connection.query('SELECT * from post', (err, results) => {
+	let sqlQuery = 'SELECT user.firstname, user.lastname, user.city, post.* FROM post JOIN user ON user.id=post.user_id'
+  	connection.query(sqlQuery, (err, results) => {
     if (err) {
       res.status(500).send('Erreur lors de la récupération des posts');
     } else {
