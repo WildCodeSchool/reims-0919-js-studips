@@ -39,7 +39,7 @@ Content-Type: application/json
     "lastname": "Patou",
     "password": "pouet",
     "email": "eddypatou@hotmail.com",
-    "birthday": "10/11/00",
+    "birthday": "2001-05-06",
     "hobbies": "BD, arts",
     "study": "Histoire de l'art",
     "bio": "Passionné d'art, je m'intéresse tout particulièrement à la BD",
