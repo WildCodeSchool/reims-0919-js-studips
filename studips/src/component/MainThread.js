@@ -15,11 +15,14 @@ class MainThread extends React.Component {
 		super(props);
 		this.state = {
 			posts: [],
+			activeId:'stages',
 			isPostModalVisible: false,
 			isMenuVisible:false
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
+		this.handleChangeTab = this.handleChangeTab.bind(this);
+		this.getTabContent = this.getTabContent.bind(this);
 	}
 	componentDidMount() {
 		axios
@@ -41,9 +44,42 @@ class MainThread extends React.Component {
 			return {isMenuVisible: !prevState.isMenuVisible}
 		});
 	}
+	handleChangeTab(event){
+		const buttonId = event.target.id;
+		this.setState({ activeId: buttonId});
+	}
+	getTabContent() {
+		switch(this.state.activeId) {
+		  case 'stages':
+			{this.state.posts.map(post => {
+				return <PostCard postData={post} />;
+			})}
+		  case 'logements':
+			{this.state.posts.map(post => {
+				return <PostCard postData={post} />
+			})}
+		  case 'events':
+			{this.state.posts.map(post => {
+				return <PostCard postData={post} />
+			})}
+		  case 'cours':
+			{this.state.posts.map(post => {
+				return <PostCard postData={post} />
+			})}
+		  case 'fournitures':
+			{this.state.posts.map(post => {
+				return <PostCard postData={post} />
+			})}
+		  default:
+			{this.state.posts.map(post => {
+				return <PostCard postData={post} />;
+			})}
+		}
+	  }
 	render() {
+		
 		return (
-			<>
+				<>
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
 					<Menu/>
 				</div>}
@@ -62,9 +98,9 @@ class MainThread extends React.Component {
 						onClick={this.toggleNewPost}>Poster un message</button>
 				</div>
 				<div className='cardList'>
-					{this.state.posts.map(post => {
-						return <PostCard postData={post} />;
-					})}
+				{
+            	this.getTabContent()
+         		}
 				</div>
 				<div className='navbar'>
 					<img 
