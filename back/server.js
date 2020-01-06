@@ -55,25 +55,21 @@ app.post('/login', (req, res) => {
 	let userPassword = req.body.password;
 	let userEmail = req.body.email
 	let sqlQuery = `SELECT email, password from user where user.email='${userEmail}'`
-	connection.query(sqlQuery, (err, results) => {
-		if (!results.length) {
-			res.status(400).send('Wrong email or password')
-		} else {
-			if (results[0].password === userPassword) {
-				res.sendStatus(200)	
-				jwt.sign({ userEmail }, signature, {expiresIn: '180sec'}, (err, token) => {
-					console.log(token)
-					res.json({
-						token
-					});
-				});
-			} else {
-				res.status(400).send('Wrong email or password')
-			}
-		}
+	connection.query(sqlQuery, (err, matchs) => {
 		if (err) {
 			res.status(500).send('error')
-		}		
+			return
+		}
+		const oneMatchFound = (matchs.length === 1)
+		if (!oneMatchFound || matchs[0].password !== userPassword) {
+			res.status(400).send('Wrong email or password')
+			return
+		}
+		jwt.sign({ userEmail }, signature, {expiresIn: '180sec'}, (err, token) => {
+			res.sendStatus(200).json({
+				token
+			});
+		});
 	})
 })
 
