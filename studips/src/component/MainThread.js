@@ -15,14 +15,13 @@ class MainThread extends React.Component {
 		super(props);
 		this.state = {
 			posts: [],
-			activeId:'stages',
+			activeId:'',
 			isPostModalVisible: false,
 			isMenuVisible:false
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
 		this.handleChangeTab = this.handleChangeTab.bind(this);
-		this.getTabContent = this.getTabContent.bind(this);
 	}
 	componentDidMount() {
 		axios
@@ -48,32 +47,52 @@ class MainThread extends React.Component {
 		const buttonId = event.target.id;
 		this.setState({ activeId: buttonId});
 	}
-	getTabContent() {
+	getTabContent() {		
 		switch(this.state.activeId) {
-		  case 'stages':
-			{this.state.posts.map(post => {
-				return <PostCard postData={post} />;
-			})}
+		  case 'stages':			
+			 return (this.state.posts
+				.filter(post=>post.category === 'Job')
+				.map(post => {
+				return <PostCard postData={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
 		  case 'logements':
-			{this.state.posts.map(post => {
-				return <PostCard postData={post} />
-			})}
+			return (this.state.posts
+				.filter(post=>post.category==='Logement')
+				.map(post => {
+				return <PostCard postData={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
 		  case 'events':
-			{this.state.posts.map(post => {
-				return <PostCard postData={post} />
-			})}
+			return (this.state.posts
+				.filter(post=>post.category==='Event')
+				.map(post => {
+				return <PostCard postData={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
 		  case 'cours':
-			{this.state.posts.map(post => {
-				return <PostCard postData={post} />
-			})}
+			return (this.state.posts
+				.filter(post=>post.category==='Cours')
+				.map(post => {
+				return <PostCard postData ={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
 		  case 'fournitures':
-			{this.state.posts.map(post => {
-				return <PostCard postData={post} />
-			})}
+			return (this.state.posts
+				.filter(post=>post.category==='Fournitures')
+				.map(post => {
+				return <PostCard postData={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
 		  default:
-			{this.state.posts.map(post => {
-				return <PostCard postData={post} />;
-			})}
+			return (this.state.posts.map(post => {
+				return <PostCard postData={post} />
+			}))
 		}
 	  }
 	render() {
@@ -81,7 +100,7 @@ class MainThread extends React.Component {
 		return (
 				<>
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
-					<Menu/>
+					<Menu handleChangeTab={this.handleChangeTab}/>
 				</div>}
 				{this.state.isPostModalVisible && <div onClick={this.toggleNewPost}>
 					<PostModal
