@@ -4,6 +4,8 @@ const app = express();
 const port = 8000;
 const connection = require('./conf.js');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const signature = require('./signature.js');
 
 app.use(bodyParser.json());
 
@@ -14,6 +16,16 @@ app.use(
 );
 
 app.use(cors());
+
+function verifyToken(req, res, next){
+   const bearerHeader = req.headers.authorization
+   if (typeof bearerHeader !== 'undefined') {
+       const bearer = bearerHeader.split(' ')
+       const bearerToken = bearer[1]
+   } else {
+       res.sendStatus(403)
+   }
+}
 
 app.get('/posts', (req, res) => {
 	let sqlQuery = 'SELECT user.firstname, user.lastname, user.city, post.* FROM post JOIN user ON user.id=post.user_id'
@@ -48,7 +60,13 @@ app.post('/login', (req, res) => {
 			res.status(400).send('Wrong email or password')
 		} else {
 			if (results[0].password === userPassword) {
-				res.sendStatus(200)
+				res.sendStatus(200)	
+				jwt.sign({ userEmail }, signature, {expiresIn: '180sec'}, (err, token) => {
+					console.log(token)
+					res.json({
+						token
+					});
+				});
 			} else {
 				res.status(400).send('Wrong email or password')
 			}
