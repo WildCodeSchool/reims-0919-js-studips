@@ -9,7 +9,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 				<>
 				<div className='overlay'>
 				<div className = 'retour'
-		 onClick={toggleNewPost}> <button>X</button>
+		 onClick={toggleNewPost}> <button>retour</button>
 		</div>
 					<div className='newPostCard'>
 						<div className='categoryChoice'>
