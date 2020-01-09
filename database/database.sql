@@ -13,7 +13,7 @@ create table user
     hobbies varchar(100) null,
     study varchar(50) not null,
     bio varchar(250) null,
-    profile_pic varbinary(8000) null,
+    profile_pic BLOB null,
     city varchar(30) not null
 );
 create table post
@@ -33,33 +33,33 @@ create table event
     foreign key (id) references post(id)
 );
 INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
+(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Youri', 'Ligotmi', 'pouet', 'yligotmi@msn.com','2000-06-23', 'Jeux vidéos, cinema', 'Science PO', 'Je voudrais instaurer un nouvel ordre mondial', 'Angers');
+('Youri', 'Ligotmi', 'pouet', 'yligotmi@msn.com','2000-06-23', 'Jeux vidéos, cinema', 'Science PO', 'Je voudrais instaurer un nouvel ordre mondial', 'database/profile_pics/05M.jpg', 'Angers');
 INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
+(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Barack', 'Aphrite', 'pouet', 'baphrite@msn.com', '2000-10-10', 'Cinéma , sport , voiture', 'BEP cuisine', 'Futur manager chez Macdo, ma passion est de faire des frites', 'Caen');
+('Barack', 'Aphrite', 'pouet', 'baphrite@msn.com', '2000-10-10', 'Cinéma , sport , voiture', 'BEP cuisine', 'Futur manager chez Macdo, ma passion est de faire des frites', 'database/profile_pics/06M.jpg', 'Caen');
 INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
+(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Agathe', 'Zeblouse', 'pouet', 'agathe@msn.com', '1995-12-04', 'Musique , art', 'Faculté LEA', 'Je compose de la musique lors de mes temps libre', 'Paris');
+('Agathe', 'Zeblouse', 'pouet', 'agathe@msn.com', '1995-12-04', 'Musique , art', 'Faculté LEA', 'Je compose de la musique lors de mes temps libre', 'database/profile_pics/01F.jpg', 'Paris');
 INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
+(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Jeremy', 'Lependulaleur', 'pouetpouet', 'jeremy@msn.com', '2002-03-04', 'Cinema, sport, jeux videos', 'DUT génie civil', "Amical et enthousiaste, j'aime rencontrer des personnes", 'Lille');
+('Jeremy', 'Lependulaleur', 'pouetpouet', 'jeremy@msn.com', '2002-03-04', 'Cinema, sport, jeux videos', 'DUT génie civil', "Amical et enthousiaste, j'aime rencontrer des personnes", 'database/profile_pics/07M.jpg', 'Lille');
 INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
+(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Harry', 'Cover', 'pouet', 'hpotter@msn.com', '1999-01-04', 'Cuisine , PotterHead', 'Faculté des sciences', 'Je suis de Gryffondor', 'Lille');
+('Harry', 'Cover', 'pouet', 'hpotter@msn.com', '1999-01-04', 'Cuisine , PotterHead', 'Faculté des sciences', 'Je suis de Gryffondor', 'database/profile_pics/08M.jpg', 'Lille');
 INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
+(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Sylvain', 'Duriff', 'pouet', 'sdurif@msn.com', '2001-05-05', 'Politique, Course à pied', 'Faculté de droit', 'je suis le grand monarque cosmique', 'Strasbourg');
+('Sylvain', 'Duriff', 'pouet', 'sdurif@msn.com', '2001-05-05', 'Politique, Course à pied', 'Faculté de droit', 'je suis le grand monarque cosmique', 'database/profile_pics/09M.jpg', 'Strasbourg');
 INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `city`) 
+(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Eric', 'Antonnai', 'cassoulet', 'ericantonnai@gmail.com', '2000-01-01', 'Motocross', 'Faculté des sciences', "je suis actif, j'aime sortir le soir et rencontrer des nouvelles personnes", 'Paris');
+('Eric', 'Antonnai', 'cassoulet', 'ericantonnai@gmail.com', '2000-01-01', 'Motocross', 'Faculté des sciences', "je suis actif, j'aime sortir le soir et rencontrer des nouvelles personnes", 'database/profile_pics/10M.jpg', 'Paris');
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`) 
 VALUES
