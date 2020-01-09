@@ -1,11 +1,16 @@
 import React from 'react';
 import '../App.css';
 
-function PostModal({ isPostModalVisible }) {
+function PostModal({ isPostModalVisible, toggleNewPost }) {
 	return (
 		<>
+		
 			{isPostModalVisible && (
+				<>
 				<div className='overlay'>
+				<div className = 'retour'
+		 onClick={toggleNewPost}> <button>X</button>
+		</div>
 					<div className='newPostCard'>
 						<div className='categoryChoice'>
 							<p className='subTitle'>Catégorie :</p>
@@ -74,7 +79,7 @@ function PostModal({ isPostModalVisible }) {
 						<button className='postButton'>Envoyer</button>
 					</div>
 				</div>
-			)}
+		</>	)}
 		</>
 	);
 }
