@@ -13,12 +13,14 @@ create table user
     hobbies varchar(100) null,
     study varchar(50) not null,
     bio varchar(250) null,
+    profile_pic varbinary(8000) null,
     city varchar(30) not null
 );
 create table post
 (
     id int auto_increment primary key,
     user_id int,
+    created_at timestamp default CURRENT_TIMESTAMP,
     title varchar(30) not null,
     category enum('Cours','Logement','Fournitures','Job','Event'),
     content varchar(300) not null,
