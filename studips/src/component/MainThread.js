@@ -22,6 +22,7 @@ class MainThread extends React.Component {
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
 		this.handleChangeTab = this.handleChangeTab.bind(this);
+		
 	}
 	componentDidMount() {
 		axios
@@ -123,9 +124,11 @@ class MainThread extends React.Component {
 				</div>
 				<div className='navbar'>
 					<img 
+			
 						className="icon"
 						src={homeIcon}
-						alt="to home"/>
+						alt="to home"
+						/>
 					<img
 						className="icon"
 						src={searchIcon}

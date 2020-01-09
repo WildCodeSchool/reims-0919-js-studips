@@ -4,8 +4,8 @@ const app = express();
 const port = 8000;
 const connection = require('./conf.js');
 const bodyParser = require('body-parser');
-// const jwt = require('jsonwebtoken');
-// const signature = require('./signature.js');
+const jwt = require('jsonwebtoken');
+const signature = require('./signature.js');
 
 app.use(bodyParser.json());
 
@@ -17,15 +17,15 @@ app.use(
 
 app.use(cors());
 
-// function verifyToken(req, res, next){
-//    const bearerHeader = req.headers.authorization
-//    if (typeof bearerHeader !== 'undefined') {
-//        const bearer = bearerHeader.split(' ')
-//        const bearerToken = bearer[1]
-//    } else {
-//        res.sendStatus(403)
-//    }
-// }
+function verifyToken(req, res, next){
+   const bearerHeader = req.headers.authorization
+   if (typeof bearerHeader !== 'undefined') {
+       const bearer = bearerHeader.split(' ')
+       const bearerToken = bearer[1]
+   } else {
+       res.sendStatus(403)
+   }
+}
 
 let users = [
 	{
