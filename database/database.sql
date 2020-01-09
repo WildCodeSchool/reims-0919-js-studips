@@ -27,12 +27,6 @@ create table post
     event_date datetime,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
-create table event
-(
-    id int not null primary key,
-    day date not null,
-    foreign key (id) references post(id)
-);
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
