@@ -6,16 +6,10 @@ POST http://localhost:8000/posts
 Content-Type: application/json
 
 {
-    "id": 8,
-    "user_id": 8,
-    "firstname": "Eddy",
-    "lastname": "Patou",
-    "studies": "EPITECH",
-    "picture": "",
+    "user_id": 6,
     "title": "Cours de maths",
     "category": "Cours",
-    "content": "Bonjour, pour ceux que cela peut intéresser, je peux donner des cours de maths. Me contacter par MP !",
-    "city": "Paris"
+    "content": "Bonjour, pour ceux que cela peut intéresser, je peux donner des cours de maths. Me contacter par MP !"
 }
 
 ### POST : user login (RIGHT LOGIN), json
@@ -32,8 +26,8 @@ POST http://localhost:8000/login
 Content-Type: application/json
 
 {
-    "email": "yligotmi@cara.com",
-    "password": "pouet"
+    "email": "yligotmi@p.com",
+    "password": "pouetp"
 }
 
 ### POST : register new user : json
@@ -45,7 +39,7 @@ Content-Type: application/json
     "lastname": "Patou",
     "password": "pouet",
     "email": "eddypatou@hotmail.com",
-    "birthday": "10/11/00",
+    "birthday": "2001-05-06",
     "hobbies": "BD, arts",
     "study": "Histoire de l'art",
     "bio": "Passionné d'art, je m'intéresse tout particulièrement à la BD",

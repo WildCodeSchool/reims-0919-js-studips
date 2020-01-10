@@ -15,11 +15,14 @@ class MainThread extends React.Component {
 		super(props);
 		this.state = {
 			posts: [],
+			activeId:'',
 			isPostModalVisible: false,
 			isMenuVisible:false
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
+		this.handleChangeTab = this.handleChangeTab.bind(this);
+		
 	}
 	componentDidMount() {
 		axios
@@ -41,11 +44,64 @@ class MainThread extends React.Component {
 			return {isMenuVisible: !prevState.isMenuVisible}
 		});
 	}
+	handleChangeTab(event){
+		const buttonId = event.target.id;
+		this.setState({ activeId: buttonId});
+	}
+	getTabContent() {		
+		switch(this.state.activeId) {
+		  case 'stages':			
+			 return (this.state.posts
+				.filter(post=>post.category === 'Job')
+				.map(post => {
+				return <PostCard postData={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
+		  case 'logements':
+			return (this.state.posts
+				.filter(post=>post.category==='Logement')
+				.map(post => {
+				return <PostCard postData={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
+		  case 'events':
+			return (this.state.posts
+				.filter(post=>post.category==='Event')
+				.map(post => {
+				return <PostCard postData={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
+		  case 'cours':
+			return (this.state.posts
+				.filter(post=>post.category==='Cours')
+				.map(post => {
+				return <PostCard postData ={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
+		  case 'fournitures':
+			return (this.state.posts
+				.filter(post=>post.category==='Fournitures')
+				.map(post => {
+				return <PostCard postData={post} 
+				key={this.state.posts.id}/>
+			}))
+			break
+		  default:
+			return (this.state.posts.map(post => {
+				return <PostCard postData={post} />
+			}))
+		}
+	  }
 	render() {
+		
 		return (
-			<>
+				<>
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
-					<Menu/>
+					<Menu handleChangeTab={this.handleChangeTab}/>
 				</div>}
 				{this.state.isPostModalVisible && <div onClick={this.toggleNewPost}>
 					<PostModal
@@ -62,15 +118,17 @@ class MainThread extends React.Component {
 						onClick={this.toggleNewPost}>Poster un message</button>
 				</div>
 				<div className='cardList'>
-					{this.state.posts.map(post => {
-						return <PostCard postData={post} />;
-					})}
+				{
+            	this.getTabContent()
+         		}
 				</div>
 				<div className='navbar'>
 					<img 
+			
 						className="icon"
 						src={homeIcon}
-						alt="to home"/>
+						alt="to home"
+						/>
 					<img
 						className="icon"
 						src={searchIcon}
