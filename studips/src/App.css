@@ -17,11 +17,20 @@
 	padding: 0.5rem;
 	margin-bottom: 1rem;
 }
+
 .entete {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	align-items: center;
 }
+
+#category {
+	align-self: flex-end;
+	color: #a40032;
+	margin-left: 3vw;
+}
+
 .avatar {
 	max-width: 15vw;
 	max-height: 20vw;
@@ -30,24 +39,34 @@
 	margin-left: 1em;
 	border: 1px solid black;
 }
-.informations {
+
+.userProfile {
+	display: flex;
+	flex-direction: row;
+	align-self: flex-start;
 	width: 70%;
 	max-height: 20vw;
-	padding: 3%;
+	padding: 0 3%;
 }
-.informations p {
+
+.userProfile p {
 	text-align: left;
 	font-size: 12px;
 	margin: 0;
 }
+
+.userInfo {
+	display: flex;
+	flex-direction: column;
+}
+
 #name {
 	font-weight: bold;
 }
-#category {
-	color: #a40032;
-	margin-left: 3vw;
-	margin-top: 1vw;
-	margin-bottom: 15vw;
+
+.postDate {
+	font-size: 12px;
+	align-self: flex-end;
 }
 .triangle {
     width: 0; 
@@ -342,32 +361,13 @@
 /******************************************* Fin du formulaire *************************************/
 
 /***************************************** BEGIN PostModal.jsx *****************************************/
-.retour button{
-	border: none;
-	margin-right: 0.9rem;
-	border-radius: 1em;
-	width: 50vw;
-	height: 2.5em;
-	font-size: 20px;
-	background-color:#a40032;
-	color: white;
-	/* box-shadow: 3px 1px 1px white; */
-	
-}
-.retour{
-	display: flex;
-	justify-content:flex-end;
-	align-items: center;
-	width: 100%;
-	height: 10vh;
 
-}
 .overlay {
 	display: flex;
 	position: fixed;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items:center;
+	justify-content: center;
+	align-items: center;
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(85, 85, 85, 0.65);
