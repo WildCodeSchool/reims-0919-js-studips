@@ -3,14 +3,13 @@ import '../App.css';
 
 function PostModal({ isPostModalVisible, toggleNewPost }) {
 	return (
-		<>
-		
+		<>		
 			{isPostModalVisible && (
 				<>
 				<div className='overlay'>
-				<div className = 'retour'
-		 onClick={toggleNewPost}> <button>retour</button>
-		</div>
+					<div className = 'retour'
+		 				onClick={toggleNewPost}> <button>retour</button>
+					</div>
 					<div className='newPostCard'>
 						<div className='categoryChoice'>
 							<p className='subTitle'>Catégorie :</p>
