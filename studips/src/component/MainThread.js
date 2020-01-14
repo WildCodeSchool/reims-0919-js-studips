@@ -9,6 +9,7 @@ import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal'
 import Menu from './Menu'
+import {Redirect} from 'react-router-dom';
 
 class MainThread extends React.Component {
 	constructor(props) {
@@ -51,6 +52,10 @@ class MainThread extends React.Component {
 		});
 	}
 	render() {
+        const isNotConnected = (this.props.token === null);
+        if(isNotConnected) {
+            return <Redirect to='/login' />
+        }
 		return (
 			<>
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
@@ -74,9 +79,9 @@ class MainThread extends React.Component {
 						onClick={this.toggleNewPost}>Poster un message</button>
 				</div>
 				<div className='cardList'>
-					{this.state.posts.map(post => {
-						return <PostCard postData={post} />;
-					})}
+					{React.Children.toArray(
+						this.state.posts.map(post => <PostCard postData={post} />)
+					)}
 				</div>
 				<div className='navbar'>
 					<img 
