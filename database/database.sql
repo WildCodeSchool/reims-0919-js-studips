@@ -9,6 +9,7 @@ create table user
     lastname varchar(30) not null,
     password varchar(30) not null,
     email varchar(30) not null,
+    phone varchar(12) null ,
     birthday date not null,
     hobbies varchar(100) null,
     study varchar(50) not null,
