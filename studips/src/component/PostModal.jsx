@@ -1,57 +1,68 @@
 import React from 'react';
 import '../App.css';
 
-function PostModal({ isPostModalVisible }) {
+function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost, handleSubmitNewPost }) {
 	return (
-		<>
+		<>		
 			{isPostModalVisible && (
+				<>
 				<div className='overlay'>
-					<div className='newPostCard'>
+					<div className = 'retour'
+		 				onClick={toggleNewPost}> <button>retour</button>
+					</div>
+					<form 
+						className='newPostCard'
+						onSubmit={handleSubmitNewPost}>
 						<div className='categoryChoice'>
 							<p className='subTitle'>Catégorie :</p>
 							<div className='categoryList'>
-								<label for='choiceEvent'>
+								<label htmlFor='choiceEvent'>
 									<input
 										type='radio'
 										id='choiceEvent'
 										name='category'
-										value='event'
+										value='Events'
+										onChange={handleChangeNewPost}
 									/>
 									Evènements
 								</label>
-								<label for='choiceAccomodation'>
+								<label htmlFor='choiceAccomodation'>
 									<input
 										type='radio'
 										id='choiceAccomodation'
 										name='category'
-										value='accomodation'
+										value='Logements'
+										onChange={handleChangeNewPost}
 									/>
 									Logements
 								</label>
-								<label for='choiceClass'>
+								<label htmlFor='choiceClass'>
 									<input
 										type='radio'
 										id='choiceClass'
 										name='category'
-										value='class'
+										value='Cours'
+										onChange={handleChangeNewPost}
 									/>
 									Cours
 								</label>
-								<label for='choiceJob'>
+								<label htmlFor='choiceJob'>
 									<input
 										type='radio'
 										id='choiceJob'
 										name='category'
-										value='job'
+										value='Jobs'
+										onChange={handleChangeNewPost}
 									/>
 									Jobs / stages
 								</label>
-								<label for='choicesupply'>
+								<label htmlFor='choicesupply'>
 									<input
 										type='radio'
 										id='choicesupply'
 										name='category'
-										value='supply'
+										value='Fournitures'
+										onChange={handleChangeNewPost}
 									/>
 									Fournitures
 								</label>
@@ -59,22 +70,30 @@ function PostModal({ isPostModalVisible }) {
 						</div>
 						<div className='newPostTitle'>
 							<p className='subTitle'>Titre :</p>
-							<label for='postTitle'></label>
+							<label htmlFor='postTitle'></label>
 							<textarea
 								className='newTitleBox'
-								id='postTitle'></textarea>
+								id='postTitle'
+								name='title'
+								onChange={handleChangeNewPost}></textarea>
 						</div>
 						<div>
 							<p className='subTitle'>Message :</p>
-							<label for='newPost'></label>
+							<label htmlFor='newPost'></label>
 							<textarea
 								className='newMessageBox'
-								id='newPost'></textarea>
+								id='newPost'
+								name='content'
+								onChange={handleChangeNewPost}></textarea>
 						</div>
-						<button className='postButton'>Envoyer</button>
-					</div>
+						<input 
+							type="submit" 
+							className='postButton'
+							value="Envoyer"
+						/>
+					</form>
 				</div>
-			)}
+		</>	)}
 		</>
 	);
 }

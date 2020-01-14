@@ -16,12 +16,21 @@ class MainThread extends React.Component {
 		this.state = {
 			posts: [],
 			isPostModalVisible: false,
-			isMenuVisible:false
+			isMenuVisible:false,
+			newPost: {
+				user_id: 1,
+				title: "",
+				category: "",
+				content: ""
+			}
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
+		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
+		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
+		this.getThread = this.getThread.bind(this);
 	}
-	componentDidMount() {
+	getThread() {
 		axios
 			.get('http://localhost:8000/posts')
 			.then(response => response.data)
@@ -30,6 +39,9 @@ class MainThread extends React.Component {
                     posts: data
 				})
 			});
+	}
+	componentDidMount() {
+		this.getThread()
 	}
 	toggleNewPost() {
 		this.setState((prevState) => {
@@ -41,16 +53,39 @@ class MainThread extends React.Component {
 			return {isMenuVisible: !prevState.isMenuVisible}
 		});
 	}
+	handleChangeNewPost(event) {
+		const propertyName = event.target.name
+		const newPost = this.state.newPost
+		newPost[propertyName] = event.target.value
+		this.setState({ newPost: newPost })
+	}
+	handleSubmitNewPost(e) {
+		e.preventDefault()
+		let newPostData = {
+			user_id: this.state.newPost.user_id,
+			category: this.state.newPost.category,
+			title: this.state.newPost.title,
+			content: this.state.newPost.content
+		}
+		axios
+			.post('http://localhost:8000/posts', newPostData)
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+		this.setState({isPostModalVisible: false}, () => setTimeout(this.getThread(), 500))
+	}
 	render() {
 		return (
 			<>
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
 					<Menu/>
 				</div>}
-				{this.state.isPostModalVisible && <div onClick={this.toggleNewPost}>
+				{this.state.isPostModalVisible }
 					<PostModal
-						isPostModalVisible={this.state.isPostModalVisible}/>
-				</div>}
+						isPostModalVisible={this.state.isPostModalVisible}
+						toggleNewPost={this.toggleNewPost}
+						handleChangeNewPost={this.handleChangeNewPost}
+						handleSubmitNewPost={this.handleSubmitNewPost}/>
+				
 				<div className='topButtons'>
 					<img 
 						className="icon"
@@ -62,9 +97,9 @@ class MainThread extends React.Component {
 						onClick={this.toggleNewPost}>Poster un message</button>
 				</div>
 				<div className='cardList'>
-					{this.state.posts.map(post => {
-						return <PostCard postData={post} />;
-					})}
+					{this.state.posts
+						.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+						.map(post => <PostCard postData={post} />)}
 				</div>
 				<div className='navbar'>
 					<img 
