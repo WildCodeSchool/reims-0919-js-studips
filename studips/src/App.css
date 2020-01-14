@@ -191,13 +191,79 @@
 	border-bottom: solid 1px black;
 	padding: 1rem;
 }
+
+/**************************************** debut page de connection **************************************************/
+
+.form{
+	display: flex;
+	flex-direction: column;
+	background-color: #A40032;
+	align-items: center;
+	height: 100vh;	
+}
+.bottomPage{
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10%;
+}
+.validationButton{
+	width: 70%;
+	border-radius: 22px;
+	padding: 2%;
+	font-size: 5vw;
+	background-color: white;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+.loginButton{
+	width: 70%;
+	border-radius: 22px;
+	padding: 2%;
+	font-size: 5vw;
+	background-color: white;
+	text-decoration: none;
+	text-align: center;
+	color: black;
+}
+.form p {
+	color: white;
+}
+.titleConnection{
+	color: white;
+	font-size: 8vh;
+}
+.form label{
+	color: white;
+}
+.form input{
+	background-color: #A40032;
+	border-color: #A40032 #A40032 white;
+	border-style: none none solid none;
+	width: 80%;
+	color: white;
+	margin: 8%;
+}
+.forgotPass{
+	text-decoration: underline;
+	margin-top: 10%;
+}
+.or{
+	font-size: 8vh;
+	margin: 5%;
+}
+
+/***************************** ********** fin de page de connection **************************************************/
+/***************************************** END MainThread.js *****************************************/
 /******************************************* Debut du formulaire *************************************/
 .form-data{
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	
+	font-size: 24px;
 }
 .form-dataSecond{
 	display: flex;
@@ -206,7 +272,10 @@
 	align-items: center;
 	margin-top: 20%;
 }
-
+.form-dataSecond input{
+	color: white;
+	font-size: 24px;
+}
 #return{
 	
 	width: 10%;
@@ -276,13 +345,32 @@
 /******************************************* Fin du formulaire *************************************/
 
 /***************************************** BEGIN PostModal.jsx *****************************************/
+.retour button{
+	border: none;
+	margin-right: 0.9rem;
+	border-radius: 1em;
+	width: 50vw;
+	height: 2.5em;
+	font-size: 20px;
+	background-color:#a40032;
+	color: white;
+	/* box-shadow: 3px 1px 1px white; */
+	
+}
+.retour{
+	display: flex;
+	justify-content:flex-end;
+	align-items: center;
+	width: 100%;
+	height: 10vh;
 
+}
 .overlay {
 	display: flex;
 	position: fixed;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start;
+	align-items:center;
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(85, 85, 85, 0.65);

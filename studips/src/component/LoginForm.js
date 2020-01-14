@@ -107,7 +107,7 @@ class LoginForm extends React.Component{
                             onChange={this.onChange}
                             value={this.state.password}/>
                         
-                        <input placeholder='Confirmation mot de passe'
+                        <input placeholder='Confirmez le mot de passe'
                             type="password"
                             id="confirmedPassword"
                             name="confirmedPassword"
