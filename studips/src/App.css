@@ -265,6 +265,10 @@
 	align-items: center;
 	font-size: 24px;
 }
+.form-data input{
+	color: white;
+	font-size: 24px;
+}
 .form-dataSecond{
 	display: flex;
 	justify-content: center;
