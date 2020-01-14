@@ -17,13 +17,24 @@ class MainThread extends React.Component {
 		this.state = {
 			posts: [],
 			isPostModalVisible: false,
-			isMenuVisible:false
+			isMenuVisible:false,
+			newPost: {
+				user_id: 1,
+				title: "",
+				category: "",
+				content: ""
+			}
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
-		this.submitPost=this.submitPost.bind(this);
+		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
+		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
+		this.getThread = this.getThread.bind(this);
 	}
 	componentDidMount() {
+		this.getThread()
+	}
+	getThread() {
 		axios
 			.get('http://localhost:8000/posts')
 			.then(response => response.data)
@@ -40,7 +51,7 @@ class MainThread extends React.Component {
 				console.log(res)
 				console.log(res.data);
 			})
-	}
+		}
 	toggleNewPost() {
 		this.setState((prevState) => {
 			return {isPostModalVisible: !prevState.isPostModalVisible}
@@ -50,6 +61,26 @@ class MainThread extends React.Component {
 		this.setState((prevState) => {
 			return {isMenuVisible: !prevState.isMenuVisible}
 		});
+	}
+	handleChangeNewPost(event) {
+		const propertyName = event.target.name
+		const newPost = this.state.newPost
+		newPost[propertyName] = event.target.value
+		this.setState({ newPost: newPost })
+	}
+	handleSubmitNewPost(e) {
+		e.preventDefault()
+		let newPostData = {
+			user_id: this.state.newPost.user_id,
+			category: this.state.newPost.category,
+			title: this.state.newPost.title,
+			content: this.state.newPost.content
+		}
+		axios
+			.post('http://localhost:8000/posts', newPostData)
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+		this.setState({isPostModalVisible: false}, () => setTimeout(this.getThread(), 500))
 	}
 	render() {
         const isNotConnected = (this.props.token === null);
@@ -66,7 +97,8 @@ class MainThread extends React.Component {
 						isPostModalVisible={this.state.isPostModalVisible}
 						toggleNewPost={this.toggleNewPost}
 						submitPost={this.submitPost}
-					/>
+						handleChangeNewPost={this.handleChangeNewPost}
+						handleSubmitNewPost={this.handleSubmitNewPost}/>
 				
 				<div className='topButtons'>
 					<img 
@@ -82,6 +114,9 @@ class MainThread extends React.Component {
 					{React.Children.toArray(
 						this.state.posts.map(post => <PostCard postData={post} />)
 					)}
+					{this.state.posts
+						.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+						.map(post => <PostCard postData={post} />)}
 				</div>
 				<div className='navbar'>
 					<img 

@@ -39,6 +39,10 @@ app.get('/posts', (req, res) => {
   });
 });
 
+// app.get('/user',(req, res)=>{
+// 	let sqlQuery= 'SELECT user.firstname, user.lastname, user.profile_pic FROM user  '
+// })
+
 app.post('/posts', (req, res) => {
   	const formData = req.body;
 	let sqlQuery = 'INSERT INTO post SET ?';
@@ -94,6 +98,8 @@ app.listen(port, err => {
 	}
 	console.log(`Server is listening on ${port}`);
 });
+
+
 
 
 //####################test
