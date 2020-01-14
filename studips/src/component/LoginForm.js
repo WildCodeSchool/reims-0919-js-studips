@@ -107,7 +107,7 @@ class LoginForm extends React.Component{
                             onChange={this.onChange}
                             value={this.state.password}/>
                         
-                        <input placeholder='Confirmation mot de passe'
+                        <input placeholder='Confirmez le mot de passe'
                             type="password"
                             id="confirmedPassword"
                             name="confirmedPassword"
@@ -124,7 +124,7 @@ class LoginForm extends React.Component{
                 </div>
                 :   
                     <div id='secondPageInscription'>
-                        <img src='https://zupimages.net/up/19/51/wege.png' id = 'return' onClick= {this.returnFonction}></img>
+                        <img src='https://zupimages.net/up/19/51/wege.png' id = 'return' onClick= {this.returnFonction} alt = ''></img>
                         <div className="form-dataSecond">
                             
                             <input placeholder = 'Date de naissance'
