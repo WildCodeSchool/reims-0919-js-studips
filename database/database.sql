@@ -22,7 +22,7 @@ create table post
     user_id int,
     created_at timestamp default CURRENT_TIMESTAMP,
     title varchar(30) not null,
-    category enum('Cours','Logement','Fournitures','Job','Event'),
+    category enum('Cours','Logements','Fournitures','Jobs','Events'),
     content varchar(300) not null,
     event_date datetime,
     FOREIGN KEY (user_id) REFERENCES user(id)
@@ -58,11 +58,11 @@ VALUES
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`) 
 VALUES
-(1, 'Recherche appartement', 'Logement', "Bonjour amis dipsers, je suis actuellement à la recherche d'un appartement dans la région de Marseille, si possible pret du vieux port pour contempler la vue et respirer le vent salé. Contactez moi si vous avez des pistes, merci à tous");
+(1, 'Recherche appartement', 'Logements', "Bonjour amis dipsers, je suis actuellement à la recherche d'un appartement dans la région de Marseille, si possible pret du vieux port pour contempler la vue et respirer le vent salé. Contactez moi si vous avez des pistes, merci à tous");
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`) 
 VALUES
-(2, "Recherche d'un job", 'Job', "Bonjour cher amis, je suis actuellement à la recherche d'un job étudiant avec des horaires modulable dans le Xe arrondissement. Contactez moi si vous avez des offres , merci les copains");
+(2, "Recherche d'un job", 'Jobs', "Bonjour cher amis, je suis actuellement à la recherche d'un job étudiant avec des horaires modulable dans le Xe arrondissement. Contactez moi si vous avez des offres , merci les copains");
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`)
 VALUES
@@ -70,16 +70,16 @@ VALUES
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`) 
 VALUES
-(4, 'Recherche Serveur', 'Job', 'Coucou , mon patron recherche un deuxieme étudiant pour le service du soir dans un bar/restaurants au niveau de la place dErlon. Si vous avez déja une experience dans la restauration contactez moi ou envoyé un mail avec votre CV et lettre de motivation à cmonmail@mail.com. Bonne chance !');
+(4, 'Recherche Serveur', 'Jobs', 'Coucou , mon patron recherche un deuxieme étudiant pour le service du soir dans un bar/restaurants au niveau de la place dErlon. Si vous avez déja une experience dans la restauration contactez moi ou envoyé un mail avec votre CV et lettre de motivation à cmonmail@mail.com. Bonne chance !');
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`, `event_date`)
 VALUES
-(5, 'Mega Teuf', 'Event', "Salut les dipser, ma mère organise une super fiesta pour l'anniversaire de notre chat dans son sous-sol , pas de dress-code. MP moi si vous voulez une invitation, A plus !", '2020-02-04');
+(5, 'Mega Teuf', 'Events', "Salut les dipser, ma mère organise une super fiesta pour l'anniversaire de notre chat dans son sous-sol , pas de dress-code. MP moi si vous voulez une invitation, A plus !", '2020-02-04');
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`) 
 VALUES
-(6, 'Je quitte mon appart', 'Logement', "Hey les copains, je quitte mon appartement car je retourne chez mes parents, c'est un F2 en plein centre ville (plus d'info sur www.logement.com).");
+(6, 'Je quitte mon appart', 'Logements', "Hey les copains, je quitte mon appartement car je retourne chez mes parents, c'est un F2 en plein centre ville (plus d'info sur www.logement.com).");
 INSERT INTO `post`
-(`user_id`, `title`, `category`, `content`) 
+(`user_id`, `title`, `category`, `content`)
 VALUES
 (6, 'Cours de Tai-chi cosmique', 'Cours', 'Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).');

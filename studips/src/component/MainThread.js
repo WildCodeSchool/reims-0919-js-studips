@@ -18,17 +18,19 @@ class MainThread extends React.Component {
 			isPostModalVisible: false,
 			isMenuVisible:false,
 			newPost: {
+				user_id: 1,
 				title: "",
 				category: "",
-				content: "",
-				event_date: ""
+				content: ""
 			}
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
 		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
+		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
+		this.getThread = this.getThread.bind(this);
 	}
-	componentDidMount() {
+	getThread() {
 		axios
 			.get('http://localhost:8000/posts')
 			.then(response => response.data)
@@ -37,6 +39,9 @@ class MainThread extends React.Component {
                     posts: data
 				})
 			});
+	}
+	componentDidMount() {
+		this.getThread()
 	}
 	toggleNewPost() {
 		this.setState((prevState) => {
@@ -52,7 +57,21 @@ class MainThread extends React.Component {
 		const propertyName = event.target.name
 		const newPost = this.state.newPost
 		newPost[propertyName] = event.target.value
-		this.setState({ newPost: newPost})
+		this.setState({ newPost: newPost })
+	}
+	handleSubmitNewPost(e) {
+		e.preventDefault()
+		let newPostData = {
+			user_id: this.state.newPost.user_id,
+			category: this.state.newPost.category,
+			title: this.state.newPost.title,
+			content: this.state.newPost.content
+		}
+		axios
+			.post('http://localhost:8000/posts', newPostData)
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+		this.setState({isPostModalVisible: false}, () => setTimeout(this.getThread(), 500))
 	}
 	render() {
 		return (
@@ -64,7 +83,8 @@ class MainThread extends React.Component {
 					<PostModal
 						isPostModalVisible={this.state.isPostModalVisible}
 						toggleNewPost={this.toggleNewPost}
-						handleChangeNewPost={this.handleChangeNewPost}/>
+						handleChangeNewPost={this.handleChangeNewPost}
+						handleSubmitNewPost={this.handleSubmitNewPost}/>
 				
 				<div className='topButtons'>
 					<img 
