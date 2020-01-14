@@ -47,10 +47,11 @@ class MainThread extends React.Component {
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
 					<Menu/>
 				</div>}
-				{this.state.isPostModalVisible && <div onClick={this.toggleNewPost}>
+				{this.state.isPostModalVisible }
 					<PostModal
-						isPostModalVisible={this.state.isPostModalVisible}/>
-				</div>}
+						isPostModalVisible={this.state.isPostModalVisible}
+						toggleNewPost={this.toggleNewPost}/>
+				
 				<div className='topButtons'>
 					<img 
 						className="icon"
