@@ -20,6 +20,7 @@ class MainThread extends React.Component {
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
+		this.submitPost=this.submitPost.bind(this);
 	}
 	componentDidMount() {
 		axios
@@ -30,6 +31,14 @@ class MainThread extends React.Component {
                     posts: data
 				})
 			});
+	}
+	submitPost(){
+		axios
+			.post('http://localhost:8000/posts')
+			.then(res => {
+				console.log(res)
+				console.log(res.data);
+			})
 	}
 	toggleNewPost() {
 		this.setState((prevState) => {
@@ -50,7 +59,9 @@ class MainThread extends React.Component {
 				{this.state.isPostModalVisible }
 					<PostModal
 						isPostModalVisible={this.state.isPostModalVisible}
-						toggleNewPost={this.toggleNewPost}/>
+						toggleNewPost={this.toggleNewPost}
+						submitPost={this.submitPost}
+					/>
 				
 				<div className='topButtons'>
 					<img 

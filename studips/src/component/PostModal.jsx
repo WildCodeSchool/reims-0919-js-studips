@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 
-function PostModal({ isPostModalVisible, toggleNewPost }) {
+function PostModal({ isPostModalVisible, toggleNewPost, submitPost }) {
 	return (
 		<>
 		
@@ -11,7 +11,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 				<div className = 'retour'
 		 onClick={toggleNewPost}> <button>retour</button>
 		</div>
-					<div className='newPostCard'>
+					<form onSubmit={submitPost} className='newPostCard'>
 						<div className='categoryChoice'>
 							<p className='subTitle'>Catégorie :</p>
 							<div className='categoryList'>
@@ -66,6 +66,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 							<p className='subTitle'>Titre :</p>
 							<label for='postTitle'></label>
 							<textarea
+								name='title'
 								className='newTitleBox'
 								id='postTitle'></textarea>
 						</div>
@@ -74,10 +75,10 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 							<label for='newPost'></label>
 							<textarea
 								className='newMessageBox'
-								id='newPost'></textarea>
+								id='newPost' name='content'></textarea>
 						</div>
-						<button className='postButton'>Envoyer</button>
-					</div>
+						<button type='submit' className='postButton'>Envoyer</button>
+					</form>
 				</div>
 		</>	)}
 		</>
