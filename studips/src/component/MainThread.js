@@ -63,9 +63,9 @@ class MainThread extends React.Component {
 						onClick={this.toggleNewPost}>Poster un message</button>
 				</div>
 				<div className='cardList'>
-					{this.state.posts.map(post => {
-						return <PostCard postData={post} />;
-					})}
+					{this.state.posts
+						.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+						.map(post => <PostCard postData={post} />)}
 				</div>
 				<div className='navbar'>
 					<img 
