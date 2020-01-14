@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 
-function PostModal({ isPostModalVisible, toggleNewPost }) {
+function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost }) {
 	return (
 		<>		
 			{isPostModalVisible && (
@@ -10,7 +10,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 					<div className = 'retour'
 		 				onClick={toggleNewPost}> <button>retour</button>
 					</div>
-					<div className='newPostCard'>
+					<form className='newPostCard'>
 						<div className='categoryChoice'>
 							<p className='subTitle'>Catégorie :</p>
 							<div className='categoryList'>
@@ -20,6 +20,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 										id='choiceEvent'
 										name='category'
 										value='event'
+										onChange={handleChangeNewPost}
 									/>
 									Evènements
 								</label>
@@ -29,6 +30,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 										id='choiceAccomodation'
 										name='category'
 										value='accomodation'
+										onChange={handleChangeNewPost}
 									/>
 									Logements
 								</label>
@@ -38,6 +40,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 										id='choiceClass'
 										name='category'
 										value='class'
+										onChange={handleChangeNewPost}
 									/>
 									Cours
 								</label>
@@ -47,6 +50,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 										id='choiceJob'
 										name='category'
 										value='job'
+										onChange={handleChangeNewPost}
 									/>
 									Jobs / stages
 								</label>
@@ -56,6 +60,7 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 										id='choicesupply'
 										name='category'
 										value='supply'
+										onChange={handleChangeNewPost}
 									/>
 									Fournitures
 								</label>
@@ -66,17 +71,21 @@ function PostModal({ isPostModalVisible, toggleNewPost }) {
 							<label for='postTitle'></label>
 							<textarea
 								className='newTitleBox'
-								id='postTitle'></textarea>
+								id='postTitle'
+								name='title'
+								onChange={handleChangeNewPost}></textarea>
 						</div>
 						<div>
 							<p className='subTitle'>Message :</p>
 							<label for='newPost'></label>
 							<textarea
 								className='newMessageBox'
-								id='newPost'></textarea>
+								id='newPost'
+								name='content'
+								onChange={handleChangeNewPost}></textarea>
 						</div>
-						<button className='postButton'>Envoyer</button>
-					</div>
+						<button type="submit" className='postButton'>Envoyer</button>
+					</form>
 				</div>
 		</>	)}
 		</>

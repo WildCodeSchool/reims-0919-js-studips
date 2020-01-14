@@ -16,10 +16,17 @@ class MainThread extends React.Component {
 		this.state = {
 			posts: [],
 			isPostModalVisible: false,
-			isMenuVisible:false
+			isMenuVisible:false,
+			newPost: {
+				title: "",
+				category: "",
+				content: "",
+				event_date: ""
+			}
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
+		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
 	}
 	componentDidMount() {
 		axios
@@ -41,6 +48,12 @@ class MainThread extends React.Component {
 			return {isMenuVisible: !prevState.isMenuVisible}
 		});
 	}
+	handleChangeNewPost(event) {
+		const propertyName = event.target.name
+		const newPost = this.state.newPost
+		newPost[propertyName] = event.target.value
+		this.setState({ newPost: newPost})
+	}
 	render() {
 		return (
 			<>
@@ -50,7 +63,8 @@ class MainThread extends React.Component {
 				{this.state.isPostModalVisible }
 					<PostModal
 						isPostModalVisible={this.state.isPostModalVisible}
-						toggleNewPost={this.toggleNewPost}/>
+						toggleNewPost={this.toggleNewPost}
+						handleChangeNewPost={this.handleChangeNewPost}/>
 				
 				<div className='topButtons'>
 					<img 
