@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 class connectForm extends React.Component{
     constructor(props){
@@ -10,22 +11,37 @@ class connectForm extends React.Component{
             password : '',
         };
         this.onChange = this.onChange.bind(this);
-        this.postForm = this.postForm.bind(this);
     }
     onChange(e){
         this.setState({
             [e.target.name] : e.target.value,
         });
     }
-    postForm (){
-            const config = {
-                method : "POST",
-                headers : {
-                    "Content-type" : "application/json",
-                },
-                body: JSON.stringify(this.state),
-            };
-        }
+    
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const config = {
+            method : "POST",
+            headers : {
+                "Content-type" : "application/json",
+            },
+            body: JSON.stringify(this.state),
+        };
+        console.log(event)
+        axios
+            .post('http://localhost:8000/login', {
+                email: this.state.email,
+                password: this.state.password
+            })
+            .then(
+                data => {
+                    console.log(data);
+                    this.setState({token: data.data.token});
+                    
+                }
+            )
+            // .then(() => this.handleToken())
+    }
     
     render(){
         return(
@@ -48,7 +64,7 @@ class connectForm extends React.Component{
                         value={this.state.password}/>
                     <div className = 'bottomPage'>
 
-                        <Link className='validationButton' type='submit' to='/mainthread'  onClick= {this.postForm}>Valider </Link>
+                        <Link className='validationButton' type='submit' to='/mainthread'  onClick={this.handleSubmit}>Valider </Link>
                         <p className = 'forgotPass'>Mot de passe oublié?</p>
                         <p className = 'or'>Ou</p>
                         <Link className='loginButton' type = 'button' to='/login' >Créer un compte</Link>
