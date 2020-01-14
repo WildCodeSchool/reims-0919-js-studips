@@ -17,37 +17,55 @@
 	padding: 0.5rem;
 	margin-bottom: 1rem;
 }
+
 .entete {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	align-items: center;
 }
+
+#category {
+	align-self: flex-end;
+	color: #a40032;
+	margin-left: 3vw;
+}
+
 .avatar {
 	max-width: 15vw;
 	max-height: 20vw;
 	border-radius: 500%;
-	margin: 10px;
-	margin-left: 1em;
+	margin: 0 10px;
 	border: 1px solid black;
 }
-.informations {
+
+.userProfile {
+	display: flex;
+	flex-direction: row;
+	align-self: flex-start;
 	width: 70%;
 	max-height: 20vw;
-	padding: 3%;
+	padding: 0 3%;
 }
-.informations p {
+
+.userProfile p {
 	text-align: left;
 	font-size: 12px;
 	margin: 0;
 }
+
+.userInfo {
+	display: flex;
+	flex-direction: column;
+}
+
 #name {
 	font-weight: bold;
 }
-#category {
-	color: #a40032;
-	margin-left: 3vw;
-	margin-top: 1vw;
-	margin-bottom: 15vw;
+
+.postDate {
+	font-size: 12px;
+	align-self: flex-end;
 }
 .triangle {
     width: 0; 
@@ -345,6 +363,9 @@
 /******************************************* Fin du formulaire *************************************/
 
 /***************************************** BEGIN PostModal.jsx *****************************************/
+
+/***************************************** BEGIN PostModal.jsx *****************************************/
+
 .retour button{
 	border: none;
 	margin-right: 0.9rem;
