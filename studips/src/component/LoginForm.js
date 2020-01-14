@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css';
 import axios from 'axios';
-
+import {Link} from 'react-router-dom';
 
 class LoginForm extends React.Component{
     constructor(props){
@@ -163,7 +163,7 @@ class LoginForm extends React.Component{
                                 value={this.state.city}/>
                 
                             <div className='validButton'>
-                                <button type='submit'  onClick= {this.postForm}>S'inscrire</button>
+                                <button onClick= {this.postForm}>  <Link  to="/connect" type='submit'>S'inscrire </Link></button>
                             </div>
                         </div>
                     </div>
