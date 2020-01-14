@@ -21,7 +21,8 @@ function verifyToken(req, res, next){
    const bearerHeader = req.headers.authorization
    if (typeof bearerHeader !== 'undefined') {
        const bearer = bearerHeader.split(' ')
-       const bearerToken = bearer[1]
+	   const bearerToken = bearer[1]
+	   
    } else {
        res.sendStatus(403)
    }
@@ -54,6 +55,7 @@ app.post('/posts', (req, res) => {
 app.post('/login', (req, res) => {
 	let userPassword = req.body.password;
 	let userEmail = req.body.email
+	console.log(req.body)
 	let sqlQuery = `SELECT email, password from user where user.email='${userEmail}'`
 	connection.query(sqlQuery, (err, matchs) => {
 		if (err) {
@@ -64,12 +66,12 @@ app.post('/login', (req, res) => {
 		if (!oneMatchFound || matchs[0].password !== userPassword) {
 			res.status(400).send('Wrong email or password')
 			return
-		}
+		}else{
 		jwt.sign({ userEmail }, signature, {expiresIn: '180sec'}, (err, token) => {
-			res.sendStatus(200).json({
+			res.status(200).json({
 				token
-			});
 		});
+		})};
 	})
 })
 
