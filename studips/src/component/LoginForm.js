@@ -31,7 +31,7 @@ class LoginForm extends React.Component{
    
     handleChangeNewUser(event) {
 		const propertyName = event.target.name
-		const newUser = this.state.newUser
+		const newUser = {...this.state.newUser}
 		newUser[propertyName] = event.target.value
 		this.setState({ newUser: newUser })
 	}
