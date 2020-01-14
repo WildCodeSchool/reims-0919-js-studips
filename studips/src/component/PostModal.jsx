@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 
-function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost, handleSubmitNewPost }) {
+function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost, handleSubmitNewPost, postCategory }) {
 	return (
 		<>		
 			{isPostModalVisible && (
@@ -26,6 +26,22 @@ function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost, han
 									/>
 									Evènements
 								</label>
+								<div className='eventDateTime'>
+									<label htmlFor='event_date'>
+										<input
+											type='date'
+											id='event_date'
+											name='event_date'
+											disabled={postCategory === 'Events' ? false : true}/>
+									</label>
+									<label htmlFor='event_time'>
+										<input
+											type='time'
+											id='event_time'
+											name='event_time'
+											disabled={postCategory === 'Events' ? false : true}/>
+									</label>
+								</div>
 								<label htmlFor='choiceAccomodation'>
 									<input
 										type='radio'

@@ -84,7 +84,8 @@ class MainThread extends React.Component {
 						isPostModalVisible={this.state.isPostModalVisible}
 						toggleNewPost={this.toggleNewPost}
 						handleChangeNewPost={this.handleChangeNewPost}
-						handleSubmitNewPost={this.handleSubmitNewPost}/>
+						handleSubmitNewPost={this.handleSubmitNewPost}
+						postCategory={this.state.newPost.category}/>
 				
 				<div className='topButtons'>
 					<img 
