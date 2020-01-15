@@ -24,7 +24,9 @@ class MainThread extends React.Component {
 				content: "",
 				event_date: "",				
 				event_time: ""
-			}
+			},
+			startDate: new Date(),
+			eventDate: null
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
@@ -89,7 +91,8 @@ class MainThread extends React.Component {
 						toggleNewPost={this.toggleNewPost}
 						handleChangeNewPost={this.handleChangeNewPost}
 						handleSubmitNewPost={this.handleSubmitNewPost}
-						postCategory={this.state.newPost.category}/>
+						postCategory={this.state.newPost.category}
+						startDate={this.state.startDate}/>
 				
 				<div className='topButtons'>
 					<img 
