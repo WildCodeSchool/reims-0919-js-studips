@@ -68,7 +68,7 @@ class LoginForm extends React.Component{
     
     render(){
         const {redirection} = this.state;
-        if (redirection === true){
+        if (redirection){
             return <Redirect to= '/connect'/>;
         }
         return(
