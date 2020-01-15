@@ -21,7 +21,9 @@ class MainThread extends React.Component {
 				user_id: 1,
 				title: "",
 				category: "",
-				content: ""
+				content: "",
+				event_date: "",				
+				event_time: ""
 			}
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
@@ -65,7 +67,9 @@ class MainThread extends React.Component {
 			user_id: this.state.newPost.user_id,
 			category: this.state.newPost.category,
 			title: this.state.newPost.title,
-			content: this.state.newPost.content
+			content: this.state.newPost.content,
+			event_date: this.state.newPost.event_date,
+			event_time: this.state.newPost.event_time
 		}
 		axios
 			.post('http://localhost:8000/posts', newPostData)
