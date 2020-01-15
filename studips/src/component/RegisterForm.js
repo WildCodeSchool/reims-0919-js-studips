@@ -69,7 +69,7 @@ class RegisterForm extends React.Component{
     render(){
         const {redirection} = this.state;
         if (redirection){
-            return <Redirect to= '/connect'/>;
+            return <Redirect to= '/login'/>;
         }
         return(
             <div className = 'loginFormu' >

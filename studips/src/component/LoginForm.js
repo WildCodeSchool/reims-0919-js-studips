@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
 						</Link>
 						<p className='forgotPass'>Mot de passe oublié?</p>
 						<p className='or'>Ou</p>
-						<Link className='loginButton' type='button' to='/login'>
+						<Link className='loginButton' type='button' to='/register'>
 							Créer un compte
 						</Link>
 					</div>
