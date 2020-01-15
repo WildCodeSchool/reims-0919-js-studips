@@ -9,6 +9,7 @@ class LoginForm extends React.Component{
         this.state = {
             email : '',
             password : '',
+            token: null
         };
         this.onChange = this.onChange.bind(this);
     }
