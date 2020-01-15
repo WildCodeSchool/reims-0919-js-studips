@@ -32,6 +32,7 @@ function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost, han
 											type='date'
 											id='event_date'
 											name='event_date'
+											onChange={handleChangeNewPost}
 											disabled={postCategory === 'Events' ? false : true}/>
 									</label>
 									<label htmlFor='event_time'>
@@ -39,6 +40,7 @@ function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost, han
 											type='time'
 											id='event_time'
 											name='event_time'
+											onChange={handleChangeNewPost}
 											disabled={postCategory === 'Events' ? false : true}/>
 									</label>
 								</div>
@@ -109,7 +111,7 @@ function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost, han
 						/>
 					</form>
 				</div>
-		</>	)}
+			</>	)}
 		</>
 	);
 }
