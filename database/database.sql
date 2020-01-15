@@ -10,7 +10,7 @@ create table user
     password varchar(30) not null,
     email varchar(30) not null,
     phone varchar(12) null ,
-    birthday date not null,
+    birthday varchar(30) not null,
     hobbies varchar(100) null,
     study varchar(50) not null,
     bio varchar(250) null,
