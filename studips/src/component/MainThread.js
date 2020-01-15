@@ -42,6 +42,16 @@ class MainThread extends React.Component {
 				})
 			});
 	}
+	getUser() {
+		axios
+			.get('http://localhost:8000/users')
+			.then(response => response.data)
+			.then(data => {
+				this.setState({
+                    users: data
+				})
+			});
+	}
 	componentDidMount() {
 		this.getThread()
 	}
