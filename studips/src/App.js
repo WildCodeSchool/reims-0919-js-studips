@@ -6,6 +6,7 @@ import LoginForm from './component/LoginForm.js';
 import Welcome from './component/Welcome';
 import {Switch, Route} from 'react-router-dom';
 import Parameter from './component/Parameter';
+import Profil from './component/Profil'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
 				<Route path='/login' component={LoginForm} />
 				<Route path ='/mainthread' component={MainThread} />
 				<Route path ='/parameter' component={Parameter} />
+				<Route path ='/profil' component ={Profil}/>
       		</Switch>
 		</div>
 	);
