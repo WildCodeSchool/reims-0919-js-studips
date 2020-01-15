@@ -1,13 +1,14 @@
 import React from 'react'
 import '../App.css';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 class LoginForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             nextPage : true,
+            redirection : false,
             newUser : {
                 firstname : '',
                 lastname : '',
@@ -50,9 +51,9 @@ class LoginForm extends React.Component{
             city : this.state.newUser.city
         });
     axios
-			.post('http://localhost:8000/register', newUserData , {headers:{"Content-Type" : "application/json"}})
-			.then(res => console.log(res))
-			.catch(err => console.log(err))
+            .post('http://localhost:8000/register', newUserData , {headers:{"Content-Type" : "application/json"}})
+            .then (() => this.setState ({redirection : true}))
+			.catch(err => console.log(err + 'pouet'))
     }
     secondPageAppear = () => {
          this.setState({
@@ -66,6 +67,10 @@ class LoginForm extends React.Component{
     }
     
     render(){
+        const {redirection} = this.state;
+        if (redirection === true){
+            return <Redirect to= '/connect'/>;
+        }
         return(
             <div className = 'loginFormu' >
                 
@@ -163,7 +168,7 @@ class LoginForm extends React.Component{
                                 value={this.state.city}/>
                 
                             <div className='validButton'>
-                                <button onClick= {this.postForm}>  <Link  to="/connect" type='submit'>S'inscrire </Link></button>
+                                <button  type='submit' onClick= {this.postForm}> S'inscrire</button>
                             </div>
                         </div>
                     </div>
