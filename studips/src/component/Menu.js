@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import '../App.css'
+import {Link} from 'react-router-dom';
 
 class Menu extends Component{
-	constructor(props){
-	super(props)
-	this.state={
-		
-	}
-	}
+	// constructor(props){
+	// super(props)
+	// 	this.state={
+			
+	// 	}
+	// }
+
 	render(){
 		return(
 			<div className = 'menu'>
@@ -52,7 +54,7 @@ class Menu extends Component{
 				</button>
 				<hr />
 				<button>Enregistrement</button>
-				<button>Paramètres</button>
+				<Link  className = 'parameterRedirection' to ='/parameter'>Paramètres</Link>
 			</div>
 		)
 	}

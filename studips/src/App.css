@@ -175,6 +175,17 @@
 	width: 80%;
 	height: 10vw;
 	font-size: 24px;
+	color: black;
+}
+.parameterRedirection{
+	border-radius: 0px 48px 48px 0px;
+	width: 80%;
+	height: 10vw;
+	font-size: 24px;
+	background-color: white;
+	text-decoration: none;
+	color: black;
+	text-align: center;
 }
 .menu hr{
 	width: 60%;
@@ -483,5 +494,26 @@
 	text-align: center;
 	text-decoration: none;
 }
-/***************************************** fin welcome page *****************************************/
-
+/* **************************************** fin welcome page ****************************************
+******************************************* Parametre ************************************************** */
+.buttonParameter{
+	border-radius: 0px 48px 48px 0px;
+	width: 80%;
+	height: 11vw;
+	font-size: 24px;;
+	background-color: #a40032;
+	margin-top: 9%;
+	color: white;
+	text-align: center;
+}
+.titleParameter{
+	font-size: 32px;
+	text-align: center;
+	color: #a40032;
+}
+#returnParameter{
+	
+	width: 10%;
+	margin-left: 5%;
+	margin-top: 5%;
+}
