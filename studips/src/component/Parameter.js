@@ -1,15 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '../App.css';
 import {Link} from 'react-router-dom';
 
-class Parameter extends Component {
-	constructor(props){
-        super(props)
-        this.state={
-
-        }
-    }
-    render(){
+const Parameter = () => {
+	
         return(
             <div className ='parameterMenu'>
                 <Link to='/mainthread'>
@@ -27,6 +21,6 @@ class Parameter extends Component {
             </div>
         )
     }
-}
+
 
 export default Parameter;

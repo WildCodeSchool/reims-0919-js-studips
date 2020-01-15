@@ -9,7 +9,7 @@ import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal'
 import Menu from './Menu'
-import { Link } from "react-router-dom"
+
 
 class MainThread extends React.Component {
 	constructor(props) {
