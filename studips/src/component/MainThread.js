@@ -10,6 +10,7 @@ import axios from 'axios';
 import PostModal from './PostModal'
 import Menu from './Menu'
 
+
 class MainThread extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,6 +30,7 @@ class MainThread extends React.Component {
 		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
 		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
 		this.getThread = this.getThread.bind(this);
+		
 	}
 	getThread() {
 		axios
@@ -73,13 +75,14 @@ class MainThread extends React.Component {
 			.catch(err => console.log(err))
 		this.setState({isPostModalVisible: false}, () => setTimeout(this.getThread(), 500))
 	}
+	
 	render() {
 		return (
 			<>
 				{this.state.isMenuVisible && <div onClick={this.toggleMenuVisible}>
 					<Menu/>
 				</div>}
-				{this.state.isPostModalVisible }
+				
 					<PostModal
 						isPostModalVisible={this.state.isPostModalVisible}
 						toggleNewPost={this.toggleNewPost}
