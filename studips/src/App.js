@@ -6,6 +6,7 @@ import LoginForm from './component/LoginForm';
 import Welcome from './component/Welcome';
 import { Switch, Route } from 'react-router-dom';
 import Parameter from './component/Parameter';
+import Profil from './component/Profil'
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -26,6 +27,9 @@ function App() {
 				</Route>
 				<Route path='/parameter'>
 					<Parameter token={token} />
+				</Route>
+				<Route path='/profil'>
+					<Profil token={token} />
 				</Route>
 			</Switch>
 		</div>

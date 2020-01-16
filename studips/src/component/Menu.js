@@ -14,8 +14,10 @@ class Menu extends Component{
 		return(
 			<div className = 'menu'>
 				<div className = 'profile'>
-					<img src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKVvQJdRW6Kj8X6iO6l5YDn-fU_5ic04qB6udb_fMZhS2qycz&s' alt = 'profil'/>
-					<p>AIMAR , Jean</p>
+					<Link to ='/profil'>
+					<img className= 'userPic' src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKVvQJdRW6Kj8X6iO6l5YDn-fU_5ic04qB6udb_fMZhS2qycz&s' alt = 'profil'/>
+					<p className='userName'>AIMAR , Jean</p>
+					</Link>
 				</div>
 				<button 
 				id = "stages"
@@ -48,7 +50,7 @@ class Menu extends Component{
 				<button
 				id = "fournitures"
 				onClick = {this.props.handleChangeTab}
-				className = {this.props.activeId==='fourniture' ? 'active' : ''}
+				className = {this.props.activeId==='fournitures' ? 'active' : ''}
 				>
 					Fournitures
 				</button>
