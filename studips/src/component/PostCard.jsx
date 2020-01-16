@@ -27,7 +27,7 @@ function PostCard({ postData }) {
 			<div className='message'>
 				<div className='messageHeader'>
 					<p className='postTitle'>{postData.title}</p>
-					{postData.event_date && <p>{postData.event_date}</p>}
+					{postData.category === "Events" && <p>{postData.event_date}</p>}
 				</div>
 				<p>{postData.content}</p>
 			</div>
