@@ -1,9 +1,11 @@
 import React from 'react';
 import '../App.css';
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import fr from "date-fns/locale/fr";
+registerLocale("fr", fr);
 
-function PostModal({ 
+function PostModal({
 	isPostModalVisible,
 	toggleNewPost, 
 	handleChangeNewPost, 
@@ -39,11 +41,12 @@ function PostModal({
 									<label htmlFor='event_date'>
 										<DatePicker
 											name='event_date'
+											locale='fr'
 											selected={eventDate}
 											onChange={handleEventDate}
 											showTimeSelect
 											timeFormat='HH:mm'
-											dateFormat='MMMM d, yyyy h:mm aa'
+											dateFormat='d MMMM yyyy à hh:mm'
 											disabled={postCategory === 'Events' ? false : true}/>											
 									</label>
 								</div>
