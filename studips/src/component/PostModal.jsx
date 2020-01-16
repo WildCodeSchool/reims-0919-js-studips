@@ -46,7 +46,8 @@ function PostModal({
 											onChange={handleEventDate}
 											showTimeSelect
 											timeFormat='HH:mm'
-											dateFormat='d MMMM yyyy à hh:mm'
+											dateFormat='d MMMM yyyy à HH:mm'
+											timeCaption='Heure'
 											disabled={postCategory === 'Events' ? false : true}/>											
 									</label>
 								</div>
