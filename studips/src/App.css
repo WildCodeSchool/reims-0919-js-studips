@@ -77,6 +77,12 @@
     margin-left: 2em;
     z-index: 10;
 }
+.messageHeader {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-weight: bolder;
+}
 .message {
 	width: 95%;
 	align-items: center;
