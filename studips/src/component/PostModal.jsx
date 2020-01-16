@@ -4,12 +4,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function PostModal({ 
-	isPostModalVisible, 
+	isPostModalVisible,
 	toggleNewPost, 
 	handleChangeNewPost, 
 	handleSubmitNewPost, 
 	postCategory, 
-	startDate, 
+	eventDate, 
 	handleEventDate}) {
 	return (
 		<>
@@ -37,29 +37,14 @@ function PostModal({
 								</label>
 								<div className='eventDateTime'>
 									<label htmlFor='event_date'>
-										{/* <input
-											type='date'
-											id='event_date'
-											name='event_date'
-											onChange={handleChangeNewPost}
-											disabled={postCategory === 'Events' ? false : true}/> */}
 										<DatePicker
 											name='event_date'
-											selected={startDate}
+											selected={eventDate}
 											onChange={handleEventDate}
 											showTimeSelect
-											timeFormat="HH:mm"
-											dateFormat="MMMM d, yyyy h:mm aa"
-											disabled={postCategory === 'Events' ? false : true}/>
-											
-									</label>
-									<label htmlFor='event_time'>
-										{/* <input
-											type='time'
-											id='event_time'
-											name='event_time'
-											onChange={handleChangeNewPost}
-											disabled={postCategory === 'Events' ? false : true}/> */}
+											timeFormat='HH:mm'
+											dateFormat='MMMM d, yyyy h:mm aa'
+											disabled={postCategory === 'Events' ? false : true}/>											
 									</label>
 								</div>
 								<label htmlFor='choiceAccomodation'>

@@ -20,20 +20,18 @@ class MainThread extends React.Component {
 			isMenuVisible: false,
 			newPost: {
 				user_id: 1,
-				title: "",
-				category: "",
-				content: "",
-				event_date: "",				
-				event_time: ""
+				title: null,
+				category: null,
+				content: null
 			},
-			startDate: new Date(),
-			eventDate: null
+			eventDate: new Date()
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
 		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
 		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
 		this.getThread = this.getThread.bind(this);
+		this.handleEventDate = this.handleEventDate.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -64,6 +62,9 @@ class MainThread extends React.Component {
 		newPost[propertyName] = event.target.value;
 		this.setState({ newPost: newPost });
 	}
+	handleEventDate(date) {
+		this.setState({eventDate: date})
+	}
 	handleSubmitNewPost(e) {
 		e.preventDefault();
 		let newPostData = {
@@ -71,8 +72,7 @@ class MainThread extends React.Component {
 			category: this.state.newPost.category,
 			title: this.state.newPost.title,
 			content: this.state.newPost.content,
-			event_date: this.state.newPost.event_date,
-			event_time: this.state.newPost.event_time
+			event_date: this.state.newPost.event_date
 		}
 		axios
 			.post('http://localhost:8000/posts', newPostData)
@@ -82,7 +82,6 @@ class MainThread extends React.Component {
 			setTimeout(this.getThread(), 500),
 		);
 	}
-
 	render() {
 		const isNotConnected = this.props.token === null;
 		if (isNotConnected) {
@@ -100,7 +99,8 @@ class MainThread extends React.Component {
 						handleChangeNewPost={this.handleChangeNewPost}
 						handleSubmitNewPost={this.handleSubmitNewPost}
 						postCategory={this.state.newPost.category}
-						startDate={this.state.startDate}/>
+						eventDate={this.state.eventDate}
+						handleEventDate={this.handleEventDate}/>
 				
 				<div className='topButtons'>
 					<img
