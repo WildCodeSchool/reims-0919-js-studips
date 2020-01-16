@@ -432,6 +432,7 @@
 }
 .subTitle {
 	align-self: flex-start;
+	font-weight: bold;
 }
 .categoryChoice p {
 	margin: 0.1rem 0;
@@ -447,7 +448,7 @@
 .categoryList {
 	display: flex;
 	flex-direction: column;
-	margin: 0.2rem auto;
+	margin: 0.2rem 0;
 }
 .newPostTitle {
 	margin: 0.2rem 0;
