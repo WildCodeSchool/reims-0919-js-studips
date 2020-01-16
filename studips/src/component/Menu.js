@@ -50,7 +50,7 @@ class Menu extends Component{
 				<button
 				id = "fournitures"
 				onClick = {this.props.handleChangeTab}
-				className = {this.props.activeId==='fourniture' ? 'active' : ''}
+				className = {this.props.activeId==='fournitures' ? 'active' : ''}
 				>
 					Fournitures
 				</button>
