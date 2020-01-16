@@ -43,6 +43,7 @@ class MainThread extends React.Component {
 			.then(data => {
 				this.setState({
 					posts: data,
+					activeId:'',
 				});
 			});
 	}
@@ -127,6 +128,7 @@ class MainThread extends React.Component {
 			title: this.state.newPost.title,
 			content: this.state.newPost.content,
 		};
+
 		axios
 			.post('http://localhost:8000/posts', newPostData)
 			.then(res => console.log(res))
@@ -175,7 +177,8 @@ class MainThread extends React.Component {
 					<img 
 						className="icon"
 						src={homeIcon}
-						alt="to home"/>
+						alt="to home"
+						onClick={this.getThread}/>
 					<img
 						className="icon"
 						src={searchIcon}
