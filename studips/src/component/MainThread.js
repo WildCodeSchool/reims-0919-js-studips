@@ -67,19 +67,20 @@ class MainThread extends React.Component {
 	}
 	handleSubmitNewPost(e) {
 		e.preventDefault();
+		const eventDate = this.state.eventDate.toISOString().slice(0, 19).replace('T', ' ')
 		let newPostData = {
 			user_id: this.state.newPost.user_id,
 			category: this.state.newPost.category,
 			title: this.state.newPost.title,
 			content: this.state.newPost.content,
-			event_date: this.state.newPost.event_date
+			event_date: eventDate
 		}
 		axios
 			.post('http://localhost:8000/posts', newPostData)
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
 		this.setState({ isPostModalVisible: false }, () =>
-			setTimeout(this.getThread(), 500),
+			setTimeout(this.getThread(), 1000),
 		);
 	}
 	render() {
