@@ -3,9 +3,16 @@ import '../App.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function PostModal({ isPostModalVisible, toggleNewPost, handleChangeNewPost, handleSubmitNewPost, postCategory, startDate, handleEventDate}) {
+function PostModal({ 
+	isPostModalVisible, 
+	toggleNewPost, 
+	handleChangeNewPost, 
+	handleSubmitNewPost, 
+	postCategory, 
+	startDate, 
+	handleEventDate}) {
 	return (
-		<>		
+		<>
 			{isPostModalVisible && (
 				<>
 				<div className='overlay'>
