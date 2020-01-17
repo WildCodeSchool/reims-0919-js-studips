@@ -36,6 +36,7 @@ class MainThread extends React.Component {
 		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
 		this.getThread = this.getThread.bind(this);
 		this.handleEventDate = this.handleEventDate.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -67,52 +68,53 @@ class MainThread extends React.Component {
 			posts = posts.filter(post => post.city.toLowerCase() === this.state.city.toLowerCase());
 		}
 		switch(this.state.activeId) {
-		  case 'stages':	
-			 posts = posts
-				.filter(post=>post.category  === 'Jobs')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData={post}/>
-				})
+		  	case 'stages':	
+				posts = posts
+					.filter(post=>post.category  === 'Jobs')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData={post}/>
+					})
 			break;
-		  case 'logements':
-			posts = posts
-				.filter(post=>post.category==='Logements')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData={post}/>
-				})
+		  	case 'logements':
+				posts = posts
+					.filter(post=>post.category==='Logements')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData={post}/>
+					})
 			break;
-		  case 'events':
-			posts = posts
-				.filter(post=>post.category==='Events')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData={post}/>
-				})
+		  	case 'events':
+				posts = posts
+					.filter(post=>post.category==='Events')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData={post}/>
+					})
 			break;
-		  case 'cours':
-			posts = posts
-				.filter(post=>post.category==='Cours')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData ={post}/>
-				})
+		  	case 'cours':
+				posts = posts
+					.filter(post=>post.category==='Cours')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData ={post}/>
+					})
 			break;
-		  case 'fournitures':
-			posts = posts
-				.filter(post=>post.category==='Fournitures')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData={post}/>
-				})
+		  	case 'fournitures':
+				posts = posts
+					.filter(post=>post.category==='Fournitures')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData={post}/>
+					})
 			break;
-		  default:
-			return (this.state.posts
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post, i) => {
-				return <PostCard postData={post} key={i} />
-			}))
+		  	default:
+		  		posts = posts
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+			  			return <PostCard postData={post} />
+		})
+		  break;
 		}
 		return React.Children.toArray(posts);
 	  }
@@ -147,6 +149,9 @@ class MainThread extends React.Component {
 		this.setState({ isPostModalVisible: false }, () =>
 			setTimeout(this.getThread(), 1000),
 		);
+	}
+	handleInputChange(event) {
+		this.setState({city: event.target.value})
 	}
 	render() {
 		const isNotConnected = this.props.token === null;
