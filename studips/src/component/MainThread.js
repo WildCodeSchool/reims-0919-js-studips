@@ -23,10 +23,11 @@ class MainThread extends React.Component {
 			isMenuVisible: false,
 			newPost: {
 				user_id: 1,
-				title: '',
-				category: '',
-				content: '',
+				title: null,
+				category: null,
+				content: null
 			},
+			eventDate: new Date()
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
@@ -34,7 +35,7 @@ class MainThread extends React.Component {
 		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
 		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
 		this.getThread = this.getThread.bind(this);
-		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleEventDate = this.handleEventDate.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -107,10 +108,11 @@ class MainThread extends React.Component {
 				})
 			break;
 		  default:
-			posts = posts.map((post) => {
-				return <PostCard postData={post} />
-			})
-			break;
+			return (this.state.posts
+				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+				.map((post, i) => {
+				return <PostCard postData={post} key={i} />
+			}))
 		}
 		return React.Children.toArray(posts);
 	  }
@@ -125,27 +127,27 @@ class MainThread extends React.Component {
 		newPost[propertyName] = event.target.value;
 		this.setState({ newPost: newPost });
 	}
+	handleEventDate(date) {
+		this.setState({eventDate: date})
+	}
 	handleSubmitNewPost(e) {
 		e.preventDefault();
+		const eventDate = this.state.eventDate.toISOString().slice(0, 19).replace('T', ' ')
 		let newPostData = {
 			user_id: this.state.newPost.user_id,
 			category: this.state.newPost.category,
 			title: this.state.newPost.title,
 			content: this.state.newPost.content,
-		};
-
+			event_date: eventDate
+		}
 		axios
 			.post('http://localhost:8000/posts', newPostData)
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
 		this.setState({ isPostModalVisible: false }, () =>
-			setTimeout(this.getThread(), 500),
+			setTimeout(this.getThread(), 1000),
 		);
 	}
-	handleInputChange(event) {
-		this.setState({city: event.target.value})}
-
-
 	render() {
 		const isNotConnected = this.props.token === null;
 		if (isNotConnected) {
@@ -159,14 +161,14 @@ class MainThread extends React.Component {
 						handleChangeTab={this.handleChangeTab}/>
 					</div>
 				)}
-
 				<PostModal
-					isPostModalVisible={this.state.isPostModalVisible}
-					toggleNewPost={this.toggleNewPost}
-					handleChangeNewPost={this.handleChangeNewPost}
-					handleSubmitNewPost={this.handleSubmitNewPost}
-				/>
-
+						isPostModalVisible={this.state.isPostModalVisible}
+						toggleNewPost={this.toggleNewPost}
+						handleChangeNewPost={this.handleChangeNewPost}
+						handleSubmitNewPost={this.handleSubmitNewPost}
+						postCategory={this.state.newPost.category}
+						eventDate={this.state.eventDate}
+						handleEventDate={this.handleEventDate}/>
 				<div className='topButtons'>
 					<img
 						className='icon'
