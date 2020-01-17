@@ -5,11 +5,13 @@ import homeIcon from '../images/home-solid.svg';
 import searchIcon from '../images/search-solid.svg';
 import messageIcon from '../images/comments-solid.svg';
 import menuIcon from '../images/bars-solid.svg';
+import dark_menuIcon from '../images/dark_menuIcon.png';
 import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal';
 import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
+import '../darkApp.css'
 
 class MainThread extends React.Component {
 	constructor(props) {
@@ -18,6 +20,7 @@ class MainThread extends React.Component {
 			posts: [],
 			isPostModalVisible: false,
 			isMenuVisible: false,
+			isLightMode: true,
 			newPost: {
 				user_id: 1,
 				title: '',
@@ -30,6 +33,8 @@ class MainThread extends React.Component {
 		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
 		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
 		this.getThread = this.getThread.bind(this);
+		this.switchToDarkMode=this.switchToDarkMode.bind(this);
+		
 	}
 	componentDidMount() {
 		this.getThread();
@@ -44,6 +49,11 @@ class MainThread extends React.Component {
 				});
 			});
 	}
+	switchToDarkMode(){
+		this.setState(prevState => {
+			return {isLightMode : !prevState.isLightMode}
+		})
+	}
 	toggleNewPost() {
 		this.setState(prevState => {
 			return { isPostModalVisible: !prevState.isPostModalVisible };
@@ -54,6 +64,7 @@ class MainThread extends React.Component {
 			return { isMenuVisible: !prevState.isMenuVisible };
 		});
 	}
+	
 	handleChangeNewPost(event) {
 		const propertyName = event.target.name;
 		const newPost = this.state.newPost;
@@ -86,7 +97,10 @@ class MainThread extends React.Component {
 			<>
 				{this.state.isMenuVisible && (
 					<div onClick={this.toggleMenuVisible}>
-						<Menu />
+						<Menu
+						isLightMode={this.state.isLightMode}
+						switchToDarkMode={this.switchToDarkMode} 
+						/>
 					</div>
 				)}
 
@@ -95,31 +109,31 @@ class MainThread extends React.Component {
 					toggleNewPost={this.toggleNewPost}
 					handleChangeNewPost={this.handleChangeNewPost}
 					handleSubmitNewPost={this.handleSubmitNewPost}
+					isLightMode={this.state.isLightMode} 
 				/>
 
-				<div className='topButtons'>
+				<div className={this.state.isLightMode ? 'topButtons' : 'dark_topButtons'}>	
 					<img
 						className='icon'
 						src={menuIcon}
 						alt='menu'
 						onClick={this.toggleMenuVisible}
 					/>
-					<button className='postButton' onClick={this.toggleNewPost}>
+																		
+					<button className={this.state.isLightMode ?'postButton' : 'dark_postButton'} onClick={this.toggleNewPost}>
 						Poster un message
 					</button>
 				</div>
-				<div className='cardList'>
+				<div className={this.state.isLightMode ?'cardList' : 'dark_cardList'}>
 					{React.Children.toArray(
 						this.state.posts
 							.sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
-							.map(post => <PostCard postData={post} />),
+							.map(post => <PostCard isLightMode={this.state.isLightMode} postData={post} />),
 					)}
 				</div>
 				<div className='navbar'>
 					<img className='icon' src={homeIcon} alt='to home' />
 					<img className='icon' src={searchIcon} alt='search' />
-					<img className='icon' src={messageIcon} alt='messages' />
-					<img className='icon' src={notifIcon} alt='notifications' />
 				</div>
 			</>
 		);

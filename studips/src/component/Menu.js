@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import '../App.css'
 import {Link} from 'react-router-dom';
+import '../darkApp.css'
+import Parameter from './Parameter';
 
 class Menu extends Component{
 	constructor(props){
-	super(props)
+		super(props)
 		this.state={
 			
 		}
@@ -12,11 +14,14 @@ class Menu extends Component{
 
 	render(){
 		return(
-			<div className = 'menu'>
+			<div className = {this.props.isLightMode ? 'menu' : 'dark_menu'}>
 				<div className = 'profile'>
-					<Link to ='/profil'>
+					<Link
+					to ={{pathname: "/profil", state: {
+						isLightMode: this.props.isLightMode,
+					} }}>
 					<img className= 'userPic' src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKVvQJdRW6Kj8X6iO6l5YDn-fU_5ic04qB6udb_fMZhS2qycz&s' alt = 'profil'/>
-					<p className='userName'>AIMAR , Jean</p>
+					<p className= {this.props.isLightMode ? 'userName' : 'dark_userName'}>AIMAR , Jean</p>
 					</Link>
 				</div>
 				<button 
@@ -55,8 +60,13 @@ class Menu extends Component{
 					Fournitures
 				</button>
 				<hr />
-				<button>Enregistrement</button>
-				<Link  className = 'parameterRedirection' to ='/parameter'>Paramètres</Link>
+				<button
+				id ="modeSombre"
+				onClick={this.props.switchToDarkMode}
+				>Mode sombre
+					
+				</button>
+			
 			</div>
 		)
 	}

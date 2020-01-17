@@ -1,11 +1,13 @@
 import React from 'react';
 import '../App.css';
+import '../darkApp.css';
 
 function PostModal({
 	isPostModalVisible,
 	toggleNewPost,
 	handleChangeNewPost,
 	handleSubmitNewPost,
+	isLightMode
 }) {
 	return (
 		<>
@@ -16,9 +18,9 @@ function PostModal({
 							{' '}
 							<button>retour</button>
 						</div>
-						<form className='newPostCard' onSubmit={handleSubmitNewPost}>
-							<div className='categoryChoice'>
-								<p className='subTitle'>Catégorie :</p>
+						<form className={isLightMode ?'newPostCard' : 'dark_newPostCard'} onSubmit={handleSubmitNewPost}>
+							<div className= {isLightMode ? 'categoryChoice' : 'dark_categoryChoice'}>
+								<p className={isLightMode ? 'subTitle' : 'dark_subTitle'}>Catégorie :</p>
 								<div className='categoryList'>
 									<label htmlFor='choiceEvent'>
 										<input

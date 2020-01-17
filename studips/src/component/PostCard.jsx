@@ -5,9 +5,9 @@ import commentIcon from '../images/comments-regular.svg';
 import shareIcon from '../images/share-alt-solid.svg';
 import saveIcon from '../images/download-solid.svg';
 
-function PostCard({ postData }) {
+function PostCard({ postData , isLightMode}) {
 	return (
-		<div className='postCard'>
+		<div className={isLightMode ? 'postCard' : 'dark_postCard'}>
 			<div className='entete'>
 				<p id='category'>{postData.category}</p>
 				<div className='userProfile'>

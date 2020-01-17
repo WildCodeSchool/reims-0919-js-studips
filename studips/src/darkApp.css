@@ -1,0 +1,107 @@
+.dark_postButton {
+    color: white;
+    background-color: #A40032;
+    border: none;
+    border-radius: 1em;
+    padding: 0.5rem 1rem;
+}
+.dark_cardList {
+	flex: 1;
+	overflow: auto;
+	border-top: solid 1px black;
+	border-bottom: solid 1px black;
+    padding: 1rem;
+    background-color: #262626;
+}
+.dark_topButtons {
+	display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #262626;
+}
+.dark_menu{
+	position: fixed;
+	display: flex;
+	z-index: 11;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	background-color: #262626;
+	justify-content: space-around;
+}
+.dark_userName{
+	display: flex;
+	width: 70%;
+	font-size: 28px;
+	align-items: center;
+	justify-content:center ;
+	text-decoration: none;
+	color: white;
+}
+.dark_menu button{
+    border-radius: 0px 48px 48px 0px;
+    border-color: #a40032;
+	width: 80%;
+	height: 10vw;
+	font-size: 24px;
+    color: white;
+    background-color: #a40032;
+}
+.dark_parameterRedirection{
+	border-radius: 0px 48px 48px 0px;
+	width: 80%;
+	height: 10vw;
+	font-size: 24px;
+	background-color: #a40032;
+	text-decoration: none;
+	color: white;
+	text-align: center;
+}
+.dark_buttonParameter{
+	border-radius: 0px 48px 48px 0px;
+	width: 80%;
+	height: 11vw;
+	font-size: 24px;;
+	background-color: #a40032;
+	margin-top: 9%;
+	color: white;
+	text-align: center;
+}
+.dark_parameterPage{
+    max-height: 100vh;
+    background-color: #262626;
+}
+.dark_newPostCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 95vw;
+	background-color: #262626;
+    border: solid rgb(219, 219, 219) 2px;
+    border-color: #262626;
+	padding: 0.5rem;
+}
+.dark_newPostCard p{
+    color: whitesmoke;
+}
+.dark_categoryChoice label{
+    color: whitesmoke;
+}
+.dark_subTitle {
+    align-self: flex-start;
+    color: white;
+}
+.dark_postCard {
+	display: flex;
+	flex-direction: column;
+	background-color: #404040;
+    border: solid rgb(219, 219, 219) 2px;
+    border-color: #404040;
+	align-items: center;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+}
+.dark_postCard p{
+    color: whitesmoke;
+}
