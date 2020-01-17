@@ -106,7 +106,9 @@ class MainThread extends React.Component {
 			}))
 			
 		  default:
-			return (this.state.posts.map((post, i) => {
+			return (this.state.posts
+				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+				.map((post, i) => {
 				return <PostCard postData={post} key={i} />
 			}))
 		}
