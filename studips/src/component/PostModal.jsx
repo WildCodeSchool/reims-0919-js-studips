@@ -79,7 +79,6 @@ function PostModal({
 									name='title'
 									className='newTitleBox'
 									id='postTitle'
-									name='title'
 									onChange={handleChangeNewPost}></textarea>
 							</div>
 							<div>
