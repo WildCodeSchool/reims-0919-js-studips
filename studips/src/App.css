@@ -130,6 +130,26 @@
 /***************************************** END postCard.js *****************************************/
 
 /***************************************** BEGIN MaintThread.js *****************************************/
+.inputCity{
+	display: flex;
+	position: relative;
+	width: 35vw;
+	border: 1px solid black;
+
+}
+.inputCity input{
+	width:100%;
+	border: none;
+	margin-left: 2vw;
+}
+.inputCity button{
+	position: fix;
+	margin-right: 0;
+	border: none;
+	background-color: white;
+	margin-right: 2vw;
+}
+
 .topButtons {
 	display: flex;
     justify-content: space-between;

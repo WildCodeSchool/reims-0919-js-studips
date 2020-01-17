@@ -10,11 +10,13 @@ import axios from 'axios';
 import PostModal from './PostModal';
 import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
+// import { removeAllListeners } from 'nodemon';
 
 class MainThread extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			city:'',
 			posts: [],
 			activeId:'',
 			isPostModalVisible: false,
@@ -46,6 +48,7 @@ class MainThread extends React.Component {
 				this.setState({
 					posts: data,
 					activeId:'',
+					city:'',
 				});
 			});
 	}
@@ -58,53 +61,52 @@ class MainThread extends React.Component {
 		const buttonId = event.target.id;
 		this.setState({ activeId: buttonId});
 	}
-	getTabContent() {		
+	getTabContent() {
+		let posts = this.state.posts;
+		if (this.state.city.length > 0) {
+			posts = posts.filter(post => post.city.toLowerCase() === this.state.city.toLowerCase());
+		}
 		switch(this.state.activeId) {
 		  case 'stages':	
-			 return (this.state.posts
+			 posts = posts
 				.filter(post=>post.category  === 'Jobs')
 				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post, i) => {
-				return <PostCard postData={post} 
-				key={i}/>
-			}))
-			
+				.map((post) => {
+					return <PostCard postData={post}/>
+				})
+			break;
 		  case 'logements':
-			return (this.state.posts
+			posts = posts
 				.filter(post=>post.category==='Logements')
 				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post, i) => {
-				return <PostCard postData={post} 
-				key={i}/>
-			}))
-			
+				.map((post) => {
+					return <PostCard postData={post}/>
+				})
+			break;
 		  case 'events':
-			return (this.state.posts
+			posts = posts
 				.filter(post=>post.category==='Events')
 				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post, i) => {
-				return <PostCard postData={post} 
-				key={i}/>
-			}))
-			
+				.map((post) => {
+					return <PostCard postData={post}/>
+				})
+			break;
 		  case 'cours':
-			return (this.state.posts
+			posts = posts
 				.filter(post=>post.category==='Cours')
 				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post, i) => {
-				return <PostCard postData ={post} 
-				key={i}/>
-			}))
-			
+				.map((post) => {
+					return <PostCard postData ={post}/>
+				})
+			break;
 		  case 'fournitures':
-			return (this.state.posts
+			posts = posts
 				.filter(post=>post.category==='Fournitures')
 				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post, i) => {
-				return <PostCard postData={post} 
-				key={i}/>
-			}))
-			
+				.map((post) => {
+					return <PostCard postData={post}/>
+				})
+			break;
 		  default:
 			return (this.state.posts
 				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
@@ -112,6 +114,7 @@ class MainThread extends React.Component {
 				return <PostCard postData={post} key={i} />
 			}))
 		}
+		return React.Children.toArray(posts);
 	  }
 	toggleMenuVisible() {
 		this.setState(prevState => {
@@ -173,6 +176,12 @@ class MainThread extends React.Component {
 						alt='menu'
 						onClick={this.toggleMenuVisible}
 					/>
+					<div className='inputCity'>
+						<input
+							type="text"
+							onChange={ this.handleInputChange }
+							placeholder="Choisir la ville"/>
+					</div>
 					<button className='postButton' onClick={this.toggleNewPost}>
 						Poster un message
 					</button>
