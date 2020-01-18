@@ -54,11 +54,19 @@ Content-Type: application/json
     "city": "Grenoble"
 }
 
-### POST : user like a post
+### POST : user likes a post
 POST http://localhost:8000/like
 Content-Type: application/json
 
 {
     "user_id": 1,
     "post_id": 1
+}
+
+### DELETE : user doesn't like a post anymore
+DELETE http://localhost:8000/like
+Content-Type: application/json
+
+{
+    "likeId": 12
 }

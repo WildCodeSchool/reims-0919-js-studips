@@ -102,6 +102,19 @@ app.post('/like', (req, res) => {
 	})
 })
 
+app.delete('/like', (req, res) => {
+	let likeId = req.body.likeId
+	let sqlQuery = 'DELETE FROM `like` WHERE id=?'
+	connection.query(sqlQuery, [likeId], (err, results) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send("Error deleting like");
+		} else {
+			res.sendStatus(204)
+		}
+	})
+})
+
 app.listen(port, err => {
 	if (err) {
 		throw new Error('Something bad happened...');
