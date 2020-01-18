@@ -38,6 +38,7 @@ class MainThread extends React.Component {
 		this.handleEventDate = this.handleEventDate.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleLikePost = this.handleLikePost.bind(this);
+		this.getOnePost = this.getOnePost.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -167,7 +168,8 @@ class MainThread extends React.Component {
 		axios
 			.post('http://localhost:8000/like', newLike)
 			.then(res => console.log(res))
-			.catch(err => console.log(err))		
+			.then(this.getOnePost(e.target.name))
+			.catch(err => console.log(err))
 	}
 	handleInputChange(event) {
 		this.setState({city: event.target.value})
