@@ -30,7 +30,8 @@ function verifyToken(req, res, next){
 }
 
 app.get('/posts', (req, res) => {
-	let sqlQuery = 'SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, COUNT(likes.post_id) AS `likes` FROM post LEFT JOIN `likes` ON post.id=likes.post_id JOIN user on user.id=post.user_id GROUP BY post.id'
+	let userId = 1
+	let sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, COUNT(likes.post_id) AS likes, CASE WHEN EXISTS (SELECT * FROM likes WHERE post.id = likes.post_id AND likes.user_id = ${userId}) THEN TRUE ELSE FALSE END AS likedByUser FROM post LEFT JOIN likes ON post.id=likes.post_id JOIN user on user.id=post.user_id GROUP BY post.id`
 	connection.query(sqlQuery, (err, results) => {
     if (err) {
       res.status(500).send('Erreur lors de la récupération des posts');
