@@ -149,7 +149,11 @@ class MainThread extends React.Component {
 		this.setState({ isPostModalVisible: false }, () =>
 			setTimeout(this.getThread(), 1000),
 		);
-	}
+	// }
+	// handleLikePost() {
+	// 	let user_id = 1
+	// 	let post_id = 
+	// }
 	handleInputChange(event) {
 		this.setState({city: event.target.value})
 	}
