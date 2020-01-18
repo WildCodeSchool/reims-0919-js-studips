@@ -41,7 +41,6 @@ app.get('/posts', (req, res) => {
 });
 
 app.get('/posts/:id', (req, res) => {
-	console.log(req.params.id)
 	postId = req.params.id
 	let sqlQuery = 'SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, COUNT(like.post_id) AS `likes` FROM post LEFT JOIN `like` ON post.id=like.post_id JOIN user on user.id=post.user_id WHERE post.id = ?'
 	connection.query(sqlQuery, [postId], (err, results) => {
