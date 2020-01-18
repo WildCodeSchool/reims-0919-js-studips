@@ -57,8 +57,20 @@ Content-Type: application/json
     "city": "Grenoble"
 }
 
+### GET : all likes
+GET http://localhost:8000/likes
+
+### GET one like (that doesn't exists)
+GET http://localhost:8000/likes
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "post_id": 1
+}
+
 ### POST : user likes a post
-POST http://localhost:8000/like
+POST http://localhost:8000/likes
 Content-Type: application/json
 
 {
@@ -67,9 +79,18 @@ Content-Type: application/json
 }
 
 ### DELETE : user doesn't like a post anymore
-DELETE http://localhost:8000/like
+DELETE http://localhost:8000/likes
 Content-Type: application/json
 
 {
-    "likeId": 12
+    "likeId": 14
+}
+
+### PUT : manager like / unlike of user
+PUT http://localhost:8000/likes
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "post_id": 1
 }
