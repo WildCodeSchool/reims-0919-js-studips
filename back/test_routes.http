@@ -1,6 +1,9 @@
 ### GET all posts
 GET http://localhost:8000/posts
 
+### GET one post
+GET http://localhost:8000/posts/1
+
 ### POST a new post : json
 POST http://localhost:8000/posts
 Content-Type: application/json
