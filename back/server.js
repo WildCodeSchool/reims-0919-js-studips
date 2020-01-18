@@ -112,8 +112,6 @@ app.put('/likes', (req, res) => {
 			res.status(500).send('error getting like');
 		} else {
 			if (results[0]) {
-				console.log("like found")
-				console.log("deleteLike called")
 				let sqlQuery2 = `DELETE FROM likes WHERE post_id = ${postId} AND user_id = ${userId}`
 				connection.query(sqlQuery2, err => {
 					if (err) {
@@ -124,8 +122,6 @@ app.put('/likes', (req, res) => {
 					}
 				})
 			} else {
-				console.log(results[0])
-				console.log("like not found")
 				let sqlQuery3 = 'INSERT INTO `likes` SET ?';
 				connection.query(sqlQuery3, formData, (err, results2) => {
 					if (err) {

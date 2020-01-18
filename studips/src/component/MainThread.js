@@ -161,7 +161,7 @@ class MainThread extends React.Component {
 			.then(res => console.log(res))
 			.then(this.getThread())
 			.catch(err => console.log(err))
-	}
+	}	
 	handleInputChange(event) {
 		this.setState({city: event.target.value})
 	}
