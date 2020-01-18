@@ -38,7 +38,6 @@ class MainThread extends React.Component {
 		this.handleEventDate = this.handleEventDate.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleLikePost = this.handleLikePost.bind(this);
-		this.getOnePost = this.getOnePost.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -54,14 +53,6 @@ class MainThread extends React.Component {
 					city:'',
 				});
 			});
-	}
-	getOnePost(id) {
-		axios
-			.get(`http://localhost:8000/posts/${id}`)
-			.then(response => response.data)
-			.then(data => {
-				this.setState({posts:[id] = data})
-			})
 	}
 	toggleNewPost() {
 		this.setState(prevState => {
@@ -168,7 +159,7 @@ class MainThread extends React.Component {
 		axios
 			.put('http://localhost:8000/likes', newLike)
 			.then(res => console.log(res))
-			.then(this.getOnePost(e.target.name))
+			.then(this.getThread())
 			.catch(err => console.log(err))
 	}
 	handleInputChange(event) {
