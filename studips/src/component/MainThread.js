@@ -58,7 +58,9 @@ class MainThread extends React.Component {
 		axios
 			.get(`http://localhost:8000/posts/${id}`)
 			.then(response => response.data)
-			.then(data => this.setState({posts: [id] = data})		
+			.then(data => {
+				this.setState({posts:[id] = data})
+			}
 	}
 	toggleNewPost() {
 		this.setState(prevState => {
