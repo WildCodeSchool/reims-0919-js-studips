@@ -89,6 +89,19 @@ app.post('/register', (req, res) => {
   	});
 })
 
+app.post('/like', (req, res) => {
+	const formData = req.body;
+	let sqlQuery = 'INSERT INTO `like` SET ?';
+	connection.query(sqlQuery, formData, (err, results) => {
+		if(err) {
+			console.log(err);
+			res.status(500).send("Error adding like");			
+		} else {
+			res.sendStatus(200);
+		}
+	})
+})
+
 app.listen(port, err => {
 	if (err) {
 		throw new Error('Something bad happened...');
