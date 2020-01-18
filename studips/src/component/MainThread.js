@@ -166,7 +166,7 @@ class MainThread extends React.Component {
 			post_id: e.target.name
 		}
 		axios
-			.post('http://localhost:8000/like', newLike)
+			.put('http://localhost:8000/likes', newLike)
 			.then(res => console.log(res))
 			.then(this.getOnePost(e.target.name))
 			.catch(err => console.log(err))
