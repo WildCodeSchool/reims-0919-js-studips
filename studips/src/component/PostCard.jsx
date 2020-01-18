@@ -31,6 +31,7 @@ function PostCard({ postData }) {
 				</div>
 				<p>{postData.content}</p>
 			</div>
+			{postData.likes > 0 && <p className="likes">{postData.likes} like(s)</p>}
 			<div className='actions'>
 				<div className='postReactions'>
 					<img className='like' src={heartIcon} alt='like' />

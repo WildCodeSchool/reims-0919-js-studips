@@ -108,6 +108,12 @@
 	max-width: 10vw;
 	max-height: 10vw;
 }
+.likes {
+	color: #a40032;
+	font-weight: bold;
+	width: 95%;
+	margin-top: 0.5em;
+}
 .comment {
 	max-width: 10vw;
 	max-height: 10vw;
