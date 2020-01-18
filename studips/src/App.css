@@ -108,6 +108,11 @@
 	max-width: 10vw;
 	max-height: 10vw;
 }
+.likeLiked {
+	max-width: 10vw;
+	max-height: 10vw;
+	border: solid 3px #A40032;
+}
 .likes {
 	color: #a40032;
 	font-weight: bold;

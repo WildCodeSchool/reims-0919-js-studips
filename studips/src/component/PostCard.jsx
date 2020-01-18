@@ -31,12 +31,13 @@ function PostCard({ postData, handleLikePost }) {
 				</div>
 				<p>{postData.content}</p>
 			</div>
+			{postData.likedByUser === 1 && <p>Vous aimez</p>}
 			{postData.likes > 0 && <p className="likes">{postData.likes} like(s)</p>}
 			<div className='actions'>
 				<div className='postReactions'>
 					<img
 						name={postData.id}
-						className='like' 
+						className={postData.likedByUser === 1 ? 'likeLiked' : 'like'}
 						src={heartIcon} 
 						alt='like'
 						onClick={handleLikePost} />
