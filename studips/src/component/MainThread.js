@@ -60,7 +60,7 @@ class MainThread extends React.Component {
 			.then(response => response.data)
 			.then(data => {
 				this.setState({posts:[id] = data})
-			}
+			})
 	}
 	toggleNewPost() {
 		this.setState(prevState => {
@@ -166,9 +166,8 @@ class MainThread extends React.Component {
 		}
 		axios
 			.post('http://localhost:8000/like', newLike)
-			.then(res. => console.log(res))
-			.catch(err => console.log(err))
-		
+			.then(res => console.log(res))
+			.catch(err => console.log(err))		
 	}
 	handleInputChange(event) {
 		this.setState({city: event.target.value})
