@@ -5,7 +5,7 @@ import commentIcon from '../images/comments-regular.svg';
 import shareIcon from '../images/share-alt-solid.svg';
 import saveIcon from '../images/download-solid.svg';
 
-function PostCard({ postData }) {
+function PostCard({ postData, handleLikePost }) {
 	return (
 		<div className='postCard'>
 			<div className='entete'>
@@ -31,9 +31,15 @@ function PostCard({ postData }) {
 				</div>
 				<p>{postData.content}</p>
 			</div>
+			{postData.likes > 0 && <p className="likes">{postData.likes} like(s)</p>}
 			<div className='actions'>
 				<div className='postReactions'>
-					<img className='like' src={heartIcon} alt='like' />
+					<img
+						name={postData.id}
+						className='like' 
+						src={heartIcon} 
+						alt='like'
+						onClick={handleLikePost} />
 					<img className='comment' src={commentIcon} alt='comment' />
 					<img className='share' src={shareIcon} alt='share' />
 				</div>
