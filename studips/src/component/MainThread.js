@@ -1,17 +1,14 @@
 import React from 'react';
 import PostCard from './PostCard';
 import '../App.css';
-import homeIcon from '../images/home-solid.svg';
-import searchIcon from '../images/search-solid.svg';
-import messageIcon from '../images/comments-solid.svg';
-import menuIcon from '../images/bars-solid.svg';
-import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal';
 import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
 // import { removeAllListeners } from 'nodemon';
-import {Link} from 'react-router-dom';
+import Messaging from './Messaging';
+import Navbar from './Navbar';
+import menuIcon from '../images/bars-solid.svg';
 
 class MainThread extends React.Component {
 	constructor(props) {
@@ -43,6 +40,7 @@ class MainThread extends React.Component {
 	}
 	componentDidMount() {
 		this.getThread();
+		this.getContactList();
 	}
 	getThread() {
 		axios
@@ -63,8 +61,7 @@ class MainThread extends React.Component {
 			.then(response => response.data)
 			.then(data => {
 				this.setState({
-					contactList: data,
-					activeId: 'messagerie'
+					contactList: data
 				});
 			});
 	}
@@ -123,7 +120,10 @@ class MainThread extends React.Component {
 					.map((post) => {
 						return <PostCard postData={post}/>
 					})
-			break;				
+			break;
+			case 'messagerie':
+				return <Messaging contactList={contactList}/>
+			break;
 		  	default:
 		  		posts = posts
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
@@ -210,27 +210,10 @@ class MainThread extends React.Component {
 				<div className='cardList'>
 					{this.getTabContent()}
 				</div>
-				<div className='navbar'>
-					<img 
-						className="icon"
-						src={homeIcon}
-						alt="to home"
-						onClick={this.getThread}/>
-					<img
-						className="icon"
-						src={searchIcon}
-						alt="search"/>
-					<Link to ='/messaging'>
-						<img
-							className="icon"
-							src={messageIcon}
-							alt="messages"
-							onClick={this.getContactList}/></Link>					
-					<img
-						className="icon"
-						src={notifIcon}
-						alt='notifications'/>
-				</div>			
+				<Navbar 
+					handleChangeTab={this.handleChangeTab}
+					getThread={this.getThread}
+				/>			
 			</>)		
 	}	
 }

@@ -597,3 +597,18 @@
 .publicationNumber{
 	font-size: 18px;
 }
+
+/******************************************** BEGIN Messaging.js ************************************************** */
+
+.contactCard {
+	display: flex;
+	flex-direction: row;
+	background-color: #e2e2e2;
+	border: solid rgb(219, 219, 219) 2px;
+	align-items: center;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+/******************************************** END Messaging.js ************************************************** */
+
