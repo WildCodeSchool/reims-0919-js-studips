@@ -609,6 +609,12 @@
 	padding: 0.5rem;
 	margin-bottom: 1rem;
 }
+.contactCardUserName {
+	display: flex;
+	flex-direction: row;
+	color: black;
+	font-size: 14px;
+}
 
 /******************************************** END Messaging.js ************************************************** */
 
