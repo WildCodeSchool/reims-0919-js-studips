@@ -55,4 +55,9 @@ Content-Type: application/json
 }
 
 ### GET : contact list
-GET http://localhost:8000/contacts/1
+GET http://localhost:8000/1/contacts
+
+### GET : conversation history with one contact
+GET http://localhost:8000/1/contacts/2
+
+###

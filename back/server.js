@@ -89,12 +89,25 @@ app.post('/register', (req, res) => {
   	});
 })
 
-app.get('/contacts/:userId', (req, res) => {
-	userId = req.params.userId
+app.get('/:userId/contacts', (req, res) => {
+	let userId = req.params.userId
 	let sqlQuery = `SELECT user.id, user.firstname, user.lastname, user.profile_pic, messages.creation_date FROM user JOIN messages ON messages.sender_id=user.id WHERE recipient_id=${userId} UNION SELECT user.id, user.firstname, user.lastname, user.profile_pic, messages.creation_date FROM user JOIN messages ON messages.recipient_id=user.id WHERE sender_id=${userId}`;
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			res.status(500).send('Erreur lors de la récupération des contacts');
+		} else {
+			res.json(results);
+		}
+	})
+})
+
+app.get('/:userId/contacts/:contactId', (req, res) => {
+	let userId = req.params.userId
+	let contactId = req.params.contactId
+	let sqlQuery = `SELECT messages.* FROM messages WHERE (sender_id=${userId} AND recipient_id=${contactId}) OR (sender_id=${contactId} AND recipient_id=${userId}) ORDER BY messages.id DESC`
+	connection.query(sqlQuery, (err, results) => {
+		if (err) {
+			res.status(500).send('Erreur lors de la récupération de la conversation')
 		} else {
 			res.json(results);
 		}
