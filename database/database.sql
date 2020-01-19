@@ -38,6 +38,15 @@ create table messages
     FOREIGN KEY (sender_id) REFERENCES user(id)
 );
 
+create table messages_recipient
+(
+    id int auto_increment primary key,
+    recipient_id int not null,
+    message_id int not null,
+    FOREIGN KEY (recipient_id) REFERENCES user(id),
+    FOREIGN KEY (message_id) REFERENCES messages(id)
+);
+
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
@@ -139,3 +148,48 @@ INSERT INTO messages
 (`sender_id`, `content`)
 VALUES
 (6, 'Ce serait vraiment génial que tu nous rejoignes, en plus il y a déjà une super ambiance dans la coloc.');
+
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(2, 1);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(1, 2);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(2, 3);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(1, 4);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(3, 5);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(5, 6);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(4, 7);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(5, 8);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(7, 9);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(6, 10);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(7, 11);
