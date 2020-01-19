@@ -33,18 +33,11 @@ create table messages
 (
     id int auto_increment primary key,
     sender_id int not null,
+    recipient_id int not null,
     creation_date timestamp default CURRENT_TIMESTAMP,
     content varchar(300) not null,
-    FOREIGN KEY (sender_id) REFERENCES user(id)
-);
-
-create table messages_recipient
-(
-    id int auto_increment primary key,
-    recipient_id int not null,
-    message_id int not null,
-    FOREIGN KEY (recipient_id) REFERENCES user(id),
-    FOREIGN KEY (message_id) REFERENCES messages(id)
+    FOREIGN KEY (sender_id) REFERENCES user(id),
+    FOREIGN KEY (recipient_id) REFERENCES user(id)
 );
 
 INSERT INTO `user`
@@ -105,108 +98,54 @@ VALUES
 (6, 'Cours de Tai-chi cosmique', 'Cours', 'Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).');
 
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(1, 'Salut, ça roule ? Est-ce que tu vas au concert de Franky Vincent pour la Saint Valentin ???');
+(1, 2, 'Salut, ça roule ? Est-ce que tu vas au concert de Franky Vincent pour la Saint Valentin ???');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(2, 'Ca va bien, et toi ? Evidemment, il ne faut pas rater ça ! on y va avec ma chérie, on se retrouve là bas ?');
+(2, 1, 'Ca va bien, et toi ? Evidemment, il ne faut pas rater ça ! on y va avec ma chérie, on se retrouve là bas ?');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(1, 'Entendu, on se retrouve là bas alors, je devrais y être pour 21h.');
+(1, 2, 'Entendu, on se retrouve là bas alors, je devrais y être pour 21h.');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(3, 'Salut ! Je vois que tu as mis en vente tes livres de 1ère année, je suis intéressé. Quel serait le prix ?');
+(3, 1, 'Salut ! Je vois que tu as mis en vente tes livres de 1ère année, je suis intéressé. Quel serait le prix ?');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(1, 'Bonjour, si tu prends le tout, je peux te les faire pour 30 euros');
+(1, 3, 'Bonjour, si tu prends le tout, je peux te les faire pour 30 euros');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(4, 'Le patron du Chiquito cherche du personnel pour faire la plonge, du coup je me suis dit que tu pourrais être intéressé.');
+(4, 5, 'Le patron du Chiquito cherche du personnel pour faire la plonge, du coup je me suis dit que tu pourrais être intéressé.');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(5, 'Cool que tu aies pensé à moi ! Par contre je suis pu dispo les weekends en soirée, je travaille déjà dans un resto');
+(5, 4, 'Cool que tu aies pensé à moi ! Par contre je suis pu dispo les weekends en soirée, je travaille déjà dans un resto');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(4, 'Ah ok ! En tout cas, super pour toi !');
+(4, 5, 'Ah ok ! En tout cas, super pour toi !');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(6, 'Je cherche un nouveau coloc pour mon appart. Du coup, direct, je te propose en premier :-)');
+(6, 7, 'Je cherche un nouveau coloc pour mon appart. Du coup, direct, je te propose en premier :-)');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(7, 'Ahhh ! Super ! Oui, je suis très intéressé !!');
+(7, 6, 'Ahhh ! Super ! Oui, je suis très intéressé !!');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(6, 'Ce serait vraiment génial que tu nous rejoignes, en plus il y a déjà une super ambiance dans la coloc.');
+(6, 7, 'Ce serait vraiment génial que tu nous rejoignes, en plus il y a déjà une super ambiance dans la coloc.');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(1, 'Salut, ça roule depuis le temps ??');
+(1, 7, 'Salut, ça roule depuis le temps ??');
 INSERT INTO messages
-(`sender_id`, `content`)
+(`sender_id`, `recipient_id`, `content`)
 VALUES
-(6, 'Alors, quoi de neuf ??');
-
-
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(2, 1);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(1, 2);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(2, 3);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(1, 4);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(3, 5);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(5, 6);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(4, 7);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(5, 8);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(7, 9);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(6, 10);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(7, 11);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(7, 12);
-INSERT INTO messages_recipient
-(`recipient_id`, `message_id`)
-VALUES
-(1, 13);
+(6, 1, 'Alors, quoi de neuf ??');
