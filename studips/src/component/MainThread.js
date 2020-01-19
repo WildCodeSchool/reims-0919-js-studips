@@ -26,7 +26,8 @@ class MainThread extends React.Component {
 				content: null
 			},
 			eventDate: new Date(),
-			contactList: []
+			contactList: [],
+			conversation: []
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
@@ -37,6 +38,7 @@ class MainThread extends React.Component {
 		this.handleEventDate = this.handleEventDate.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.getContactList = this.getContactList.bind(this);
+		this.getConversation = this.getConversation.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -57,11 +59,22 @@ class MainThread extends React.Component {
 	getContactList() {
 		let userId = this.state.newPost.user_id
 		axios
-			.get(`http://localhost:8000/contacts/${userId}`)
+			.get(`http://localhost:8000/${userId}/contacts`)
 			.then(response => response.data)
 			.then(data => {
 				this.setState({
 					contactList: data
+				});
+			});
+	}
+	getConversation(event) {
+		let userId = this.state.newPost.user_id
+		let contactId = event.target.id
+		axios
+			.get(`http://localhost:8000/${userId}/contacts/${contactId}`)
+			.then(data => {
+				this.setState({
+					conversation: data
 				});
 			});
 	}
@@ -122,7 +135,13 @@ class MainThread extends React.Component {
 					})
 			break;
 			case 'messagerie':
-				return <Messaging contactList={contactList}/>
+				return (
+					<Messaging 
+						contactList={contactList}
+						getConversation={this.getConversation}
+						conversation={this.state.conversation}
+					/>
+				)
 			break;
 		  	default:
 		  		posts = posts

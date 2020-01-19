@@ -2,11 +2,11 @@ import React from 'react';
 import ContactCard from './ContactCard';
 import {Link} from 'react-router-dom';
 
-function Messaging(props) {
+function Messaging({ contactList, getConversation, conversation }) {
     return (
         <div>
             <p>Liste de contacts :</p>
-            {props.contactList.map(contact => <ContactCard contactData={contact}/>)}
+            {contactList.map(contact => <ContactCard contactData={contact} conversation={conversation} getConversation={getConversation}/>)}
         </div>
     )
 }
