@@ -11,6 +11,7 @@ import PostModal from './PostModal';
 import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
 // import { removeAllListeners } from 'nodemon';
+import {Link} from 'react-router-dom';
 
 class MainThread extends React.Component {
 	constructor(props) {
@@ -81,6 +82,7 @@ class MainThread extends React.Component {
 		if (this.state.city.length > 0) {
 			posts = posts.filter(post => post.city.toLowerCase() === this.state.city.toLowerCase());
 		}
+		let contactList = this.state.contactList;
 		switch(this.state.activeId) {
 		  	case 'stages':	
 				posts = posts
@@ -121,7 +123,7 @@ class MainThread extends React.Component {
 					.map((post) => {
 						return <PostCard postData={post}/>
 					})
-			break;
+			break;				
 		  	default:
 		  		posts = posts
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
@@ -218,11 +220,12 @@ class MainThread extends React.Component {
 						className="icon"
 						src={searchIcon}
 						alt="search"/>
-					<img
-						className="icon"
-						src={messageIcon}
-						alt="messages"
-						onClick={this.getContactList}/>	
+					<Link to ='/messaging'>
+						<img
+							className="icon"
+							src={messageIcon}
+							alt="messages"
+							onClick={this.getContactList}/></Link>					
 					<img
 						className="icon"
 						src={notifIcon}
