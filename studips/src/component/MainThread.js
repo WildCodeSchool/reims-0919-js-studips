@@ -69,10 +69,10 @@ class MainThread extends React.Component {
 			});
 	}
 	getConversation(event) {
-		let userId = this.state.newPost.user_id
 		let contactId = event.target.id
+		let userId = this.state.newPost.user_id
 		axios
-			.get(`http://localhost:8000/${userId}/contacts/conversations/${contactId}`)
+			.get(`http://localhost:8000/${userId}/contacts/${contactId}/conversation`)
 			.then(response => response.data)
 			.then(data => {
 				this.setState({

@@ -58,6 +58,6 @@ Content-Type: application/json
 GET http://localhost:8000/1/contacts
 
 ### GET : conversation history with one contact
-GET http://localhost:8000/1/contacts/conversations/2
+GET http://localhost:8000/1/contacts/2/conversation
 
 ###
