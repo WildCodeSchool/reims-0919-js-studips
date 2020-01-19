@@ -28,6 +28,16 @@ create table post
     event_date datetime,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
+
+create table messages
+(
+    id int auto_increment primary key,
+    sender_id int not null,
+    creation_date timestamp default CURRENT_TIMESTAMP,
+    content varchar(300) not null,
+    FOREIGN KEY (sender_id) REFERENCES user(id)
+);
+
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
@@ -84,3 +94,48 @@ INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`)
 VALUES
 (6, 'Cours de Tai-chi cosmique', 'Cours', 'Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).');
+
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(1, 'Salut, ça roule ? Est-ce que tu vas au concert de Franky Vincent pour la Saint Valentin ???');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(2, 'Ca va bien, et toi ? Evidemment, il ne faut pas rater ça ! on y va avec ma chérie, on se retrouve là bas ?');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(1, 'Entendu, on se retrouve là bas alors, je devrais y être pour 21h.');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(3, 'Salut ! Je vois que tu as mis en vente tes livres de 1ère année, je suis intéressé. Quel serait le prix ?');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(1, 'Bonjour, si tu prends le tout, je peux te les faire pour 30 euros');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(4, 'Le patron du Chiquito cherche du personnel pour faire la plonge, du coup je me suis dit que tu pourrais être intéressé.');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(5, 'Cool que tu aies pensé à moi ! Par contre je suis pu dispo les weekends en soirée, je travaille déjà dans un resto');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(4, 'Ah ok ! En tout cas, super pour toi !');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(6, 'Je cherche un nouveau coloc pour mon appart. Du coup, direct, je te propose en premier :-)');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(7, 'Ahhh ! Super ! Oui, je suis très intéressé !!');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(6, 'Ce serait vraiment génial que tu nous rejoignes, en plus il y a déjà une super ambiance dans la coloc.');
