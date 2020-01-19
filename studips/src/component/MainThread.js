@@ -27,7 +27,8 @@ class MainThread extends React.Component {
 				category: null,
 				content: null
 			},
-			eventDate: new Date()
+			eventDate: new Date(),
+			contactList: []
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
@@ -37,6 +38,7 @@ class MainThread extends React.Component {
 		this.getThread = this.getThread.bind(this);
 		this.handleEventDate = this.handleEventDate.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.getContactList = this.getContactList.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -50,6 +52,18 @@ class MainThread extends React.Component {
 					posts: data,
 					activeId:'',
 					city:'',
+				});
+			});
+	}
+	getContactList() {
+		let userId = this.state.newPost.user_id
+		axios
+			.get(`http://localhost:8000/contacts/${userId}`)
+			.then(response => response.data)
+			.then(data => {
+				this.setState({
+					contactList: data,
+					activeId: 'messagerie'
 				});
 			});
 	}
@@ -207,7 +221,8 @@ class MainThread extends React.Component {
 					<img
 						className="icon"
 						src={messageIcon}
-						alt="messages"/>	
+						alt="messages"
+						onClick={this.getContactList}/>	
 					<img
 						className="icon"
 						src={notifIcon}
