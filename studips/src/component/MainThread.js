@@ -9,6 +9,7 @@ import { Redirect } from 'react-router-dom';
 import Messaging from './Messaging';
 import Navbar from './Navbar';
 import menuIcon from '../images/bars-solid.svg';
+import Conversation from './Conversation';
 
 class MainThread extends React.Component {
 	constructor(props) {
@@ -94,6 +95,7 @@ class MainThread extends React.Component {
 			posts = posts.filter(post => post.city.toLowerCase() === this.state.city.toLowerCase());
 		}
 		let contactList = this.state.contactList;
+		let conversation = this.state.conversation;
 		switch(this.state.activeId) {
 		  	case 'stages':	
 				posts = posts
@@ -143,6 +145,10 @@ class MainThread extends React.Component {
 						conversation={this.state.conversation}
 					/>
 				)
+			case 'conversation':
+					{conversation.map((message) => {
+						return <Conversation messageData={message}/>
+					})}
 			break;
 		  	default:
 		  		posts = posts
