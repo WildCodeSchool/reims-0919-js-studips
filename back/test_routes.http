@@ -53,3 +53,11 @@ Content-Type: application/json
     "bio": "Passionné d'art, je m'intéresse tout particulièrement à la BD",
     "city": "Grenoble"
 }
+
+### GET : contact list
+GET http://localhost:8000/contacts
+Content-Type: application/json
+
+{
+    "userId": 1
+}
