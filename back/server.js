@@ -91,7 +91,7 @@ app.post('/register', (req, res) => {
 
 app.get('/contacts/:userId', (req, res) => {
 	userId = req.params.userId
-	let sqlQuery = `SELECT user.firstname, user.lastname FROM user JOIN messages ON messages.sender_id=user.id WHERE recipient_id=${userId} UNION SELECT user.firstname, user.lastname FROM user JOIN messages ON messages.recipient_id=user.id WHERE sender_id=${userId}`;
+	let sqlQuery = `SELECT user.id, user.firstname, user.lastname, user.profile_pic, messages.creation_date FROM user JOIN messages ON messages.sender_id=user.id WHERE recipient_id=${userId} UNION SELECT user.id, user.firstname, user.lastname, user.profile_pic, messages.creation_date FROM user JOIN messages ON messages.recipient_id=user.id WHERE sender_id=${userId}`;
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			res.status(500).send('Erreur lors de la récupération des contacts');
