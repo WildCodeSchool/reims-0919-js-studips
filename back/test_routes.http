@@ -60,4 +60,14 @@ GET http://localhost:8000/1/contacts
 ### GET : conversation history with one contact
 GET http://localhost:8000/1/contacts/2/conversation
 
+### POST : new message in a conversation
+POST http://localhost:8000/conversation
+Content-Type: application/json
+
+{
+    "sender_id": 1,
+    "recipient_id": 2,
+    "content": "coucou"
+}
+
 ###

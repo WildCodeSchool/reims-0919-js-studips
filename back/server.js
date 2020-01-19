@@ -95,7 +95,7 @@ app.get('/:userId/contacts', (req, res) => {
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			res.status(500).send('Erreur lors de la récupération des contacts');
-		} else {
+		} else {			
 			res.json(results);
 		}
 	})
@@ -108,11 +108,24 @@ app.get('/:userId/contacts/:contactId/conversation', (req, res) => {
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			res.status(500).send('Erreur lors de la récupération de la conversation')
-		} else {
+		} else {			
 			res.json(results);
 		}
 	})
 })
+
+app.post('/conversation', (req, res) => {
+  	const formData = req.body;
+	let sqlQuery = 'INSERT INTO messages SET ?'
+  	connection.query(sqlQuery, formData, (err, results) => {
+		if (err) {
+		console.log(err);
+		res.status(500).send("Error sending a new post");
+		} else {
+		res.sendStatus(200);
+		}
+  	});
+});
 
 app.listen(port, err => {
 	if (err) {
