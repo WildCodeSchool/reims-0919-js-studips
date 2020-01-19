@@ -101,7 +101,7 @@ app.get('/:userId/contacts', (req, res) => {
 	})
 })
 
-app.get('/:userId/contacts/:contactId', (req, res) => {
+app.get('/:userId/contacts/conversations/:contactId', (req, res) => {
 	let userId = req.params.userId
 	let contactId = req.params.contactId
 	let sqlQuery = `SELECT messages.* FROM messages WHERE (sender_id=${userId} AND recipient_id=${contactId}) OR (sender_id=${contactId} AND recipient_id=${userId}) ORDER BY messages.id DESC`

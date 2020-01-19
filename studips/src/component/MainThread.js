@@ -71,7 +71,8 @@ class MainThread extends React.Component {
 		let userId = this.state.newPost.user_id
 		let contactId = event.target.id
 		axios
-			.get(`http://localhost:8000/${userId}/contacts/${contactId}`)
+			.get(`http://localhost:8000/${userId}/contacts/conversations/${contactId}`)
+			.then(response => response.data)
 			.then(data => {
 				this.setState({
 					conversation: data
