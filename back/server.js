@@ -91,7 +91,7 @@ app.post('/register', (req, res) => {
 
 app.get('/contacts', (req, res) => {
 	userId = req.body.userId
-	let sqlQuery = '';
+	let sqlQuery = 'SELECT ';
 	conncetion.query(sqlQuery, (err, results) => {
 		if (err) {
 			res.status(500).send('Erreur lors de la récupération des posts');
