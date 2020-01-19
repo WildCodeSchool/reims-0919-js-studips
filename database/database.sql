@@ -148,6 +148,15 @@ INSERT INTO messages
 (`sender_id`, `content`)
 VALUES
 (6, 'Ce serait vraiment génial que tu nous rejoignes, en plus il y a déjà une super ambiance dans la coloc.');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(1, 'Salut, ça roule depuis le temps ??');
+INSERT INTO messages
+(`sender_id`, `content`)
+VALUES
+(6, 'Alors, quoi de neuf ??');
+
 
 INSERT INTO messages_recipient
 (`recipient_id`, `message_id`)
@@ -193,3 +202,11 @@ INSERT INTO messages_recipient
 (`recipient_id`, `message_id`)
 VALUES
 (7, 11);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(7, 12);
+INSERT INTO messages_recipient
+(`recipient_id`, `message_id`)
+VALUES
+(1, 13);
