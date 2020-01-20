@@ -43,16 +43,22 @@ app.get('/posts', verifyToken, (req, res) => {
   });
 });
 
-app.post('/posts', (req, res) => {
-  	const formData = req.body;
-	let sqlQuery = 'INSERT INTO post SET ?';
+app.post('/posts', verifyToken, (req, res) => {
+  	const formData = {
+		user_id: req.authData.sub,
+		title: req.body.title,
+		category: req.body.category,
+		content: req.body.content,
+		event_date: req.body.event_date
+	}
+	const sqlQuery = 'INSERT INTO post SET ?';
   	connection.query(sqlQuery, formData, (err, results) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error sending a new post");
-    } else {
-      res.sendStatus(200);
-    }
+		if (err) {
+		console.log(err);
+		res.status(500).send("Error sending a new post");
+		} else {
+		res.sendStatus(200);
+		}
   	});
 });
 
@@ -104,10 +110,10 @@ app.get ('/likes', (req, res) => {
 	})
 })
 
-app.put('/likes', (req, res) => {
-	let formData = req.body
-	let userId = req.body.user_id
-	let postId = req.body.post_id
+app.put('/likes', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const postId = req.body.post_id
+	const formData = {user_id: userId, post_id: postId}
 	let sqlQuery1 = `SELECT * FROM likes WHERE post_id = ${postId} AND user_id = ${userId}`
 	connection.query(sqlQuery1, (err, results) => {
 		if (err) {
