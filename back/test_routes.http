@@ -1,6 +1,6 @@
 ### GET all posts
 GET http://localhost:8000/posts
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTU0NjkwMiwiZXhwIjoxNTc5NTQ3MDgyfQ.w7RsdZpKdSAsWzb45vX-hgoczlXpA6_sOQm3ndLJJBo
 ### GET one post
 GET http://localhost:8000/posts/1
 

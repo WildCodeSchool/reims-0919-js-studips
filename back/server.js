@@ -22,21 +22,23 @@ function verifyToken(req, res, next){
    if (typeof bearerHeader !== 'undefined') {
        const bearer = bearerHeader.split(' ')
        const bearerToken = bearer[1]
-	   req.token = bearerToken
+	   const authData = jwt.verify(bearerToken, signature)
+	   req.authData = authData
        next()
    } else {
        res.sendStatus(403)
    }
 }
 
-app.get('/posts', (req, res) => {
-	let userId = 1
-	let sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, COUNT(likes.post_id) AS likes, CASE WHEN EXISTS (SELECT * FROM likes WHERE post.id = likes.post_id AND likes.user_id = ${userId}) THEN TRUE ELSE FALSE END AS likedByUser FROM post LEFT JOIN likes ON post.id=likes.post_id JOIN user on user.id=post.user_id GROUP BY post.id`
+app.get('/posts', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, COUNT(likes.post_id) AS likes, CASE WHEN EXISTS (SELECT * FROM likes WHERE post.id = likes.post_id AND likes.user_id = ${userId}) THEN TRUE ELSE FALSE END AS likedByUser FROM post LEFT JOIN likes ON post.id=likes.post_id JOIN user on user.id=post.user_id GROUP BY post.id`
 	connection.query(sqlQuery, (err, results) => {
     if (err) {
-      res.status(500).send('Erreur lors de la récupération des posts');
-    } else {
-      res.json(results);
+		console.log(err)
+      	res.status(500).send('Erreur lors de la récupération des posts');
+    } 	else {
+      	res.json(results);
     }
   });
 });
@@ -57,7 +59,7 @@ app.post('/posts', (req, res) => {
 app.post('/login', (req, res) => {
 	let userPassword = req.body.password;
 	let userEmail = req.body.email
-	let sqlQuery = `SELECT email, password from user where user.email='${userEmail}'`
+	let sqlQuery = `SELECT id, email, password from user where user.email='${userEmail}'`
 	connection.query(sqlQuery, (err, matchs) => {
 		if (err) {
 			res.status(500).send('error')
@@ -68,7 +70,7 @@ app.post('/login', (req, res) => {
 			res.status(400).send('Wrong email or password')
 			return
 		} else {
-			jwt.sign({ userEmail }, signature, {expiresIn: '180sec'}, (err, token) => {
+			jwt.sign({ sub: matchs[0].id }, signature, {expiresIn: '180sec'}, (err, token) => {
 				res.status(200).json({
 					token
 				});
