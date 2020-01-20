@@ -45,7 +45,7 @@ class MainThread extends React.Component {
 		this.toggleNewResearch= this.toggleNewResearch.bind(this);
 		this.handleChangeUser= this.handleChangeUser.bind(this);
 		this.handleInputChange=this.handleInputChange.bind(this);
-
+		this.handleLikePost = this.handleLikePost.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -91,53 +91,53 @@ class MainThread extends React.Component {
 			
 		}
 		switch(this.state.activeId) {
-		  case 'stages':	
-			 posts = posts
-				.filter(post=>post.category  === 'Jobs')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData={post}/>
-				})
+		  	case 'stages':	
+				posts = posts
+					.filter(post=>post.category  === 'Jobs')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+					})
 			break;
-		  case 'logements':
-			posts = posts
-				.filter(post=>post.category==='Logements')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData={post}/>
-				})
+		  	case 'logements':
+				posts = posts
+					.filter(post=>post.category==='Logements')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+					})
 			break;
-		  case 'events':
-			posts = posts
-				.filter(post=>post.category==='Events')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData={post}/>
-				})
+		  	case 'events':
+				posts = posts
+					.filter(post=>post.category==='Events')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+					})
 			break;
-		  case 'cours':
-			posts = posts
-				.filter(post=>post.category==='Cours')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData ={post}/>
-				})
+		  	case 'cours':
+				posts = posts
+					.filter(post=>post.category==='Cours')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData ={post} handleLikePost={this.handleLikePost}/>
+					})
 			break;
-		  case 'fournitures':
-			posts = posts
-				.filter(post=>post.category==='Fournitures')
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post) => {
-					return <PostCard postData={post}/>
-				})
+		  	case 'fournitures':
+				posts = posts
+					.filter(post=>post.category==='Fournitures')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+					})
 			break;
-		  default:
-			
-				posts=posts
-				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
-				.map((post, i) => {
-				return <PostCard postData={post} key={i} />
-			})
+		  	default:
+		  		posts = posts
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+			  			return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+		})
+		  break;
 		}
 		return React.Children.toArray(posts);
 	  }
@@ -173,11 +173,20 @@ class MainThread extends React.Component {
 			setTimeout(this.getThread(), 1000),
 		);
 	}
-
+	handleLikePost(e) {
+		let newLike = {
+			user_id: 1,
+			post_id: e.target.name
+		}
+		axios
+			.put('http://localhost:8000/likes', newLike)
+			.then(res => console.log(res))
+			.then(this.getThread())
+			.catch(err => console.log(err))
+	}	
 	handleInputChange(event) {
 		this.setState({city: event.target.value})
-
-    }
+	}
 	render() {
 		const isNotConnected = this.props.token === null;
 		if (isNotConnected) {
@@ -229,7 +238,7 @@ class MainThread extends React.Component {
 				</div>
 				
 				<div className='navbar'>
-					<img 
+					<img
 						className="icon"
 						src={homeIcon}
 						alt="to home"
