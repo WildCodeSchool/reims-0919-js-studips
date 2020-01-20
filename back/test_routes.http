@@ -1,6 +1,9 @@
 ### GET all posts
 GET http://localhost:8000/posts
 
+### GET one post
+GET http://localhost:8000/posts/1
+
 ### POST a new post : json
 POST http://localhost:8000/posts
 Content-Type: application/json
@@ -52,4 +55,25 @@ Content-Type: application/json
     "study": "Histoire de l'art",
     "bio": "Passionné d'art, je m'intéresse tout particulièrement à la BD",
     "city": "Grenoble"
+}
+
+### GET : all likes
+GET http://localhost:8000/likes
+
+### GET one like (that doesn't exists)
+GET http://localhost:8000/likes
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "post_id": 1
+}
+
+### PUT : manager like / unlike of user
+PUT http://localhost:8000/likes
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "post_id": 1
 }
