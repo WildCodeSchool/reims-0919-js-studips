@@ -29,6 +29,15 @@ create table post
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
+create table `likes`
+(
+    id int auto_increment primary key,
+    user_id int,
+    post_id int,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (post_id) REFERENCES post(id)
+);
+
 create table `post_saves`
 (
     id int auto_increment primary key,
@@ -65,7 +74,9 @@ VALUES
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Eric', 'Antonnai', 'cassoulet', 'ericantonnai@gmail.com', '2000-01-01', 'Motocross', 'Faculté des sciences', "je suis actif, j'aime sortir le soir et rencontrer des nouvelles personnes", '', 'Paris');
+('Eric', 'Antonnai', 'cassoulet', 'ericantonnai@gmail.com', '2000-01-01', 'Motocross', 'Faculté des sciences', "je suis actif, j'aime sortir le soir et rencontrer des nouvelles personnes", 'https://randomuser.me/api/portraits/men/96.jpg', 'Paris');
+
+
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`) 
 VALUES
@@ -89,11 +100,52 @@ VALUES
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`) 
 VALUES
-(6, 'Je quitte mon appart', 'Logements', "Hey les copains, je quitte mon appartement car je retourne chez mes parents, c'est un F2 en plein centre ville (plus d'info sur www.logement.com).");
+(7, 'Je quitte mon appart', 'Logements', "Hey les copains, je quitte mon appartement car je retourne chez mes parents, c'est un F2 en plein centre ville (plus d'info sur www.logement.com).");
 INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`)
 VALUES
 (6, 'Cours de Tai-chi cosmique', 'Cours', 'Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).');
+
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(2, 5);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(3, 5);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(4, 5);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(5, 5);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(6, 5);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(7, 5);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(1, 6);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(2, 6);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(3, 6);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(5, 4);
 
 INSERT INTO `post_saves`
 (`user_id`, `post_id`)
@@ -139,3 +191,7 @@ INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (5, 4);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
+(1, 5);

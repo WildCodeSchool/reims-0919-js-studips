@@ -31,7 +31,7 @@ function verifyToken(req, res, next){
 
 app.get('/posts', (req, res) => {
 	let userId = 1
-	let sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, CASE WHEN EXISTS (SELECT * FROM post_saves WHERE post.id = post_saves.post_id AND post_saves.user_id = ${userId}) THEN TRUE ELSE FALSE END AS savedByUser FROM post LEFT JOIN post_saves ON post.id=post_saves.post_id JOIN user on user.id=post.user_id GROUP BY post.id`
+	let sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, COUNT(likes.post_id) AS likes, CASE WHEN EXISTS (SELECT * FROM likes WHERE post.id = likes.post_id AND likes.user_id = ${userId}) THEN TRUE ELSE FALSE END AS likedByUser, CASE WHEN EXISTS (SELECT * FROM post_saves WHERE post.id = post_saves.post_id AND post_saves.user_id = ${userId}) THEN TRUE ELSE FALSE END AS savedByUser FROM post LEFT JOIN likes ON post.id=likes.post_id LEFT JOIN post_saves ON post.id=post_saves.post_id JOIN user on user.id=post.user_id GROUP BY post.id`
   	connection.query(sqlQuery, (err, results) => {
     if (err) {
       res.status(500).send('Erreur lors de la récupération des posts');
@@ -95,7 +95,18 @@ app.get ('/postsaves', (req, res) => {
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			console.log(err)
-			res.status(500).send("Error getting saved posts");			
+			res.status(500).send("Error getting saved posts");
+		} else {
+			res.json(results)
+		}
+	})
+})
+app.get ('/likes', (req, res) => {
+	let sqlQuery = 'SELECT * from likes';
+	connection.query(sqlQuery, (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send("Error getting likes");			
 		} else {
 			res.json(results);
 		}	
@@ -128,6 +139,41 @@ app.put('/postsaves', (req, res) => {
 					if (err) {
 						console.log(err);
 						res.status(500).send("Error saving a post");			
+					} else {
+						res.json(results2);
+					}
+				})
+			}
+		}
+	})
+})
+
+app.put('/likes', (req, res) => {
+	let formData = req.body
+	let userId = req.body.user_id
+	let postId = req.body.post_id
+	let sqlQuery1 = `SELECT * FROM likes WHERE post_id = ${postId} AND user_id = ${userId}`
+	connection.query(sqlQuery1, (err, results) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send('error getting like');
+		} else {
+			if (results[0]) {
+				let sqlQuery2 = `DELETE FROM likes WHERE post_id = ${postId} AND user_id = ${userId}`
+				connection.query(sqlQuery2, err => {
+					if (err) {
+						console.log(err);
+						res.status(500).send("Error deleting like");
+					} else {
+						res.sendStatus(204)
+					}
+				})
+			} else {
+				let sqlQuery3 = 'INSERT INTO `likes` SET ?';
+				connection.query(sqlQuery3, formData, (err, results2) => {
+					if (err) {
+						console.log(err);
+						res.status(500).send("Error adding like");			
 					} else {
 						res.json(results2);
 					}
