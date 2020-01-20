@@ -109,6 +109,10 @@ VALUES
 INSERT INTO `likes`
 (`user_id`, `post_id`)
 VALUES
+(1, 5);
+INSERT INTO `likes`
+(`user_id`, `post_id`)
+VALUES
 (2, 5);
 INSERT INTO `likes`
 (`user_id`, `post_id`)
@@ -191,7 +195,3 @@ INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (5, 4);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(1, 5);
