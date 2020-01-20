@@ -57,4 +57,11 @@ Content-Type: application/json
 ### GET : get all saved posts
 GET http://localhost:8000/postsaves
 
-###
+### PUT : manager save / unsave of a post by a user
+PUT http://localhost:8000/postsaves
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "post_id": 1
+}
