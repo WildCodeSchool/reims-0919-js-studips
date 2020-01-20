@@ -41,18 +41,6 @@ app.get('/posts', (req, res) => {
   });
 });
 
-app.get('/posts/:id', (req, res) => {
-	postId = req.params.id
-	let sqlQuery = 'SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, COUNT(likes.post_id) AS `likes` FROM post LEFT JOIN `likes` ON post.id=likes.post_id JOIN user on user.id=post.user_id WHERE post.id = ?'
-	connection.query(sqlQuery, [postId], (err, results) => {
-		if (err) {
-			res.status(500).send('Erreur lors de la récupération du post');
-		} else {
-			res.json(results);
-		}
-	})
-})
-
 app.post('/posts', (req, res) => {
   	const formData = req.body;
 	let sqlQuery = 'INSERT INTO post SET ?';
@@ -100,6 +88,18 @@ app.post('/register', (req, res) => {
       res.sendStatus(200);
     }
   	});
+})
+
+app.get ('/likes', (req, res) => {
+	let sqlQuery = 'SELECT * from likes';
+	connection.query(sqlQuery, (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send("Error getting likes");			
+		} else {
+			res.json(results);
+		}	
+	})
 })
 
 app.put('/likes', (req, res) => {
