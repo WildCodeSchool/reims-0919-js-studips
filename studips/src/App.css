@@ -597,3 +597,23 @@
 .publicationNumber{
 	font-size: 18px;
 }
+
+/* ***********************searchModal debut************************************************/
+
+.search{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	padding:2vh;
+	position: fixed;
+	background-color: #A40032;
+	height: 10%;
+	width: 100%;
+}
+
+
+
+
+
+/* ***********************searchModal fin************************************************/

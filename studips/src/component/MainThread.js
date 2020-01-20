@@ -8,19 +8,25 @@ import menuIcon from '../images/bars-solid.svg';
 import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal';
+import SearchModal from './SearchModal'
 import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
+import { isThisHour } from 'date-fns';
+
 // import { removeAllListeners } from 'nodemon';
 
 class MainThread extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			campus:'',
+			user:'',
 			city:'',
 			posts: [],
 			activeId:'',
 			isPostModalVisible: false,
 			isMenuVisible: false,
+			isSearchModalVisible: false,
 			newPost: {
 				user_id: 1,
 				title: null,
@@ -36,6 +42,10 @@ class MainThread extends React.Component {
 		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
 		this.getThread = this.getThread.bind(this);
 		this.handleEventDate = this.handleEventDate.bind(this);
+		this.toggleNewResearch= this.toggleNewResearch.bind(this);
+		this.handleChangeUser= this.handleChangeUser.bind(this);
+		this.handleInputChange=this.handleInputChange.bind(this);
+
 	}
 	componentDidMount() {
 		this.getThread();
@@ -49,6 +59,7 @@ class MainThread extends React.Component {
 					posts: data,
 					activeId:'',
 					city:'',
+					user:'',
 				});
 			});
 	}
@@ -56,6 +67,15 @@ class MainThread extends React.Component {
 		this.setState(prevState => {
 			return { isPostModalVisible: !prevState.isPostModalVisible };
 		});
+	}
+	toggleNewResearch(){
+		this.setState(prevState=>{
+			return{isSearchModalVisible:!prevState.isSearchModalVisible };
+		});
+	}
+	handleChangeUser(event){
+		let searchUser = event.target.value;
+		this.setState({user: searchUser});
 	}
 	handleChangeTab(event){
 		const buttonId = event.target.id;
@@ -65,6 +85,10 @@ class MainThread extends React.Component {
 		let posts = this.state.posts;
 		if (this.state.city.length > 0) {
 			posts = posts.filter(post => post.city.toLowerCase() === this.state.city.toLowerCase());
+		}
+		if (this.state.user.length>0){
+			posts = posts.filter(post => post.lastname.toLowerCase() === this.state.user.toLowerCase());
+			
 		}
 		switch(this.state.activeId) {
 		  case 'stages':	
@@ -108,11 +132,12 @@ class MainThread extends React.Component {
 				})
 			break;
 		  default:
-			return (this.state.posts
+			
+				posts=posts
 				.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 				.map((post, i) => {
 				return <PostCard postData={post} key={i} />
-			}))
+			})
 		}
 		return React.Children.toArray(posts);
 	  }
@@ -148,6 +173,11 @@ class MainThread extends React.Component {
 			setTimeout(this.getThread(), 1000),
 		);
 	}
+
+	handleInputChange(event) {
+		this.setState({city: event.target.value})
+
+    }
 	render() {
 		const isNotConnected = this.props.token === null;
 		if (isNotConnected) {
@@ -161,6 +191,7 @@ class MainThread extends React.Component {
 						handleChangeTab={this.handleChangeTab}/>
 					</div>
 				)}
+				
 				<PostModal
 						isPostModalVisible={this.state.isPostModalVisible}
 						toggleNewPost={this.toggleNewPost}
@@ -180,25 +211,36 @@ class MainThread extends React.Component {
 						<input
 							type="text"
 							onChange={ this.handleInputChange }
-							placeholder="Choisir la ville"/>
+							placeholder="Choisir la ville"
+							/>
+
 					</div>
 					<button className='postButton' onClick={this.toggleNewPost}>
 						Poster un message
 					</button>
 				</div>
+
+				{this.state.isSearchModalVisible?<SearchModal 
+					handleChangeUser={this.handleChangeUser}
+					user={this.props.user}/>: ''}
+				
 				<div className='cardList'>
 					{this.getTabContent()}
 				</div>
+				
 				<div className='navbar'>
 					<img 
 						className="icon"
 						src={homeIcon}
 						alt="to home"
 						onClick={this.getThread}/>
+					
+					
 					<img
 						className="icon"
 						src={searchIcon}
-						alt="search"/>
+						alt="search"
+						onClick={this.toggleNewResearch}/>
 					<img
 						className="icon"
 						src={messageIcon}
