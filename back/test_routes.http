@@ -53,3 +53,8 @@ Content-Type: application/json
     "bio": "Passionné d'art, je m'intéresse tout particulièrement à la BD",
     "city": "Grenoble"
 }
+
+### GET : get all saved posts
+GET http://localhost:8000/postsaves
+
+###

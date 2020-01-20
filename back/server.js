@@ -89,6 +89,18 @@ app.post('/register', (req, res) => {
   	});
 })
 
+app.get ('/postsaves', (req, res) => {
+	let sqlQuery = 'SELECT * from post_saves';
+	connection.query(sqlQuery, (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send("Error getting saved posts");			
+		} else {
+			res.json(results);
+		}	
+	})
+})
+
 app.listen(port, err => {
 	if (err) {
 		throw new Error('Something bad happened...');
