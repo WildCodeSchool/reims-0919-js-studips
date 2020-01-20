@@ -37,6 +37,7 @@ class MainThread extends React.Component {
 		this.getThread = this.getThread.bind(this);
 		this.handleEventDate = this.handleEventDate.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleLikePost = this.handleLikePost.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -73,7 +74,7 @@ class MainThread extends React.Component {
 					.filter(post=>post.category  === 'Jobs')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData={post}/>
+						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	case 'logements':
@@ -81,7 +82,7 @@ class MainThread extends React.Component {
 					.filter(post=>post.category==='Logements')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData={post}/>
+						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	case 'events':
@@ -89,7 +90,7 @@ class MainThread extends React.Component {
 					.filter(post=>post.category==='Events')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData={post}/>
+						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	case 'cours':
@@ -97,7 +98,7 @@ class MainThread extends React.Component {
 					.filter(post=>post.category==='Cours')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData ={post}/>
+						return <PostCard postData ={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	case 'fournitures':
@@ -105,14 +106,14 @@ class MainThread extends React.Component {
 					.filter(post=>post.category==='Fournitures')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData={post}/>
+						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	default:
 		  		posts = posts
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-			  			return <PostCard postData={post} />
+			  			return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
 		})
 		  break;
 		}
@@ -150,6 +151,17 @@ class MainThread extends React.Component {
 			setTimeout(this.getThread(), 1000),
 		);
 	}
+	handleLikePost(e) {
+		let newLike = {
+			user_id: 1,
+			post_id: e.target.name
+		}
+		axios
+			.put('http://localhost:8000/likes', newLike)
+			.then(res => console.log(res))
+			.then(this.getThread())
+			.catch(err => console.log(err))
+	}	
 	handleInputChange(event) {
 		this.setState({city: event.target.value})
 	}
@@ -195,7 +207,7 @@ class MainThread extends React.Component {
 					{this.getTabContent()}
 				</div>
 				<div className='navbar'>
-					<img 
+					<img
 						className="icon"
 						src={homeIcon}
 						alt="to home"
