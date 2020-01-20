@@ -29,7 +29,7 @@ create table post
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-create table `postSaves`
+create table `post_saves`
 (
     id int auto_increment primary key,
     user_id int,
@@ -95,47 +95,47 @@ INSERT INTO `post`
 VALUES
 (6, 'Cours de Tai-chi cosmique', 'Cours', 'Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).');
 
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (1, 5);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (2, 5);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (3, 5);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (4, 5);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (5, 5);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (6, 5);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (7, 5);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (1, 6);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (2, 6);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (3, 6);
-INSERT INTO `postSaves`
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (5, 4);
