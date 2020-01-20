@@ -28,6 +28,16 @@ create table post
     event_date datetime,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
+
+create table `postSaves`
+(
+    id int auto_increment primary key,
+    user_id int,
+    post_id int,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (post_id) REFERENCES post(id)
+);
+
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
@@ -84,3 +94,48 @@ INSERT INTO `post`
 (`user_id`, `title`, `category`, `content`)
 VALUES
 (6, 'Cours de Tai-chi cosmique', 'Cours', 'Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).');
+
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(1, 5);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(2, 5);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(3, 5);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(4, 5);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(5, 5);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(6, 5);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(7, 5);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(1, 6);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(2, 6);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(3, 6);
+INSERT INTO `postSaves`
+(`user_id`, `post_id`)
+VALUES
+(5, 4);
