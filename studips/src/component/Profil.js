@@ -11,7 +11,7 @@ class Profil extends  Component{
 	}
     render(){
         return(
-            <div className={props.location.state.isLightMode ? 'profilPage' : 'dark_profilPage'}>
+            <div className= 'profilPage'>
                 <Link to='/mainthread'>
                     <img src='https://zupimages.net/up/20/03/wunb.png' id='returnParameter'  alt = ''/>
                 </Link>
