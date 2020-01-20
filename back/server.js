@@ -30,7 +30,8 @@ function verifyToken(req, res, next){
 }
 
 app.get('/posts', (req, res) => {
-	let sqlQuery = 'SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/%y à %H:%i") AS event_date FROM post JOIN user ON user.id=post.user_id'
+	let userId = 1
+	let sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date, CASE WHEN EXISTS (SELECT * FROM post_saves WHERE post.id = post_saves.post_id AND post_saves.user_id = ${userId}) THEN TRUE ELSE FALSE END AS savedByUser FROM post LEFT JOIN post_saves ON post.id=post_saves.post_id JOIN user on user.id=post.user_id GROUP BY post.id`
   	connection.query(sqlQuery, (err, results) => {
     if (err) {
       res.status(500).send('Erreur lors de la récupération des posts');
