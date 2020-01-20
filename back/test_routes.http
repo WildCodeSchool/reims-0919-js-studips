@@ -69,23 +69,6 @@ Content-Type: application/json
     "post_id": 1
 }
 
-### POST : user likes a post
-POST http://localhost:8000/likes
-Content-Type: application/json
-
-{
-    "user_id": 1,
-    "post_id": 1
-}
-
-### DELETE : user doesn't like a post anymore
-DELETE http://localhost:8000/likes
-Content-Type: application/json
-
-{
-    "likeId": 14
-}
-
 ### PUT : manager like / unlike of user
 PUT http://localhost:8000/likes
 Content-Type: application/json
