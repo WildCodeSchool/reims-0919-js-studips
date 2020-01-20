@@ -5,7 +5,7 @@ function Messaging({
 	contactList,
 	getConversation,
 	conversation,
-	handleChangeTab,
+	handleChangeTab
 }) {
 	return (
 		<div>

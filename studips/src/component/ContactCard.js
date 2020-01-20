@@ -1,7 +1,11 @@
 import React from 'react';
 import Conversation from './Conversation';
 
-function ContactCard({ contactData, getConversation }) {
+function ContactCard({
+	getConversation,
+	conversation,
+    contactData
+}) {
     return (
         <div 
             className='contactCard'

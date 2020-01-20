@@ -6,10 +6,9 @@ import PostModal from './PostModal';
 import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
 // import { removeAllListeners } from 'nodemon';
-import Messaging from './Messaging';
 import Navbar from './Navbar';
 import menuIcon from '../images/bars-solid.svg';
-import Conversation from './Conversation';
+import ContactCard from './ContactCard';
 
 class MainThread extends React.Component {
 	constructor(props) {
@@ -79,6 +78,7 @@ class MainThread extends React.Component {
 					conversation: data
 				});
 			});
+		console.log(contactId)
 	}
 	toggleNewPost() {
 		this.setState(prevState => {
@@ -138,17 +138,7 @@ class MainThread extends React.Component {
 					})
 			break;
 			case 'messagerie':
-				return (
-					<Messaging 
-						contactList={contactList}
-						getConversation={this.getConversation}
-						conversation={this.state.conversation}
-					/>
-				)
-			case 'conversation':
-					{conversation.map((message) => {
-						return <Conversation messageData={message}/>
-					})}
+				return contactList.map(contact => <ContactCard id={contact.id} contactData={contact} getConversation={this.getConversation} />)
 			break;
 		  	default:
 		  		posts = posts
