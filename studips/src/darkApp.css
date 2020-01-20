@@ -105,3 +105,26 @@
 .dark_postCard p{
     color: whitesmoke;
 }
+.dark_inputCity{
+	display: flex;
+	position: relative;
+	width: 35vw;
+	border: 1px solid white;
+
+}
+.dark_inputCity input{
+	width:100%;
+	border: none;
+	background-color: #262626;
+	color: whitesmoke;
+}
+.dark_inputCity ::placeholder{
+	color: whitesmoke;
+}
+.dark_navbar{
+	background-color: #262626;
+    display: flex;
+    width: 100%;
+	justify-content: space-around;
+	padding: 1rem;
+}

@@ -25,7 +25,10 @@ function PostCard({ postData , isLightMode}) {
 			</div>
 			<div className='triangle'></div>
 			<div className='message'>
-				<p className='postTitle'>{postData.title}</p>
+				<div className='messageHeader'>
+					<p className='postTitle'>{postData.title}</p>
+					{postData.category === "Events" && <p>{postData.event_date}</p>}
+				</div>
 				<p>{postData.content}</p>
 			</div>
 			<div className='actions'>

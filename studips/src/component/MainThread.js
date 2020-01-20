@@ -3,6 +3,8 @@ import PostCard from './PostCard';
 import '../App.css';
 import homeIcon from '../images/home-solid.svg';
 import searchIcon from '../images/search-solid.svg';
+import light from '../images/light.png';
+import lighthomesolid from '../images/lighthomesolid.png';
 import messageIcon from '../images/comments-solid.svg';
 import menuIcon from '../images/bars-solid.svg';
 import dark_menuIcon from '../images/dark_menuIcon.png';
@@ -17,24 +19,30 @@ class MainThread extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			city:'',
 			posts: [],
+			activeId:'',
 			isPostModalVisible: false,
 			isMenuVisible: false,
 			isLightMode: true,
 			newPost: {
 				user_id: 1,
-				title: '',
-				category: '',
-				content: '',
+				title: null,
+				category: null,
+				content: null
 			},
+			eventDate: new Date()
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
+		this.handleChangeTab = this.handleChangeTab.bind(this);
 		this.handleChangeNewPost = this.handleChangeNewPost.bind(this);
 		this.handleSubmitNewPost = this.handleSubmitNewPost.bind(this);
 		this.getThread = this.getThread.bind(this);
 		this.switchToDarkMode=this.switchToDarkMode.bind(this);
 		
+		this.handleEventDate = this.handleEventDate.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 	componentDidMount() {
 		this.getThread();
@@ -46,6 +54,8 @@ class MainThread extends React.Component {
 			.then(data => {
 				this.setState({
 					posts: data,
+					activeId:'',
+					city:'',
 				});
 			});
 	}
@@ -59,6 +69,66 @@ class MainThread extends React.Component {
 			return { isPostModalVisible: !prevState.isPostModalVisible };
 		});
 	}
+	handleChangeTab(event){
+		const buttonId = event.target.id;
+		this.setState({ activeId: buttonId});
+	}
+	getTabContent() {
+		let posts = this.state.posts;
+		if (this.state.city.length > 0) {
+			posts = posts.filter(post => post.city.toLowerCase() === this.state.city.toLowerCase());
+		}
+		switch(this.state.activeId) {
+		  	case 'stages':	
+				posts = posts
+					.filter(post=>post.category  === 'Jobs')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard isLightMode={this.state.isLightMode} postData={post}/>
+					})
+			break;
+		  	case 'logements':
+				posts = posts
+					.filter(post=>post.category==='Logements')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard isLightMode={this.state.isLightMode} postData={post}/>
+					})
+			break;
+		  	case 'events':
+				posts = posts
+					.filter(post=>post.category==='Events')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard isLightMode={this.state.isLightMode} postData={post}/>
+					})
+			break;
+		  	case 'cours':
+				posts = posts
+					.filter(post=>post.category==='Cours')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard isLightMode={this.state.isLightMode} postData ={post}/>
+					})
+			break;
+		  	case 'fournitures':
+				posts = posts
+					.filter(post=>post.category==='Fournitures')
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+						return <PostCard isLightMode={this.state.isLightMode} postData={post}/>
+					})
+			break;
+		  	default:
+		  		posts = posts
+					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+					.map((post) => {
+			  			return <PostCard isLightMode={this.state.isLightMode} postData={post} />
+		})
+		  break;
+		}
+		return React.Children.toArray(posts);
+	  }
 	toggleMenuVisible() {
 		this.setState(prevState => {
 			return { isMenuVisible: !prevState.isMenuVisible };
@@ -71,23 +141,30 @@ class MainThread extends React.Component {
 		newPost[propertyName] = event.target.value;
 		this.setState({ newPost: newPost });
 	}
+	handleEventDate(date) {
+		this.setState({eventDate: date})
+	}
 	handleSubmitNewPost(e) {
 		e.preventDefault();
+		const eventDate = this.state.eventDate.toISOString().slice(0, 19).replace('T', ' ')
 		let newPostData = {
 			user_id: this.state.newPost.user_id,
 			category: this.state.newPost.category,
 			title: this.state.newPost.title,
 			content: this.state.newPost.content,
-		};
+			event_date: eventDate
+		}
 		axios
 			.post('http://localhost:8000/posts', newPostData)
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
 		this.setState({ isPostModalVisible: false }, () =>
-			setTimeout(this.getThread(), 500),
+			setTimeout(this.getThread(), 1000),
 		);
 	}
-
+	handleInputChange(event) {
+		this.setState({city: event.target.value})
+	}
 	render() {
 		const isNotConnected = this.props.token === null;
 		if (isNotConnected) {
@@ -100,10 +177,9 @@ class MainThread extends React.Component {
 						<Menu
 						isLightMode={this.state.isLightMode}
 						switchToDarkMode={this.switchToDarkMode} 
-						/>
+						handleChangeTab={this.handleChangeTab}/>
 					</div>
 				)}
-
 				<PostModal
 					isPostModalVisible={this.state.isPostModalVisible}
 					toggleNewPost={this.toggleNewPost}
@@ -112,32 +188,52 @@ class MainThread extends React.Component {
 					isLightMode={this.state.isLightMode} 
 				/>
 
-				<div className={this.state.isLightMode ? 'topButtons' : 'dark_topButtons'}>	
+				<div className={this.state.isLightMode ? 'topButtons' : 'dark_topButtons'}	
+						isPostModalVisible={this.state.isPostModalVisible}
+						toggleNewPost={this.toggleNewPost}
+						handleChangeNewPost={this.handleChangeNewPost}
+						handleSubmitNewPost={this.handleSubmitNewPost}
+						postCategory={this.state.newPost.category}
+						eventDate={this.state.eventDate}
+						handleEventDate={this.handleEventDate}/>
+				
+				<div className={this.state.isLightMode ? 'topButtons' : 'dark_topButtons'}>
 					<img
 						className='icon'
 						src={menuIcon}
 						alt='menu'
 						onClick={this.toggleMenuVisible}
 					/>
+					<div className={this.state.isLightMode ? 'inputCity' : 'dark_inputCity'}>
+						<input
+							type="text"
+							onChange={ this.handleInputChange }
+							placeholder="Choisir la ville"/>
+					</div>
 																		
 					<button className={this.state.isLightMode ?'postButton' : 'dark_postButton'} onClick={this.toggleNewPost}>
 						Poster un message
 					</button>
 				</div>
 				<div className={this.state.isLightMode ?'cardList' : 'dark_cardList'}>
-					{React.Children.toArray(
-						this.state.posts
-							.sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
-							.map(post => <PostCard isLightMode={this.state.isLightMode} postData={post} />),
-					)}
+					{this.getTabContent()}
 				</div>
-				<div className='navbar'>
+					{this.state.isLightMode ?
+					<div className = 'navbar'> 
 					<img className='icon' src={homeIcon} alt='to home' />
 					<img className='icon' src={searchIcon} alt='search' />
-				</div>
+					</div>
+					:
+					<div className='dark_navbar'>
+					<img className='icon' src={lighthomesolid} alt='to home' />
+					<img className='icon' src={light} alt='search' />
+					</div>
+					}
+					
+				
+				
 			</>
-		);
-	}
+	)		
 }
-
+}
 export default MainThread;
