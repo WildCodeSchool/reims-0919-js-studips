@@ -2,6 +2,7 @@ import React from 'react'
 import '../App.css';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class RegisterForm extends React.Component{
     constructor(props){
@@ -76,6 +77,9 @@ class RegisterForm extends React.Component{
                 
                 {this.state.nextPage ?
                 <div className= 'loginFormu'>
+                <Link className='bouton' to='/login'>
+			        <img src='https://zupimages.net/up/20/03/wunb.png'id='returnLogin'/>
+                </Link>
                 <p className='titlePage'>Création d'un compte</p>
                 <form onSubmit = {this.postForm}/>
                 <div id ='firstPageInscription'>
