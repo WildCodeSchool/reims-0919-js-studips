@@ -43,8 +43,15 @@ class MainThread extends React.Component {
 		this.getThread();
 	}
 	getThread() {
+		const token = this.props.token
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
 		axios
-			.get('http://localhost:8000/posts')
+			.get('http://localhost:8000/posts', axiosConfig)
 			.then(response => response.data)
 			.then(data => {
 				this.setState({

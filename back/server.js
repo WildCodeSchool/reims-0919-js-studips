@@ -76,7 +76,7 @@ app.post('/login', (req, res) => {
 			res.status(400).send('Wrong email or password')
 			return
 		} else {
-			jwt.sign({ sub: matchs[0].id }, signature, {expiresIn: '180sec'}, (err, token) => {
+			jwt.sign({ sub: matchs[0].id }, signature, {expiresIn: '600sec'}, (err, token) => {
 				res.status(200).json({
 					token
 				});
