@@ -67,12 +67,12 @@ class MainThread extends React.Component {
 		let posts = this.state.posts;
 		if (this.state.search.length > 0) {
 			posts = posts.filter(
-				post => (
-					post.city.toLowerCase() === this.state.search.toLowerCase() ||
-					post.firstname.toLowerCase() === this.state.search.toLowerCase()||
-					post.lastname.toLowerCase() === this.state.search.toLowerCase()||
-					post.study.toLowerCase() === this.state.search.toLowerCase()
-				)
+				post => ([
+					post.city,
+					post.firstname,
+					post.lastname,
+					post.study,
+				].map(string => string.toLowerCase()).includes(this.state.search.toLowerCase()))
 			);
 		}
 		switch(this.state.activeId) {
