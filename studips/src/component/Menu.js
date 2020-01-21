@@ -55,7 +55,7 @@ class Menu extends Component{
 					Fournitures
 				</button>
 				<hr />
-				<button>Enregistrement</button>
+				<Link className = 'libraryRedirection' to='/library'>Bibliothèque</Link>
 				<Link  className = 'parameterRedirection' to ='/parameter'>Paramètres</Link>
 			</div>
 		)
