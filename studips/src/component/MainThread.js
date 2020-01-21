@@ -43,15 +43,8 @@ class MainThread extends React.Component {
 		this.getThread();
 	}
 	getThread() {
-		const token = this.props.token
-		const axiosConfig = {
-        	headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + token
-    		}
-    	}
 		axios
-			.get('http://localhost:8000/posts', axiosConfig)
+			.get('http://localhost:8000/posts')
 			.then(response => response.data)
 			.then(data => {
 				this.setState({
@@ -149,22 +142,16 @@ class MainThread extends React.Component {
 	}
 	handleSubmitNewPost(e) {
 		e.preventDefault();
-		const token = this.props.token
-		const axiosConfig = {
-        	headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + token
-    		}
-    	}
 		const eventDate = this.state.eventDate.toISOString().slice(0, 19).replace('T', ' ')
 		let newPostData = {
+			user_id: this.state.newPost.user_id,
 			category: this.state.newPost.category,
 			title: this.state.newPost.title,
 			content: this.state.newPost.content,
 			event_date: eventDate
 		}
 		axios
-			.post('http://localhost:8000/posts', newPostData, axiosConfig)
+			.post('http://localhost:8000/posts', newPostData)
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
 		this.setState({ isPostModalVisible: false }, () =>
@@ -172,18 +159,12 @@ class MainThread extends React.Component {
 		);
 	}
 	handleLikePost(e) {
-		const token = this.props.token
-		const axiosConfig = {
-        	headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + token
-    		}
-    	}
 		let newLike = {
+			user_id: 1,
 			post_id: e.target.name
 		}
 		axios
-			.put('http://localhost:8000/likes', newLike, axiosConfig)
+			.put('http://localhost:8000/likes', newLike)
 			.then(res => console.log(res))
 			.then(this.getThread())
 			.catch(err => console.log(err))
