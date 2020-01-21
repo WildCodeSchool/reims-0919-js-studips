@@ -16,7 +16,7 @@ class MainThread extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			city:'',
+			search:'',
 			posts: [],
 			activeId:'',
 			isPostModalVisible: false,
@@ -50,7 +50,7 @@ class MainThread extends React.Component {
 				this.setState({
 					posts: data,
 					activeId:'',
-					city:'',
+					search:'',
 				});
 			});
 	}
@@ -65,8 +65,15 @@ class MainThread extends React.Component {
 	}
 	getTabContent() {
 		let posts = this.state.posts;
-		if (this.state.city.length > 0) {
-			posts = posts.filter(post => post.city.toLowerCase() === this.state.city.toLowerCase());
+		if (this.state.search.length > 0) {
+			posts = posts.filter(
+				post => ([
+					post.city,
+					post.firstname,
+					post.lastname,
+					post.study,
+				].map(string => string.toLowerCase()).includes(this.state.search.toLowerCase()))
+			);
 		}
 		switch(this.state.activeId) {
 		  	case 'stages':	
@@ -163,7 +170,7 @@ class MainThread extends React.Component {
 			.catch(err => console.log(err))
 	}	
 	handleInputChange(event) {
-		this.setState({city: event.target.value})
+		this.setState({search: event.target.value})
 	}
 	render() {
 		const isNotConnected = this.props.token === null;
@@ -197,7 +204,7 @@ class MainThread extends React.Component {
 						<input
 							type="text"
 							onChange={ this.handleInputChange }
-							placeholder="Choisir la ville"/>
+							placeholder="Search"/>
 					</div>
 					<button className='postButton' onClick={this.toggleNewPost}>
 						Poster un message
