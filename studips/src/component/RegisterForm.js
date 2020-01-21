@@ -80,7 +80,7 @@ class RegisterForm extends React.Component{
                 <Link className='bouton' to='/login'>
 			        <img src='https://zupimages.net/up/20/03/wunb.png'id='returnLogin'/>
                 </Link>
-                <p className='titlePage'>Création d'un compte</p>
+                
                 <form onSubmit = {this.postForm}/>
                 <div id ='firstPageInscription'>
                     <div className="form-data">   
@@ -122,6 +122,8 @@ class RegisterForm extends React.Component{
                             name="confirmedPassword"
                             onChange={this.handleChangeNewUser}
                             value={this.state.confirmedPassword}/>
+
+                        <p className='etape'>1/2</p>
                         
                         
                         <div className='nextButton'>
@@ -170,6 +172,8 @@ class RegisterForm extends React.Component{
                                 name="city"
                                 onChange={this.handleChangeNewUser}
                                 value={this.state.city}/>
+
+                            <p className='etape'>2/2</p>
                 
                             <div className='validButton'>
                                 <button  type='submit' onClick= {this.postForm}> S'inscrire</button>
