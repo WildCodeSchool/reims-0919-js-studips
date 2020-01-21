@@ -263,6 +263,7 @@
 	background-color: #A40032;
 	align-items: center;
 	height: 100vh;	
+
 }
 .bottomPage{
 	width: 100vw;
@@ -273,9 +274,10 @@
 }
 .validationButton{
 	width: 70%;
+	height: 7vh;
 	border-radius: 22px;
 	padding: 2%;
-	font-size: 5vw;
+	font-size: 30px;
 	background-color: white;
 	text-align: center;
 	text-decoration: none;
@@ -283,9 +285,10 @@
 }
 .loginButton{
 	width: 70%;
+	height: 7vh;
 	border-radius: 22px;
 	padding: 2%;
-	font-size: 5vw;
+	font-size: 30px;
 	background-color: white;
 	text-decoration: none;
 	text-align: center;
@@ -296,7 +299,8 @@
 }
 .titleConnection{
 	color: white;
-	font-size: 8vh;
+	font-size: 55px;
+	margin: 3vh;
 }
 .form label{
 	color: white;
@@ -308,14 +312,22 @@
 	width: 80%;
 	color: white;
 	margin: 8%;
+	font-size: 26px;
+}
+
+
+input{
+	color: white;
 }
 .forgotPass{
 	text-decoration: underline;
-	margin-top: 10%;
+	margin-top: 2vh;
+	font-size: 22px;
+
 }
 .or{
-	font-size: 8vh;
-	margin: 5%;
+	font-size:40px;
+	margin: 3vh;
 }
 
 /***************************** ********** fin de page de connection **************************************************/
@@ -323,10 +335,12 @@
 /******************************************* Debut du formulaire *************************************/
 .form-data{
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	flex-direction: column;
 	align-items: center;
 	font-size: 24px;
+	color:white;
+	
 }
 .form-data input{
 	color: white;
@@ -338,11 +352,9 @@
 	flex-direction: column;
 	align-items: center;
 	margin-top: 20%;
+	color:white;
 }
-.form-dataSecond input{
-	color: white;
-	font-size: 24px;
-}
+
 #return{
 	
 	width: 10%;
@@ -360,12 +372,11 @@
 	height: 100vh;
 	
 }
-.titlePage{
+.loginFormu input{
 	color: white;
-	font-size: 5vh;
-	text-align: center;
-	margin-bottom: 15%;
-	margin-top: 5%;
+}
+.etape{
+	font-size: 20px;
 }
 .form-data input{
 	background-color: #a40032;
@@ -378,6 +389,9 @@
 	border-style: none none solid none;
 	width: 70%;
 	margin: 5%;
+	color: white;
+	font-size: 24px;
+	
 }
 .nextButton{
 	margin-top: 15%;
@@ -389,14 +403,28 @@
 	width: 70%;
 	border-radius: 22px;
 	height: 7vh;
-	font-size: 5vh;
+	font-size: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.form-data ::placeholder{
+
+.form input::placeholder{
+	color:white;
+	font-size: 22px;
+}
+.form-data::placeholder{
 	color: white;
-	font-size: 3vh;
+	font-size: 22px;
+}
+.form-dataSecond input::placeholder{
+	color: white;
+	font-size: 22px;
+
+}
+.form-data input::placeholder{
+	color: white;
+	font-size: 22px;
 }
 
 .validButton{
@@ -404,12 +432,13 @@
 	width: 100vw;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 .validButton button{
 	width: 70%;
 	border-radius: 22px;
 	height: 7vh;
-	font-size: 5vh;
+	font-size: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
