@@ -98,6 +98,53 @@ app.post('/register', (req, res) => {
   	});
 })
 
+app.get ('/postsaves', (req, res) => {
+	let sqlQuery = 'SELECT * from post_saves';
+	connection.query(sqlQuery, (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send("Error getting saved posts");
+		} else {
+			res.json(results)
+		}
+	})
+})
+
+app.put('/postsaves', (req, res) => {
+	let formData = req.body
+	let userId = req.body.user_id
+	let postId = req.body.post_id
+	let sqlQuery1 = `SELECT * FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
+	connection.query(sqlQuery1, (err, results) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send('error getting saved posts');
+		} else {
+			if (results[0]) {
+				let sqlQuery2 = `DELETE FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
+				connection.query(sqlQuery2, err => {
+					if (err) {
+						console.log(err);
+						res.status(500).send("Error deleting saved post");
+					} else {
+						res.sendStatus(204)
+					}
+				})
+			} else {
+				let sqlQuery3 = 'INSERT INTO `post_saves` SET ?';
+				connection.query(sqlQuery3, formData, (err, results2) => {
+					if (err) {
+						console.log(err);
+						res.status(500).send("Error saving a post");			
+					} else {
+						res.json(results2);
+					}
+				})
+			}
+		}
+	})
+})
+
 app.get ('/likes', (req, res) => {
 	let sqlQuery = 'SELECT * from likes';
 	connection.query(sqlQuery, (err, results) => {
