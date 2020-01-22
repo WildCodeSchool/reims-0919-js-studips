@@ -7,6 +7,14 @@
 	box-sizing: border-box;
 }
 
+.switch-wrapper {
+	position: relative;
+  }
+   
+  .switch-wrapper > div {
+	position: absolute;
+  }
+
 /***************************************** BEGIN postCard.js *****************************************/
 .postCard {
 	display: flex;
@@ -29,21 +37,22 @@
 	align-self: flex-end;
 	color: #a40032;
 	margin-left: 3vw;
+	font-size: 18px;
 }
 
 .avatar {
-	max-width: 15vw;
+	max-width: 20vw;
 	max-height: 20vw;
 	border-radius: 500%;
-	margin: 0 10px;
-	border: 1px solid black;
+	margin-right:6vw;
+	border: 2px solid black;
 }
 
 .userProfile {
 	display: flex;
 	flex-direction: row;
 	align-self: flex-start;
-	width: 70%;
+	width: 100%;
 	max-height: 20vw;
 	padding: 0 3%;
 }
@@ -58,13 +67,17 @@
 	display: flex;
 	flex-direction: column;
 }
+.userInfo p{
+	font-size: 16px;
+}
 
 #name {
 	font-weight: bold;
+	font-size: 16px;
 }
 
 .postDate {
-	font-size: 12px;
+	font-size: 16px;
 	align-self: flex-end;
 }
 .triangle {
@@ -141,12 +154,14 @@
 	position: relative;
 	width: 35vw;
 	border: 1px solid black;
+	font-size:14px ;
 
 }
 .inputCity input{
 	width:100%;
 	border: none;
 	margin-left: 2vw;
+	font-size:18px ;
 }
 .inputCity button{
 	position: fix;
@@ -172,7 +187,8 @@
     background-color: #a40032;
     border: none;
     border-radius: 1em;
-    padding: 0.5rem 1rem;
+	padding: 0.5rem 1rem;
+	font-size: 16px;
 }
 .postButton:hover {
     cursor: pointer;
@@ -512,6 +528,13 @@ input{
 }
 .newPostTitle {
 	margin: 0.2rem 0;
+}
+.postMessage{
+	font-size: 18px;
+}
+.postTitle{
+	font-size:18px;
+	text-decoration: underline ;
 }
 .newTitleBox {
 	background-color: #a40032;
