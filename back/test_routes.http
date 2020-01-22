@@ -80,16 +80,15 @@ Content-Type: application/json
     "post_id": 1
 }
 
-### GET all saved posts
-GET http://localhost:8000/postsaves
-Authorization: Bearer 
-
 ### GET all posts if saved by user
-GET http://localhost:8000/1/postsaves
-Authorization: Bearer 
+GET http://localhost:8000/postsaves
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTY4MTA1OSwiZXhwIjoxNTc5NjgxNjU5fQ.XJ1zAL40FCAqZGHnxwvg9qhOH-_dbaQ3WwcsPZOXyTg
 
 ### PUT : manage save / unsave of a post by a user
 PUT http://localhost:8000/1/postsaves
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTY4MTA1OSwiZXhwIjoxNTc5NjgxNjU5fQ.XJ1zAL40FCAqZGHnxwvg9qhOH-_dbaQ3WwcsPZOXyTg
+Content-Type: application/json
 
-
+{
+    "post_id": 1
+}
