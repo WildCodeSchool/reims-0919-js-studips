@@ -63,9 +63,9 @@ app.post('/posts', verifyToken, (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-	let userPassword = req.body.password;
-	let userEmail = req.body.email
-	let sqlQuery = `SELECT id, email, password from user where user.email='${userEmail}'`
+	const userPassword = req.body.password;
+	const userEmail = req.body.email
+	const sqlQuery = `SELECT id, email, password from user where user.email='${userEmail}'`
 	connection.query(sqlQuery, (err, matchs) => {
 		if (err) {
 			res.status(500).send('error')
@@ -87,7 +87,7 @@ app.post('/login', (req, res) => {
 
 app.post('/register', (req, res) => {
   	const formData = req.body;
-	let sqlQuery = 'INSERT INTO user SET ?';
+	const sqlQuery = 'INSERT INTO user SET ?';
   	connection.query(sqlQuery, formData, (err, results) => {
     if (err) {
       console.log(err);
@@ -98,8 +98,8 @@ app.post('/register', (req, res) => {
   	});
 })
 
-app.get ('/postsaves', (req, res) => {
-	let sqlQuery = 'SELECT * from post_saves';
+app.get ('/postsaves', verifyToken, (req, res) => {
+	const sqlQuery = 'SELECT * from post_saves';
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			console.log(err)
@@ -110,18 +110,18 @@ app.get ('/postsaves', (req, res) => {
 	})
 })
 
-app.put('/postsaves', (req, res) => {
-	let formData = req.body
-	let userId = req.body.user_id
-	let postId = req.body.post_id
-	let sqlQuery1 = `SELECT * FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
+app.put('/postsaves', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const postId = req.body.post_id
+	const formData = {user_id: userId, post_id: postId}
+	const sqlQuery1 = `SELECT * FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
 	connection.query(sqlQuery1, (err, results) => {
 		if (err) {
 			console.log(err);
 			res.status(500).send('error getting saved posts');
 		} else {
 			if (results[0]) {
-				let sqlQuery2 = `DELETE FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
+				const sqlQuery2 = `DELETE FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
 				connection.query(sqlQuery2, err => {
 					if (err) {
 						console.log(err);
@@ -131,7 +131,7 @@ app.put('/postsaves', (req, res) => {
 					}
 				})
 			} else {
-				let sqlQuery3 = 'INSERT INTO `post_saves` SET ?';
+				const sqlQuery3 = 'INSERT INTO `post_saves` SET ?';
 				connection.query(sqlQuery3, formData, (err, results2) => {
 					if (err) {
 						console.log(err);
@@ -145,8 +145,8 @@ app.put('/postsaves', (req, res) => {
 	})
 })
 
-app.get ('/likes', (req, res) => {
-	let sqlQuery = 'SELECT * from likes';
+app.get ('/likes', verifyToken, (req, res) => {
+	const sqlQuery = 'SELECT * from likes';
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			console.log(err)
