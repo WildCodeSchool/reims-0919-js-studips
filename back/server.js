@@ -123,7 +123,7 @@ app.get('/postsaves', verifyToken, (req, res) => {
 	})
 })
 
-app.put('/:userId/postsaves', verifyToken, (req, res) => {
+app.put('/postsaves', verifyToken, (req, res) => {
 	const userId = req.authData.sub
 	const postId = req.body.post_id
 	const formData = {user_id: userId, post_id: postId}

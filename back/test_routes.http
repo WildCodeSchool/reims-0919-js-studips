@@ -82,11 +82,11 @@ Content-Type: application/json
 
 ### GET all posts if saved by user
 GET http://localhost:8000/postsaves
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTY4MTA1OSwiZXhwIjoxNTc5NjgxNjU5fQ.XJ1zAL40FCAqZGHnxwvg9qhOH-_dbaQ3WwcsPZOXyTg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTY4MzE1MiwiZXhwIjoxNTc5NjgzNzUyfQ.FqyyxlzPbDmbKfy-OHIQAUfqvyQQpFLC1d6Au7wNMTg
 
 ### PUT : manage save / unsave of a post by a user
 PUT http://localhost:8000/1/postsaves
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTY4MTA1OSwiZXhwIjoxNTc5NjgxNjU5fQ.XJ1zAL40FCAqZGHnxwvg9qhOH-_dbaQ3WwcsPZOXyTg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTY4MzE1MiwiZXhwIjoxNTc5NjgzNzUyfQ.FqyyxlzPbDmbKfy-OHIQAUfqvyQQpFLC1d6Au7wNMTg
 Content-Type: application/json
 
 {
