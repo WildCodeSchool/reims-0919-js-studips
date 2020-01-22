@@ -92,3 +92,10 @@ Content-Type: application/json
 {
     "post_id": 1
 }
+
+### GET : get only posts saved by user
+GET http://localhost:8000/1/postsaves
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTcyNDYyMiwiZXhwIjoxNTc5NzI1MjIyfQ.TVkNSzbki3eaaIG80Nhl0iu3zpYJp1YPKyFjUydnSxA
+
+
+###

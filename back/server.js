@@ -146,6 +146,19 @@ app.put('/postsaves', verifyToken, (req, res) => {
 	})
 })
 
+app.get('/:userId/postsaves', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study,post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date FROM post JOIN post_saves ON post_saves.post_id = post.id JOIN user ON user.id=post.user_id WHERE post_saves.user_id = ${userId}`
+	connection.query(sqlQuery, (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send("Error getting posts in library")
+		} else {
+			res.json(results)
+		}
+	})
+})
+
 app.get ('/likes', verifyToken, (req, res) => {
 	const sqlQuery = 'SELECT * from likes';
 	connection.query(sqlQuery, (err, results) => {
