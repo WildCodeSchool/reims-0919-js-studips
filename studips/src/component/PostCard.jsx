@@ -30,7 +30,7 @@ function PostCard({ postData, handleLikePost }) {
 					<p className='postTitle'>{postData.title}</p>
 					{postData.category === "Events" && <p>{postData.event_date}</p>}
 				</div>
-				<p>{postData.content}</p>
+				<p className='postMessage'>{postData.content}</p>
 			</div>
 			{postData.likedByUser === 1 && <p>Vous aimez</p>}
 			{postData.likes > 0 && <p className="likes">{postData.likes} like(s)</p>}

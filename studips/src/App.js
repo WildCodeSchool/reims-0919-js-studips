@@ -7,7 +7,6 @@ import Welcome from './component/Welcome';
 import { Switch, Route } from 'react-router-dom';
 import Parameter from './component/Parameter';
 import Profil from './component/Profil'
-import Library from './component/Library'
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -31,9 +30,6 @@ function App() {
 				</Route>
 				<Route path='/profil'>
 					<Profil token={token} />
-				</Route>
-				<Route path='/library'>
-					<Library token={token} />
 				</Route>
 			</Switch>
 		</div>
