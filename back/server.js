@@ -98,6 +98,19 @@ app.post('/register', (req, res) => {
   	});
 })
 
+app.get ('/profiles/:userId', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const sqlQuery = 'SELECT * FROM user WHERE user.id = ?'
+	connection.query(sqlQuery, userId, (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send('error getting user data');
+		} else {
+			res.json(results)
+		}
+	})
+})
+
 app.get('/postsaves', verifyToken, (req, res) => {
 	const userId = req.authData.sub
 	const sqlQuery = `SELECT post.id, CASE WHEN EXISTS (SELECT * FROM post_saves WHERE post.id=post_saves.post_id AND post_saves.user_id=${userId}) THEN TRUE ELSE FALSE END AS savedByUser FROM post LEFT JOIN post_saves ON post.id=post_saves.post_id GROUP BY post.id`
