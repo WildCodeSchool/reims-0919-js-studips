@@ -98,7 +98,7 @@ app.post('/register', (req, res) => {
   	});
 })
 
-app.get ('/postsaves', verifyToken, (req, res) => {
+app.get('/postsaves', verifyToken, (req, res) => {
 	const sqlQuery = 'SELECT * from post_saves';
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
@@ -110,7 +110,12 @@ app.get ('/postsaves', verifyToken, (req, res) => {
 	})
 })
 
-app.put('/postsaves', verifyToken, (req, res) => {
+// app.get('/:userId/postsaves', verifyToken), (req, res) => {
+// 	const userId = req.authData.sub
+// 	const sqlQuery = 
+// }
+
+app.put('/:userId/postsaves', verifyToken, (req, res) => {
 	const userId = req.authData.sub
 	const postId = req.body.post_id
 	const formData = {user_id: userId, post_id: postId}

@@ -79,3 +79,17 @@ Content-Type: application/json
     "user_id": 1,
     "post_id": 1
 }
+
+### GET all saved posts
+GET http://localhost:8000/postsaves
+Authorization: Bearer 
+
+### GET all posts if saved by user
+GET http://localhost:8000/1/postsaves
+Authorization: Bearer 
+
+### PUT : manage save / unsave of a post by a user
+PUT http://localhost:8000/1/postsaves
+Authorization: Bearer 
+
+
