@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
 import Library from './Library';
 import messageIcon from '../images/comments-solid.svg';
+import Messaging from './Messaging';
 // import { removeAllListeners } from 'nodemon';
 
 class MainThread extends React.Component {
@@ -161,6 +162,12 @@ class MainThread extends React.Component {
 						}
 					</>
 				)
+			case 'messaging':
+				return (
+					<>
+						<Messaging contactList={this.state.contactListÎ} />
+					</>
+				)
 			break;
 		  	default:
 		  		posts = posts
@@ -295,9 +302,11 @@ class MainThread extends React.Component {
 						src={searchIcon}
 						alt="search"/>	
 					<img
+						id='messaging'
 						className="icon"
 						src={messageIcon}
-						alt="messaging"/>
+						alt="messaging"
+						onClick={this.handleChangeTab}/>
 					<img
 						id='library'
 						className="icon"
@@ -305,7 +314,7 @@ class MainThread extends React.Component {
 						alt='library'
 						onClick={this.handleChangeTab}/>						
 				</div>			
-			</>)		
+			</>)	
 	}	
 }
 
