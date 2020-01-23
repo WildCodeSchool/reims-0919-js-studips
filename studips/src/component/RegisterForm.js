@@ -75,15 +75,14 @@ class RegisterForm extends React.Component{
         return(
             <div className = 'loginFormu' >
                 
-                {this.state.nextPage ?
-                <div className= 'loginFormu'>
+               
                 
-                
-                <form onSubmit = {this.postForm}/>
-                <div id ='firstPageInscription'>
-                <Link className='bouton' to='/login'>
-			        <img src='https://zupimages.net/up/20/03/wunb.png'id='returnLogin'/>
-                </Link>
+                <div id={this.state.nextPage?'firstInscription':'firstPageInscriptionDesepear'}>
+                    <form onSubmit = {this.postForm}/>
+                    
+                    <Link className='bouton' to='/login'>
+                        <img src='https://zupimages.net/up/20/03/wunb.png'id='returnLogin'/>
+                    </Link>
                     <div className="form-data">   
                         <input placeholder='Prénom'
                             type="text"
@@ -133,9 +132,9 @@ class RegisterForm extends React.Component{
                         
                     </div>
                 </div> 
-                </div>
-                :   
-                    <div id='secondPageInscription'>
+                
+              
+                    <div id={this.state.nextPage?'secondPageInscription':'secondPageInscriptionApear'}>
                         <img src='https://zupimages.net/up/20/03/wunb.png' id = 'return' onClick= {this.returnFonction} alt = ''></img>
                         <div className="form-dataSecond">
                             
@@ -182,7 +181,7 @@ class RegisterForm extends React.Component{
                         </div>
                     </div>
                     
-                }
+                
             </div>
         )
     }
