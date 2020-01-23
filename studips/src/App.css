@@ -115,11 +115,12 @@
     display: flex;
     justify-content: space-between;
     width: 50%;
-	margin-left: 0.5em;
+	margin-left: 0.8em;
 }
 .like {
 	max-width: 10vw;
 	max-height: 10vw;
+	margin-right: 1em;
 }
 .likes {
 	color: #a40032;
