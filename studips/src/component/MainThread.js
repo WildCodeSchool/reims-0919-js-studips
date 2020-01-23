@@ -30,6 +30,7 @@ class MainThread extends React.Component {
 				category: null,
 				content: null
 			},
+			contactList: null,
 			eventDate: new Date()
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
@@ -165,7 +166,7 @@ class MainThread extends React.Component {
 			case 'messaging':
 				return (
 					<>
-						<Messaging contactList={this.state.contactListÎ} />
+						<Messaging contactList={this.state.contactList} />
 					</>
 				)
 			break;
