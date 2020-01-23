@@ -5,6 +5,7 @@ function ContactCard({ contactData, getConversation }) {
         <div 
             className='contactCard'
             id={contactData.id}
+            onClick={getConversation}
         >
             <img className='avatar' src={contactData.profile_pic}/>
             <div className='contactCardUserName'>
