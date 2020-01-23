@@ -77,12 +77,13 @@ class RegisterForm extends React.Component{
                 
                 {this.state.nextPage ?
                 <div className= 'loginFormu'>
-                <Link className='bouton' to='/login'>
-			        <img src='https://zupimages.net/up/20/03/wunb.png'id='returnLogin'/>
-                </Link>
+                
                 
                 <form onSubmit = {this.postForm}/>
                 <div id ='firstPageInscription'>
+                <Link className='bouton' to='/login'>
+			        <img src='https://zupimages.net/up/20/03/wunb.png'id='returnLogin'/>
+                </Link>
                     <div className="form-data">   
                         <input placeholder='Prénom'
                             type="text"
