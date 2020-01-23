@@ -8,11 +8,12 @@ function Messaging({
 	isConversationVisible,
 	getConversation,
 	conversations,
-    handleContactList
+    handleContactList,
+    handleChangeNewPvMess
 }) {
 	return (
 		<div>
-			<h3>Messagerie</h3>
+            <p>Messagerie</p>
 			{isContactListVisible && (
 				<div className='contactList'>
 					<p>Liste de contacts :</p>
@@ -30,8 +31,9 @@ function Messaging({
                 <>
                     <button onClick={handleContactList}>Retour à la liste de contacts</button>
                     <div>
-                        {conversations.map(message => <PrivateMessage messageData={message}/>)}
+                        {conversations.map(message => <PrivateMessage messageData={message} />)}
                     </div>
+                    <button className='sendPvMessage'>Envoyer un message</button>
                 </>
 			)}
 		</div>

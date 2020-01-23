@@ -30,6 +30,10 @@ class MainThread extends React.Component {
 				category: null,
 				content: null
 			},
+			newPv: {
+				recipientId: null,
+				content: null
+			},
 			contactList: null,
 			isContactListVisible: true,
 			isConversationVisible: false,
@@ -46,8 +50,9 @@ class MainThread extends React.Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleLikePost = this.handleLikePost.bind(this);
 		this.handleSavePost = this.handleSavePost.bind(this);
-		this.getConversations = this.getConversations.bind(this);
+		this.getConversation = this.getConversation.bind(this);
 		this.handleContactList = this.handleContactList.bind(this);
+		this.handleChangeNewPvMess = this.handleChangeNewPvMess.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -174,10 +179,11 @@ class MainThread extends React.Component {
 						<Messaging 
 							contactList={this.state.contactList}
 							conversations={this.state.conversations}
-							getConversation={this.getConversations}
+							getConversation={this.getConversation}
 							isContactListVisible={this.state.isContactListVisible}
 							isConversationVisible={this.state.isConversationVisible}
-							handleContactList={this.handleContactList}/>
+							handleContactList={this.handleContactList}
+							handleChangeNewPvMess={this.handleChangeNewPvMess}/>
 					</>
 				)
 			break;
@@ -229,6 +235,34 @@ class MainThread extends React.Component {
 			setTimeout(this.getThread(), 1000),
 		);
 	}
+	handleSubmitPrivateMessage(e) {
+		e.preventDefault();		
+		const token = this.props.token
+		const tokenObject = decode(token)
+		const userId = tokenObject.sub
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		let newPvMessage = {
+			sender_id: userId,
+			recipient_id: this.state.recipientId,
+			content: this.state.newPost.content
+		}
+		axios
+			.post('http://localhost:8000/conversation', newPvMessage, axiosConfig)	
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+			.then(setTimeout(() => this.getConversation()))
+	}
+	handleChangeNewPvMess(event) {
+		const propertyName = event.target.name;
+		const newPvMess = this.state.newPv;
+		newPvMess[propertyName] = event.target.value;
+		this.setState({ newPv: newPvMess });
+	}
 	handleLikePost(e) {
 		const token = this.props.token
 		const axiosConfig = {
@@ -262,7 +296,7 @@ class MainThread extends React.Component {
 	handleInputChange(event) {
 		this.setState({search: event.target.value})
 	}
-	getConversations(contactId) {
+	getConversation(contactId) {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
