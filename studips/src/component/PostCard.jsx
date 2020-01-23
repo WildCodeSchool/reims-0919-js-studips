@@ -2,8 +2,6 @@ import React from 'react';
 import '../App.css';
 import heartIcon from '../images/heart-solid .svg';
 import heartIconRed from '../images/heart-solid-red.svg';
-import commentIcon from '../images/comments-regular.svg';
-import shareIcon from '../images/share-alt-solid.svg';
 import saveIcon from '../images/download-solid.svg';
 
 function PostCard({ postData, handleLikePost }) {
