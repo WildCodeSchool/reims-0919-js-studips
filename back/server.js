@@ -238,7 +238,7 @@ app.get('/:userId/contacts/:contactId/conversation', verifyToken, (req, res) => 
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			res.status(500).send('Erreur lors de la récupération de la conversation')
-		} else {			
+		} else {
 			res.json(results);
 		}
 	})
