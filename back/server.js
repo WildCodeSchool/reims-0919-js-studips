@@ -63,9 +63,9 @@ app.post('/posts', verifyToken, (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-	let userPassword = req.body.password;
-	let userEmail = req.body.email
-	let sqlQuery = `SELECT id, email, password from user where user.email='${userEmail}'`
+	const userPassword = req.body.password;
+	const userEmail = req.body.email
+	const sqlQuery = `SELECT id, email, password from user where user.email='${userEmail}'`
 	connection.query(sqlQuery, (err, matchs) => {
 		if (err) {
 			res.status(500).send('error')
@@ -87,7 +87,7 @@ app.post('/login', (req, res) => {
 
 app.post('/register', (req, res) => {
   	const formData = req.body;
-	let sqlQuery = 'INSERT INTO user SET ?';
+	const sqlQuery = 'INSERT INTO user SET ?';
   	connection.query(sqlQuery, formData, (err, results) => {
     if (err) {
       console.log(err);
@@ -98,8 +98,82 @@ app.post('/register', (req, res) => {
   	});
 })
 
-app.get ('/likes', (req, res) => {
-	let sqlQuery = 'SELECT * from likes';
+app.get ('/profiles/:userId', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const sqlQuery = 'SELECT * FROM user WHERE user.id = ?'
+	connection.query(sqlQuery, userId, (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send('error getting user data');
+		} else {
+			res.json(results)
+		}
+	})
+})
+
+app.get('/postsaves', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const sqlQuery = `SELECT post.id, CASE WHEN EXISTS (SELECT * FROM post_saves WHERE post.id=post_saves.post_id AND post_saves.user_id=${userId}) THEN TRUE ELSE FALSE END AS savedByUser FROM post LEFT JOIN post_saves ON post.id=post_saves.post_id GROUP BY post.id`
+	connection.query(sqlQuery, (err, results) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send('error getting saved posts from user');
+		} else {
+			res.json(results)
+		}
+	})
+})
+
+app.put('/postsaves', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const postId = req.body.post_id
+	const formData = {user_id: userId, post_id: postId}
+	const sqlQuery1 = `SELECT * FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
+	connection.query(sqlQuery1, (err, results) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send('error getting saved posts');
+		} else {
+			if (results[0]) {
+				const sqlQuery2 = `DELETE FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
+				connection.query(sqlQuery2, err => {
+					if (err) {
+						console.log(err);
+						res.status(500).send("Error deleting saved post");
+					} else {
+						res.sendStatus(204)
+					}
+				})
+			} else {
+				const sqlQuery3 = 'INSERT INTO `post_saves` SET ?';
+				connection.query(sqlQuery3, formData, (err, results2) => {
+					if (err) {
+						console.log(err);
+						res.status(500).send("Error saving a post");			
+					} else {
+						res.json(results2);
+					}
+				})
+			}
+		}
+	})
+})
+
+app.get('/:userId/postsaves', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study,post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date FROM post JOIN post_saves ON post_saves.post_id = post.id JOIN user ON user.id=post.user_id WHERE post_saves.user_id = ${userId}`
+	connection.query(sqlQuery, (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send("Error getting posts in library")
+		} else {
+			res.json(results)
+		}
+	})
+})
+
+app.get ('/likes', verifyToken, (req, res) => {
+	const sqlQuery = 'SELECT * from likes';
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			console.log(err)
