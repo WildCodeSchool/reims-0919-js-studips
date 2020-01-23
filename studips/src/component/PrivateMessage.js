@@ -3,7 +3,7 @@ import React from 'react';
 function PrivateMessage({ messageData }) {
     return (
         <div>
-            <p>display messages here</p>            
+            <p>{messageData.content}</p>            
         </div>
     )
 }
