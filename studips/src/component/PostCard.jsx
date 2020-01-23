@@ -3,8 +3,10 @@ import '../App.css';
 import heartIcon from '../images/heart-solid .svg';
 import heartIconRed from '../images/heart-solid-red.svg';
 import saveIcon from '../images/download-solid.svg';
+import saveIconRed from '../images/download-solid-red.svg';
 
-function PostCard({ postData, handleLikePost }) {
+
+function PostCard({ postData, handleLikePost, handleSavePost }) {
 	return (
 		<div className='postCard'>
 			<div className='entete'>
@@ -43,7 +45,12 @@ function PostCard({ postData, handleLikePost }) {
 				{postData.likes > 0 && <p className="likes"> {postData.likes} like(s)</p>}
 				</div>
 				<div className='saveBox'>
-					<img className='save' src={saveIcon} alt='save' />
+					<img 
+						name={postData.id}
+						className='save' 
+						src={postData.isPostSavedByUser === 1 ? saveIconRed : saveIcon}
+						alt='save'
+						onClick={handleSavePost} />
 				</div>
 			</div>
 		</div>
