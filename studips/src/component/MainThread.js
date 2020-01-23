@@ -11,6 +11,7 @@ import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
 import Library from './Library';
+import messageIcon from '../images/comments-solid.svg';
 // import { removeAllListeners } from 'nodemon';
 
 class MainThread extends React.Component {
@@ -71,16 +72,17 @@ class MainThread extends React.Component {
 		const userId = tokenObject.sub
 		const postsReq = axios.get('http://localhost:8000/posts', axiosConfig)
 		const savesReq = axios.get('http://localhost:8000/postsaves', axiosConfig)
+		const contactListRequest = axios.get(`http://localhost:8000/${userId}/contacts`, axiosConfig)
 		axios
-			.all([postsReq, savesReq])
-			.then(axios.spread((postsData, postsSaves) => {
+			.all([postsReq, savesReq, contactListRequest])
+			.then(axios.spread((postsData, postsSaves, contactListData) => {
 				let newPosts = []
 				this.setState(() => {
 					for (let i = 0 ; i < postsData.data.length ; i++) {
 						newPosts.push(postsData.data[i])
 						newPosts[i].isPostSavedByUser = postsSaves.data[i].savedByUser
 					}
-					return {posts: newPosts, search: '', activeId: ''}
+					return {posts: newPosts, search: '', activeId: '', contactList: contactListData.data}
 				})
 			}))
 	}
@@ -293,11 +295,15 @@ class MainThread extends React.Component {
 						src={searchIcon}
 						alt="search"/>	
 					<img
+						className="icon"
+						src={messageIcon}
+						alt="messaging"/>
+					<img
 						id='library'
 						className="icon"
 						src={library}
 						alt='library'
-						onClick={this.handleChangeTab}/>
+						onClick={this.handleChangeTab}/>						
 				</div>			
 			</>)		
 	}	
