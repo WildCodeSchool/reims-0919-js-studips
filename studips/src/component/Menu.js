@@ -14,10 +14,12 @@ class Menu extends Component{
 		return(
 			<div className = 'menu'>
 				<div className = 'profile'>
+					<div className='prof'>
 					<Link to ='/profil'>
 					<img className= 'userPic' src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKVvQJdRW6Kj8X6iO6l5YDn-fU_5ic04qB6udb_fMZhS2qycz&s' alt = 'profil'/>
 					<p className='userName'>AIMAR , Jean</p>
 					</Link>
+					</div>
 				</div>
 				<button 
 				id = "stages"
@@ -54,9 +56,9 @@ class Menu extends Component{
 				>
 					Fournitures
 				</button>
-				<hr />
-				<Link className = 'libraryRedirection' to='/library'>Bibliothèque</Link>
-				<Link  className = 'parameterRedirection' to ='/parameter'>Paramètres</Link>
+				<div className='logoMenu'>
+					<img src='https://zupimages.net/up/19/51/iq11.png' alt=''></img>
+				</div>
 			</div>
 		)
 	}
