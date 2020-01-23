@@ -2,8 +2,6 @@ import React from 'react';
 import '../App.css';
 import heartIcon from '../images/heart-solid .svg';
 import heartIconRed from '../images/heart-solid-red.svg';
-import commentIcon from '../images/comments-regular.svg';
-import shareIcon from '../images/share-alt-solid.svg';
 import saveIcon from '../images/download-solid.svg';
 import saveIconRed from '../images/download-solid-red.svg';
 
@@ -34,8 +32,7 @@ function PostCard({ postData, handleLikePost, handleSavePost }) {
 				</div>
 				<p className='postMessage'>{postData.content}</p>
 			</div>
-			{postData.likedByUser === 1 && <p>Vous aimez</p>}
-			{postData.likes > 0 && <p className="likes">{postData.likes} like(s)</p>}
+			
 			<div className='actions'>
 				<div className='postReactions'>
 					<img
@@ -44,8 +41,8 @@ function PostCard({ postData, handleLikePost, handleSavePost }) {
 						src={postData.likedByUser === 1 ? heartIconRed : heartIcon} 
 						alt='like'
 						onClick={handleLikePost} />
-					<img className='comment' src={commentIcon} alt='comment' />
-					<img className='share' src={shareIcon} alt='share' />
+				{postData.likedByUser === 1}
+				{postData.likes > 0 && <p className="likes"> {postData.likes} like(s)</p>}
 				</div>
 				<div className='saveBox'>
 					<img 
