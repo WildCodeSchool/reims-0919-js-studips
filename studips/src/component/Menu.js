@@ -14,6 +14,7 @@ class Menu extends Component{
 		return(
 			<div className = 'menu'>
 				<div className = 'profile'>
+				<img id='retour' src='https://zupimages.net/up/20/03/wunb.png'/>
 					<div className='prof'>
 					<Link to ='/profil'>
 					<img className= 'userPic' src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKVvQJdRW6Kj8X6iO6l5YDn-fU_5ic04qB6udb_fMZhS2qycz&s' alt = 'profil'/>

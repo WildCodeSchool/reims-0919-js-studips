@@ -255,12 +255,17 @@
 	width: 60%;
 	margin-left: 20%;
 }
-
+#retour{
+	width: 10%;
+	height: 15%;
+	margin-top: 2vh;
+}
 .profile{
 	display: flex;
-	justify-content: center;
+	justify-content: start;
 	width: 100%;
 	margin-bottom: -3vh;
+	margin-left: 5vw;
 }
 .prof{
 	display: flex;
@@ -268,6 +273,7 @@
 	color: white;
 	padding: 1rem;
 	width: 50%;
+	margin-left: 8vw;
 }
 .profile a{
 	width: 100%;
