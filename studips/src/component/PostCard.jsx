@@ -5,8 +5,10 @@ import heartIconRed from '../images/heart-solid-red.svg';
 import commentIcon from '../images/comments-regular.svg';
 import shareIcon from '../images/share-alt-solid.svg';
 import saveIcon from '../images/download-solid.svg';
+import saveIconRed from '../images/download-solid-red.svg';
 
-function PostCard({ postData, handleLikePost }) {
+
+function PostCard({ postData, handleLikePost, handleSavePost }) {
 	return (
 		<div className='postCard'>
 			<div className='entete'>
@@ -46,7 +48,12 @@ function PostCard({ postData, handleLikePost }) {
 					<img className='share' src={shareIcon} alt='share' />
 				</div>
 				<div className='saveBox'>
-					<img className='save' src={saveIcon} alt='save' />
+					<img 
+						name={postData.id}
+						className='save' 
+						src={postData.isPostSavedByUser === 1 ? saveIconRed : saveIcon}
+						alt='save'
+						onClick={handleSavePost} />
 				</div>
 			</div>
 		</div>
