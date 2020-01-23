@@ -219,7 +219,7 @@ app.put('/likes', verifyToken, (req, res) => {
 	})
 })
 
-app.get('/:userId/contacts', (req, res) => {
+app.get('/:userId/contacts', verifyToken, (req, res) => {
 	let userId = req.authData.sub
 	let sqlQuery = `SELECT user.id, user.firstname, user.lastname, user.profile_pic, messages.creation_date FROM user JOIN messages ON messages.sender_id=user.id WHERE recipient_id=${userId} UNION SELECT user.id, user.firstname, user.lastname, user.profile_pic, messages.creation_date FROM user JOIN messages ON messages.recipient_id=user.id WHERE sender_id=${userId}`;
 	connection.query(sqlQuery, (err, results) => {
@@ -231,7 +231,7 @@ app.get('/:userId/contacts', (req, res) => {
 	})
 })
 
-app.get('/:userId/contacts/:contactId/conversation', (req, res) => {
+app.get('/:userId/contacts/:contactId/conversation', verifyToken, (req, res) => {
 	let userId = req.authData.sub
 	let contactId = req.params.contactId
 	let sqlQuery = `SELECT messages.* FROM messages WHERE (sender_id=${userId} AND recipient_id=${contactId}) OR (sender_id=${contactId} AND recipient_id=${userId}) ORDER BY messages.id DESC`
@@ -244,7 +244,7 @@ app.get('/:userId/contacts/:contactId/conversation', (req, res) => {
 	})
 })
 
-app.post('/conversation', (req, res) => {
+app.post('/conversation', verifyToken, (req, res) => {
   	const formData = req.body;
 	let sqlQuery = 'INSERT INTO messages SET ?'
   	connection.query(sqlQuery, formData, (err, results) => {
