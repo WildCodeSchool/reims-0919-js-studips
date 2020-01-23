@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ContactCard({ contactData }) {
+function ContactCard({ contactData, getConversation }) {
     return (
         <div 
             className='contactCard'

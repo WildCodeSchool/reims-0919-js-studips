@@ -31,6 +31,9 @@ class MainThread extends React.Component {
 				content: null
 			},
 			contactList: null,
+			isContactListVisible: true,
+			isConversationVisible: false,
+			conversations: [],
 			eventDate: new Date()
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
@@ -43,6 +46,7 @@ class MainThread extends React.Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleLikePost = this.handleLikePost.bind(this);
 		this.handleSavePost = this.handleSavePost.bind(this);
+		this.getConversations = this.getConversations.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -166,7 +170,12 @@ class MainThread extends React.Component {
 			case 'messaging':
 				return (
 					<>
-						<Messaging contactList={this.state.contactList} />
+						<Messaging 
+							contactList={this.state.contactList}
+							conversations={this.state.conversations}
+							getConversation={this.getConversations}
+							isContactListVisible={this.state.isContactListVisible}
+							isConversationVisible={this.state.isConversationVisible}/>
 					</>
 				)
 			break;
@@ -250,6 +259,23 @@ class MainThread extends React.Component {
 	}	
 	handleInputChange(event) {
 		this.setState({search: event.target.value})
+	}
+	getConversations(event) {
+		const contactId = event.target.id
+		const token = this.props.token
+		const tokenObject = decode(token)
+		const userId = tokenObject.sub
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		axios
+			.get(`http://localhost:8000/${userId}/contacts/${contactId}/conversation`, axiosConfig)
+			.then(data => {
+				this.setState({ conversations: data.data })
+			})
 	}
 	render() {
 		const isNotConnected = this.props.token === null;
