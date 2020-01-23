@@ -10,6 +10,8 @@ import axios from 'axios';
 import PostModal from './PostModal';
 import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
+import decode from 'jwt-decode';
+import Library from './Library';
 // import { removeAllListeners } from 'nodemon';
 
 class MainThread extends React.Component {
@@ -19,10 +21,10 @@ class MainThread extends React.Component {
 			search:'',
 			posts: [],
 			activeId:'',
+			userData: null,
 			isPostModalVisible: false,
 			isMenuVisible: false,
 			newPost: {
-				user_id: 1,
 				title: null,
 				category: null,
 				content: null
@@ -38,9 +40,25 @@ class MainThread extends React.Component {
 		this.handleEventDate = this.handleEventDate.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleLikePost = this.handleLikePost.bind(this);
+		this.handleSavePost = this.handleSavePost.bind(this);
 	}
 	componentDidMount() {
+		this.getUserData();
 		this.getThread();
+	}
+	getUserData() {
+		const token = this.props.token
+		const tokenObject = decode(token)
+		const userId = tokenObject.sub
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		axios
+			.get(`http://localhost:8000/profiles/${userId}`, axiosConfig)
+			.then(response => this.setState({ userData: response.data[0] }))		
 	}
 	getThread() {
 		const token = this.props.token
@@ -50,16 +68,22 @@ class MainThread extends React.Component {
 				'Authorization': 'Bearer ' + token
     		}
     	}
+		const tokenObject = decode(token)
+		const userId = tokenObject.sub
+		const postsReq = axios.get('http://localhost:8000/posts', axiosConfig)
+		const savesReq = axios.get('http://localhost:8000/postsaves', axiosConfig)
 		axios
-			.get('http://localhost:8000/posts', axiosConfig)
-			.then(response => response.data)
-			.then(data => {
-				this.setState({
-					posts: data,
-					activeId:'',
-					search:'',
-				});
-			});
+			.all([postsReq, savesReq])
+			.then(axios.spread((postsData, postsSaves) => {
+				let newPosts = []
+				this.setState(() => {
+					for (let i = 0 ; i < postsData.data.length ; i++) {
+						newPosts.push(postsData.data[i])
+						newPosts[i].isPostSavedByUser = postsSaves.data[i].savedByUser
+					}
+					return {posts: newPosts, search: '', activeId: ''}
+				})
+			}))
 	}
 	toggleNewPost() {
 		this.setState(prevState => {
@@ -88,7 +112,7 @@ class MainThread extends React.Component {
 					.filter(post=>post.category  === 'Jobs')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+						return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	case 'logements':
@@ -96,7 +120,7 @@ class MainThread extends React.Component {
 					.filter(post=>post.category==='Logements')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+						return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	case 'events':
@@ -104,7 +128,7 @@ class MainThread extends React.Component {
 					.filter(post=>post.category==='Events')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+						return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	case 'cours':
@@ -112,7 +136,7 @@ class MainThread extends React.Component {
 					.filter(post=>post.category==='Cours')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData ={post} handleLikePost={this.handleLikePost}/>
+						return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
 					})
 			break;
 		  	case 'fournitures':
@@ -120,19 +144,33 @@ class MainThread extends React.Component {
 					.filter(post=>post.category==='Fournitures')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-						return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+						return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
 					})
+			break;
+			case 'library':	
+				return (
+					<>
+						<Library />			
+						{posts = posts
+							.filter(post => post.isPostSavedByUser === 1)
+							.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+							.map((post) => {
+								return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
+							})
+						}
+					</>
+				)
 			break;
 		  	default:
 		  		posts = posts
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 					.map((post) => {
-			  			return <PostCard postData={post} handleLikePost={this.handleLikePost}/>
+			  			return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
 		})
 		  break;
 		}
 		return React.Children.toArray(posts);
-	  }
+	}
 	toggleMenuVisible() {
 		this.setState(prevState => {
 			return { isMenuVisible: !prevState.isMenuVisible };
@@ -179,14 +217,27 @@ class MainThread extends React.Component {
 				'Authorization': 'Bearer ' + token
     		}
     	}
-		let newLike = {
-			post_id: e.target.name
-		}
+		let newLike = {post_id: e.target.name}
 		axios
 			.put('http://localhost:8000/likes', newLike, axiosConfig)
 			.then(res => console.log(res))
-			.then(this.getThread())
 			.catch(err => console.log(err))
+			.then(setTimeout(() => this.getThread(), 150))
+	}
+	handleSavePost(e) {
+		const token = this.props.token
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		let newSave = {post_id: e.target.name}
+		axios
+			.put('http://localhost:8000/postsaves', newSave, axiosConfig)
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+			.then(setTimeout(() => this.getThread(), 150))
 	}	
 	handleInputChange(event) {
 		this.setState({search: event.target.value})
@@ -197,11 +248,11 @@ class MainThread extends React.Component {
 			return <Redirect to='/login' />;
 		}
 		return (
-			<>
+			<>				
 				{this.state.isMenuVisible && (
 					<div onClick={this.toggleMenuVisible}>
 						<Menu 
-						handleChangeTab={this.handleChangeTab}/>
+							handleChangeTab={this.handleChangeTab}/>
 					</div>
 				)}
 				<PostModal
@@ -229,9 +280,9 @@ class MainThread extends React.Component {
 						Poster un message
 					</button>
 				</div>
-				<div className='cardList'>
-					{this.getTabContent()}
-				</div>
+					<div className='cardList'>
+						{this.getTabContent()}
+					</div>
 				<div className='navbar'>
 					<img
 						className="icon"
@@ -247,9 +298,11 @@ class MainThread extends React.Component {
 						src={messageIcon}
 						alt="messages"/>	
 					<img
+						id='library'
 						className="icon"
 						src={notifIcon}
-						alt='notifications'/>
+						alt='notifications'
+						onClick={this.handleChangeTab}/>
 				</div>			
 			</>)		
 	}	
