@@ -1,11 +1,10 @@
 import React from 'react';
 import PostCard from './PostCard';
 import '../App.css';
+import library from '../images/library.svg'
 import homeIcon from '../images/home-solid.svg';
 import searchIcon from '../images/search-solid.svg';
-import messageIcon from '../images/comments-solid.svg';
 import menuIcon from '../images/bars-solid.svg';
-import notifIcon from '../images/bell-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal';
 import Menu from './Menu';
@@ -243,13 +242,9 @@ class MainThread extends React.Component {
 						src={searchIcon}
 						alt="search"/>
 					<img
-						className="icon"
-						src={messageIcon}
-						alt="messages"/>	
-					<img
-						className="icon"
-						src={notifIcon}
-						alt='notifications'/>
+						className='icon'
+						src={library}
+						alt='library'/>
 				</div>			
 			</>)		
 	}	
