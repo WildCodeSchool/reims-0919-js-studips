@@ -19,16 +19,6 @@ class Profil extends  Component{
                 <p className='userNameProfil'>AIMAR Jean</p>
                 <div className ='picDipserEpinglement'>
                     <img className='userPicProfil' src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKVvQJdRW6Kj8X6iO6l5YDn-fU_5ic04qB6udb_fMZhS2qycz&s' alt ='' />
-                    <div className='dipsEpin'>
-                        <div className ='dipserDiv'>
-                            <p>Dipsers:  </p>
-                            <p className='number'>45</p>
-                        </div>
-                        <div className='epinglementDiv'>
-                            <p>Dipsés:  </p>
-                            <p className='number'>87</p>
-                        </div>
-                    </div>
                 </div>
                 <p className='buttonProfil'>Modifier son Profil</p>
                 <p className='publicationNumber'>Publication (0):</p>

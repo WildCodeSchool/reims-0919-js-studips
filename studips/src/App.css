@@ -462,6 +462,24 @@ input{
 	justify-content: center;
 	align-items: center;
 }
+#firstPageInscription{
+	transition-duration: 1s;
+	opacity: 1;
+}
+#secondPageInscription{
+	display: none;
+}
+#firstPageInscriptionDesepear{
+	transition-duration: 1s;
+	margin-left: -100%;
+	opacity: 0;
+}
+#secondPageInscriptionApear{
+	transition-duration: 1s;
+	
+	opacity: 1;
+	
+}
 /******************************************* Fin du formulaire *************************************/
 
 /***************************************** BEGIN PostModal.jsx *****************************************/
