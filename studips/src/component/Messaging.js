@@ -7,7 +7,8 @@ function Messaging({
 	isContactListVisible,
 	isConversationVisible,
 	getConversation,
-	conversation
+	conversations,
+    handleContactList
 }) {
 	return (
 		<div>
@@ -26,11 +27,12 @@ function Messaging({
 				</div>
 			)}
 			{isConversationVisible && (
-				<div>
-					{conversation.map(message => (
-						<PrivateMessage messageData={message} />
-					))}
-				</div>
+                <>
+                    <button onClick={handleContactList}>Retour à la liste de contacts</button>
+                    <div>
+                        {conversations.map(message => <PrivateMessage messageData={message}/>)}
+                    </div>
+                </>
 			)}
 		</div>
 	);

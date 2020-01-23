@@ -47,6 +47,7 @@ class MainThread extends React.Component {
 		this.handleLikePost = this.handleLikePost.bind(this);
 		this.handleSavePost = this.handleSavePost.bind(this);
 		this.getConversations = this.getConversations.bind(this);
+		this.handleContactList = this.handleContactList.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -175,7 +176,8 @@ class MainThread extends React.Component {
 							conversations={this.state.conversations}
 							getConversation={this.getConversations}
 							isContactListVisible={this.state.isContactListVisible}
-							isConversationVisible={this.state.isConversationVisible}/>
+							isConversationVisible={this.state.isConversationVisible}
+							handleContactList={this.handleContactList}/>
 					</>
 				)
 			break;
@@ -260,8 +262,7 @@ class MainThread extends React.Component {
 	handleInputChange(event) {
 		this.setState({search: event.target.value})
 	}
-	getConversations(event) {
-		const contactId = event.target.id
+	getConversations(contactId) {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
@@ -274,8 +275,14 @@ class MainThread extends React.Component {
 		axios
 			.get(`http://localhost:8000/${userId}/contacts/${contactId}/conversation`, axiosConfig)
 			.then(data => {
-				this.setState({ conversations: data.data })
-			})
+				this.setState({	conversations: data.data })
+			})			
+			setTimeout(() => this.handleContactList(), 500)
+	}
+	handleContactList() {
+		this.setState((prevState) => {
+			return {isContactListVisible: !prevState.isContactListVisible, isConversationVisible: !prevState.isConversationVisible}
+		})
 	}
 	render() {
 		const isNotConnected = this.props.token === null;

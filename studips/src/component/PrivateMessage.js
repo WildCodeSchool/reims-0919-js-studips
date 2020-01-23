@@ -1,9 +1,9 @@
 import React from 'react';
 
-function PrivateMessage() {
+function PrivateMessage({ messageData }) {
     return (
         <div>
-            <p>display messages here</p>
+            <p>display messages here</p>            
         </div>
     )
 }
