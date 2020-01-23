@@ -32,9 +32,6 @@ function App() {
 				<Route path='/profil'>
 					<Profil token={token} />
 				</Route>
-				<Route path='/library'>
-					<Library token={token} />
-				</Route>
 			</Switch>
 		</div>
 	);
