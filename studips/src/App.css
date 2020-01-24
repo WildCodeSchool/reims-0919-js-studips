@@ -869,3 +869,9 @@ input{
 	flex-direction: column;
 	justify-content: center;
 }
+
+.pvModal {
+	position: fixed;
+	top: 9vh;
+	left: 0vh;
+}

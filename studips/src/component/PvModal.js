@@ -4,7 +4,7 @@ function PvModal({ togglePvModal, handleSubmitPrivateMessage, handleChangeNewPvM
     return (
         <>
             {isPvModalVisible && (
-                <>
+                <div className='pvModal'>
                 <div className='overlay'>
                     <div className = 'retour'> <button type="button" onClick={togglePvModal}>retour</button>
                     </div>
@@ -30,7 +30,7 @@ function PvModal({ togglePvModal, handleSubmitPrivateMessage, handleChangeNewPvM
                             </button>
                         </div>
                     </div>
-                </>	)}
+                </div>	)}
             </>
         );
 }
