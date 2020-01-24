@@ -12,6 +12,7 @@ function Messaging({
 	conversations,
     handleContactList,
     handleChangeNewPvMess,
+    handleSubmitPrivateMessage,
     togglePvModal
 }) {
 	return (
@@ -34,7 +35,9 @@ function Messaging({
                 <>
                     <PvModal 
                         handleChangeNewPvMess={handleChangeNewPvMess}
-                        isPvModalVisible={isPvModalVisible}/>
+                        handleSubmitPrivateMessage={handleSubmitPrivateMessage}
+                        isPvModalVisible={isPvModalVisible}
+                        togglePvModal={togglePvModal}/>
                     <button onClick={handleContactList}>Retour à la liste de contacts</button>
                     <div>
                         {conversations.map(message => <PrivateMessage messageData={message} />)}
