@@ -15,9 +15,9 @@ class Menu extends Component{
 			<div className = 'menu'>
 				<div className = 'profile'>
 					<div className='prof'>
-					<Link to ='/profil'>
-					<img className= 'userPic' src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKVvQJdRW6Kj8X6iO6l5YDn-fU_5ic04qB6udb_fMZhS2qycz&s' alt = 'profil'/>
-					<p className='userName'>AIMAR , Jean</p>
+					<Link to ={{pathname: '/profil', state: {userData: this.props.userData}}}>
+					<img className= 'userPic' src ={this.props.userData.profile_pic} alt = 'profil'/>
+					<p className='userName'>{this.props.userData.lastname} , {this.props.userData.firstname}</p>
 					</Link>
 					</div>
 				</div>
