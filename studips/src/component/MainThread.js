@@ -54,6 +54,7 @@ class MainThread extends React.Component {
 		this.getConversation = this.getConversation.bind(this);
 		this.handleContactList = this.handleContactList.bind(this);
 		this.handleChangeNewPvMess = this.handleChangeNewPvMess.bind(this);
+		this.handleSubmitPrivateMessage = this.handleSubmitPrivateMessage.bind(this);
 		this.togglePvModal = this.togglePvModal.bind(this);
 	}
 	componentDidMount() {
@@ -186,6 +187,7 @@ class MainThread extends React.Component {
 							isConversationVisible={this.state.isConversationVisible}
 							handleContactList={this.handleContactList}
 							handleChangeNewPvMess={this.handleChangeNewPvMess}
+							handleSubmitPrivateMessage={this.handleSubmitPrivateMessage}
 							togglePvModal={this.togglePvModal}
 							isPvModalVisible={this.state.isPvModalVisible}/>
 					</>
@@ -242,24 +244,23 @@ class MainThread extends React.Component {
 	handleSubmitPrivateMessage(e) {
 		e.preventDefault()
 		const token = this.props.token
-		const tokenObject = decode(token)
-		const userId = tokenObject.sub
 		const axiosConfig = {
         	headers: {
 				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + token
     		}
     	}
-		let newPvMessage = {
-			sender_id: userId,
+		const contactId = this.state.recipientId
+		const newPvMessage = {
+			sender_id: this.state.userData.id,
 			recipient_id: this.state.recipientId,
-			content: this.state.newPost.content
+			content: this.state.newPv.content
 		}
 		axios
 			.post('http://localhost:8000/conversation', newPvMessage, axiosConfig)	
 			.then(res => console.log(res))
 			.catch(err => console.log(err))
-			.then(setTimeout(() => this.getConversation()))
+			.then(setTimeout(() => this.getConversation(contactId), 150))
 	}
 	handleChangeNewPvMess(event) {
 		const propertyName = event.target.name;
@@ -305,10 +306,11 @@ class MainThread extends React.Component {
 	handleInputChange(event) {
 		this.setState({search: event.target.value})
 	}
-	getConversation(contactId) {
+	getConversation(contactId) {		
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
+		const recipient_id = contactId
 		const axiosConfig = {
         	headers: {
 				'Content-Type': 'application/json',
@@ -318,8 +320,11 @@ class MainThread extends React.Component {
 		axios
 			.get(`http://localhost:8000/${userId}/contacts/${contactId}/conversation`, axiosConfig)
 			.then(data => {
-				this.setState({	conversations: data.data , recipientId: contactId})
-			})			
+				this.setState(() => {
+					const recipient_id = contactId
+					return { conversations: data.data , recipientId: recipient_id }
+				})
+			})
 			setTimeout(() => this.handleContactList(), 500)
 	}
 	handleContactList() {
