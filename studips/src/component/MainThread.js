@@ -289,10 +289,7 @@ class MainThread extends React.Component {
 						src={homeIcon}
 						alt="to home"
 						onClick={this.getThread}/>
-					<img
-						className="icon"
-						src={searchIcon}
-						alt="search"/>	
+					
 					<img
 						id='library'
 						className="icon"

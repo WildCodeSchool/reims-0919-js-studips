@@ -6,7 +6,9 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-
+.react-datepicker__input-container input{
+	color: black;
+}
 .switch-wrapper {
 	position: relative;
   }
@@ -665,6 +667,11 @@ input{
 	margin-top: 5%;
 }
 /* ******************************************* Profil ************************************************** */ 
+.profilPage{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .picDipserEpinglement{
 	display: flex;
 	flex-direction: row;
@@ -681,14 +688,13 @@ input{
 	margin-top: 5%;
 	color: #a40032;
 	font-size: 24px;
-	margin-left: 5%;
+
 }
 .userPicProfil{
 	width: 40%;
 	max-height: 40%;
 	border-radius: 500%;
-	margin-left: 5%;
-	margin-right: 10%;
+	border:2px solid black ;
 }
 .buttonProfil{
 	border-radius: 0px 48px 48px 0px;
@@ -712,6 +718,7 @@ input{
 	margin-top: 9%;
 	color: white;
 	text-align: center;
+	margin-bottom: 2vh;
 }
 .titlePageLibrary {
 	font-size: 32px;
@@ -741,4 +748,39 @@ input{
 }
 .number{
 	margin-left:2vw
+}
+.userProfil{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+}
+.profilPage ul{
+	display: flex;
+	flex-direction: column;
+	width: 70vw;
+	margin-top: 5vh;
+	list-style: none;
+	font-size: 18px;
+}
+.profilPage ul li{
+	display: flex;
+}
+.profilPage ul li p{
+	margin-right: 5vw;
+	color: #A40032;
+	font-size: 20px;
+}
+.logoProfil{
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	height: 20vh;
+}
+.logoProfil img{
+	
+	width: 20vw;
+	margin-top: 5vh;
+	box-shadow: 0px 0px 20px 1px;
 }
