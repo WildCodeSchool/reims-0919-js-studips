@@ -28,9 +28,12 @@ function App() {
 				<Route path='/parameter'>
 					<Parameter token={token} />
 				</Route>
-				<Route path='/profil'>
-					<Profil token={token} />
-				</Route>
+				<Route path='/profil' render={(props) => (
+					<Profil 
+					{...props}
+					token={token}
+					/>
+				)} />
 			</Switch>
 		</div>
 	);

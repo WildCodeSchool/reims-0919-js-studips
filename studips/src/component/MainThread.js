@@ -251,7 +251,8 @@ class MainThread extends React.Component {
 				{this.state.isMenuVisible && (
 					<div onClick={this.toggleMenuVisible}>
 						<Menu 
-							handleChangeTab={this.handleChangeTab}/>
+							handleChangeTab={this.handleChangeTab}
+							userData={this.state.userData}/>
 					</div>
 				)}
 				<PostModal

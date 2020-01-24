@@ -232,6 +232,7 @@
 .userPic{
 	max-width: 90%;
 	border-radius: 500%;
+	border: 1px solid black;
 }
 
 .menu button{
