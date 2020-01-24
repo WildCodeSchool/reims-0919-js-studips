@@ -6,10 +6,9 @@ function PvModal({ togglePvModal, handleSubmitPrivateMessage, handleChangeNewPvM
             {isPvModalVisible && (
                 <>
                 <div className='overlay'>
-                    <div className = 'retour'
-                        onClick={togglePvModal}> <button>retour</button>
+                    <div className = 'retour'> <button type="button" onClick={togglePvModal}>retour</button>
                     </div>
-                    <form className='newPostCard' onSubmit={handleSubmitPrivateMessage}>
+                    <div className='newPostCard'>
                         <div>
                             <p className='subTitle'>Message :</p>
                             <label htmlFor='newPv'></label>
@@ -19,12 +18,17 @@ function PvModal({ togglePvModal, handleSubmitPrivateMessage, handleChangeNewPvM
                                 name='content'
                                 onChange={handleChangeNewPvMess}></textarea>
                         </div>
-                            <input 
-                                type="submit" 
+                            <button 
+                                type="button" 
                                 className='postButton'
-                                value="Envoyer"
-                            />
-                        </form>
+                                onClick={(e) => {
+                                    handleSubmitPrivateMessage(e)
+                                    togglePvModal()
+                                }}
+                            >
+                                Envoyer
+                            </button>
+                        </div>
                     </div>
                 </>	)}
             </>
