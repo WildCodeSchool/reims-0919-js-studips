@@ -249,11 +249,11 @@ app.post('/conversation', verifyToken, (req, res) => {
 	const recipientId = req.body.recipient_id
 	const content = req.body.content
 	const formData = {
-		sender_id: senderId,		
+		sender_id: senderId,	
 		recipient_id: recipientId,
 		content: content
 	}
-	let sqlQuery = 'INSERT INTO messages SET ?'
+	const sqlQuery = 'INSERT INTO messages SET ?'
   	connection.query(sqlQuery, formData, (err, results) => {
 		if (err) {
 		console.log(err);
