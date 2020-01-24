@@ -37,6 +37,7 @@ class MainThread extends React.Component {
 			contactList: null,
 			isContactListVisible: true,
 			isConversationVisible: false,
+			isPvModalVisible: false,
 			conversations: [],
 			eventDate: new Date()
 		};
@@ -53,6 +54,7 @@ class MainThread extends React.Component {
 		this.getConversation = this.getConversation.bind(this);
 		this.handleContactList = this.handleContactList.bind(this);
 		this.handleChangeNewPvMess = this.handleChangeNewPvMess.bind(this);
+		this.togglePvModal = this.togglePvModal.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -183,7 +185,9 @@ class MainThread extends React.Component {
 							isContactListVisible={this.state.isContactListVisible}
 							isConversationVisible={this.state.isConversationVisible}
 							handleContactList={this.handleContactList}
-							handleChangeNewPvMess={this.handleChangeNewPvMess}/>
+							handleChangeNewPvMess={this.handleChangeNewPvMess}
+							togglePvModal={this.togglePvModal}
+							isPvModalVisible={this.state.isPvModalVisible}/>
 					</>
 				)
 			break;
@@ -236,7 +240,7 @@ class MainThread extends React.Component {
 		);
 	}
 	handleSubmitPrivateMessage(e) {
-		e.preventDefault();		
+		e.preventDefault()
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
@@ -262,6 +266,11 @@ class MainThread extends React.Component {
 		const newPvMess = this.state.newPv;
 		newPvMess[propertyName] = event.target.value;
 		this.setState({ newPv: newPvMess });
+	}
+	togglePvModal() {
+		this.setState(prevState => {
+			return { isPvModalVisible: !prevState.isPvModalVisible };
+		})
 	}
 	handleLikePost(e) {
 		const token = this.props.token
@@ -309,7 +318,7 @@ class MainThread extends React.Component {
 		axios
 			.get(`http://localhost:8000/${userId}/contacts/${contactId}/conversation`, axiosConfig)
 			.then(data => {
-				this.setState({	conversations: data.data })
+				this.setState({	conversations: data.data , recipientId: contactId})
 			})			
 			setTimeout(() => this.handleContactList(), 500)
 	}
