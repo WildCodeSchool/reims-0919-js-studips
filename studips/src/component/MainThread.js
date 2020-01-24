@@ -364,7 +364,8 @@ class MainThread extends React.Component {
 				{this.state.isMenuVisible && (
 					<div onClick={this.toggleMenuVisible}>
 						<Menu 
-							handleChangeTab={this.handleChangeTab}/>
+							handleChangeTab={this.handleChangeTab}
+							userData={this.state.userData}/>
 					</div>
 				)}
 				<PostModal
@@ -401,10 +402,7 @@ class MainThread extends React.Component {
 						src={homeIcon}
 						alt="to home"
 						onClick={this.getThread}/>
-					<img
-						className="icon"
-						src={searchIcon}
-						alt="search"/>	
+					
 					<img
 						id='messaging'
 						className="icon"
