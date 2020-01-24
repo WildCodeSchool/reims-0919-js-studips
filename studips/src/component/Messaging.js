@@ -17,11 +17,11 @@ function Messaging({
     togglePvModal
 }) {
 	return (
-		<div>
-            <p>Messagerie</p>
+		<div className='messaging'>
+            <p className='titleMessaging'>Messagerie</p>
 			{isContactListVisible && (
 				<div className='contactList'>
-					<p>Liste de contacts :</p>
+					<p className='contactListTitle'>Liste de contacts</p>
 					{contactList.map(contact => (
 						<ContactCard
 							contactData={contact}
@@ -39,7 +39,9 @@ function Messaging({
                         handleSubmitPrivateMessage={handleSubmitPrivateMessage}
                         isPvModalVisible={isPvModalVisible}
                         togglePvModal={togglePvModal}/>
-                    <button onClick={handleContactList}>Retour à la liste de contacts</button>
+                    <button 
+						onClick={handleContactList}
+						className='returnContactList'>Retour</button>
                     <div>
                         {conversations.map(message => <PrivateMessage messageData={message} />)}
                     </div>
