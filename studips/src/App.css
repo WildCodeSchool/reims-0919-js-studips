@@ -362,7 +362,7 @@
 
 
 input{
-	color: white;
+	color: black;
 }
 .forgotPass{
 	text-decoration: underline;
@@ -750,3 +750,4 @@ input{
 
 
 /* ******************************************* Messaging ************************************************** */ 
+
