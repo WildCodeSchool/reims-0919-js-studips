@@ -14,7 +14,8 @@ function Messaging({
     handleContactList,
     handleChangeNewPvMess,
     handleSubmitPrivateMessage,
-    togglePvModal
+    togglePvModal,
+	userId
 }) {
 	return (
 		<div className='messaging'>
@@ -42,8 +43,8 @@ function Messaging({
                     <button 
 						onClick={handleContactList}
 						className='returnContactList'>Retour</button>
-                    <div>
-                        {conversations.map(message => <PrivateMessage messageData={message} />)}
+                    <div className='messageList'>
+                        {conversations.map(message => <PrivateMessage messageData={message} userId={userId} />)}
                     </div>
                     <button 
                         className='sendPvMessage'

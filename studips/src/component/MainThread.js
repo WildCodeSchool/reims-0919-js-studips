@@ -191,7 +191,8 @@ class MainThread extends React.Component {
 							handleChangeNewPvMess={this.handleChangeNewPvMess}
 							handleSubmitPrivateMessage={this.handleSubmitPrivateMessage}
 							togglePvModal={this.togglePvModal}
-							isPvModalVisible={this.state.isPvModalVisible}/>
+							isPvModalVisible={this.state.isPvModalVisible}
+							userId={this.state.userData.id}/>
 					</>
 				)
 			break;

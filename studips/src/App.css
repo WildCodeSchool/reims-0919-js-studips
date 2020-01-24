@@ -752,11 +752,7 @@ input{
 
 /* ******************************************* Messaging ************************************************** */ 
 
-.pvMessage {
-	background-color: #e2e2e2;
-	border: solid rgb(219, 219, 219) 2px;
-	margin-top: 1rem;
-}
+
 
 .messaging {
 	display: flex;
@@ -844,4 +840,32 @@ input{
 	color: white;
 	border: none;
 	border-radius: 25px;
+}
+
+.contactCard {
+	margin: 1em 0;
+}
+
+.pvMessageContact {
+	background-color: #e2e2e2;
+	border-radius: 8px;
+	margin-top: 1rem;
+	width: 80%;
+	align-self: flex-end;
+	padding: 0.5em;
+}
+
+.pvMessageUser {
+	background-color: #e2e2e2;
+	border-radius: 8px;
+	margin-top: 1rem;
+	width: 80%;
+	align-self: flex-start;
+	padding: 0.5em;
+}
+
+.messageList {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
