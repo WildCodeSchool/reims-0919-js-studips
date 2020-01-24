@@ -222,7 +222,6 @@ app.put('/likes', verifyToken, (req, res) => {
 app.get('/:userId/contacts', verifyToken, (req, res) => {
 	let userId = req.authData.sub
 	let sqlQuery = `SELECT DISTINCT user.id, user.firstname, user.lastname, user.profile_pic FROM user JOIN messages ON messages.sender_id=user.id WHERE recipient_id=${userId} UNION SELECT DISTINCT user.id, user.firstname, user.lastname, user.profile_pic FROM user JOIN messages ON messages.recipient_id=user.id WHERE sender_id=${userId}`
-
 	connection.query(sqlQuery, (err, results) => {
 		if (err) {
 			res.status(500).send('Erreur lors de la récupération des contacts');
