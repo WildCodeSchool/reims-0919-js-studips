@@ -245,7 +245,14 @@ app.get('/:userId/contacts/:contactId/conversation', verifyToken, (req, res) => 
 })
 
 app.post('/conversation', verifyToken, (req, res) => {
-  	const formData = req.body;
+  	const senderId = req.authData.sub
+	const recipientId = req.body.recipient_id
+	const content = req.body.content
+	const formData = {
+		sender_id: senderId,		
+		recipient_id: recipientId,
+		content: content
+	}
 	let sqlQuery = 'INSERT INTO messages SET ?'
   	connection.query(sqlQuery, formData, (err, results) => {
 		if (err) {
