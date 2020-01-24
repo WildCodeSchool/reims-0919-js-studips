@@ -9,6 +9,7 @@ function Messaging({
 	isConversationVisible,
     isPvModalVisible,
 	getConversation,
+    getConversationAfterPv,
 	conversations,
     handleContactList,
     handleChangeNewPvMess,

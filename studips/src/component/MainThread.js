@@ -56,6 +56,7 @@ class MainThread extends React.Component {
 		this.handleChangeNewPvMess = this.handleChangeNewPvMess.bind(this);
 		this.handleSubmitPrivateMessage = this.handleSubmitPrivateMessage.bind(this);
 		this.togglePvModal = this.togglePvModal.bind(this);
+		this.getConversationAfterPv = this.getConversationAfterPv.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -183,6 +184,7 @@ class MainThread extends React.Component {
 							contactList={this.state.contactList}
 							conversations={this.state.conversations}
 							getConversation={this.getConversation}
+							getConversationAfterPv={this.getConversationAfterPv}
 							isContactListVisible={this.state.isContactListVisible}
 							isConversationVisible={this.state.isConversationVisible}
 							handleContactList={this.handleContactList}
@@ -260,7 +262,7 @@ class MainThread extends React.Component {
 			.post('http://localhost:8000/conversation', newPvMessage, axiosConfig)	
 			.then(res => console.log(res))
 			.catch(err => console.log(err))
-			.then(setTimeout(() => this.getConversation(contactId), 150))
+			.then(setTimeout(() => this.getConversationAfterPv(contactId), 150))
 	}
 	handleChangeNewPvMess(event) {
 		const propertyName = event.target.name;
@@ -326,6 +328,26 @@ class MainThread extends React.Component {
 				})
 			})
 			setTimeout(() => this.handleContactList(), 500)
+	}
+	getConversationAfterPv(contactId) {		
+		const token = this.props.token
+		const tokenObject = decode(token)
+		const userId = tokenObject.sub
+		const recipient_id = contactId
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		axios
+			.get(`http://localhost:8000/${userId}/contacts/${contactId}/conversation`, axiosConfig)
+			.then(data => {
+				this.setState(() => {
+					const recipient_id = contactId
+					return { conversations: data.data , recipientId: recipient_id }
+				})
+			})
 	}
 	handleContactList() {
 		this.setState((prevState) => {
