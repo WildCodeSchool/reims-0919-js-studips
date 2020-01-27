@@ -1,6 +1,6 @@
 ### GET all posts
 GET http://localhost:8000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTU0Nzg5NCwiZXhwIjoxNTc5NTQ4MDc0fQ.5xikE842nlcN6Qrlpt0TFIVwL6ShK3C4dyMGW2AjwLE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDEyMjAxNCwiZXhwIjoxNTgwMTIyNjE0fQ.vmw7e-5jF7lgCFVff8R-CuM_KRMZceqDO8xer8_HKP0
 ### GET one post
 GET http://localhost:8000/posts/1
 
@@ -60,6 +60,7 @@ Content-Type: application/json
 
 ### GET : all likes
 GET http://localhost:8000/likes
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDEyNTE0MiwiZXhwIjoxNTgwMTI2MzQyfQ.4QTvMUGg--jhn-lH6lEZGGUB8WT1JcZEtPAEVzrY1Rw
 
 ### GET one like (that doesn't exists)
 GET http://localhost:8000/likes
@@ -72,7 +73,7 @@ Content-Type: application/json
 
 ### PUT : manage like / unlike of user
 PUT http://localhost:8000/likes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTU0ODgxOCwiZXhwIjoxNTc5NTQ4OTk4fQ.AelPXJbb2jEfF6u8Obzgs210lWWj5Mo-Z-McojZiscI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDEyNTE0MiwiZXhwIjoxNTgwMTI2MzQyfQ.4QTvMUGg--jhn-lH6lEZGGUB8WT1JcZEtPAEVzrY1Rw
 Content-Type: application/json
 
 {
@@ -82,11 +83,11 @@ Content-Type: application/json
 
 ### GET all posts if saved by user
 GET http://localhost:8000/postsaves
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTY4MzE1MiwiZXhwIjoxNTc5NjgzNzUyfQ.FqyyxlzPbDmbKfy-OHIQAUfqvyQQpFLC1d6Au7wNMTg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDEyMjMzNiwiZXhwIjoxNTgwMTIzNTM2fQ.NI0fXf3IQvFok5Nj-KoQcH-ZAziAxoNfJpcQu0q_6ZY
 
 ### PUT : manage save / unsave of a post by a user
-PUT http://localhost:8000/1/postsaves
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTY4MzE1MiwiZXhwIjoxNTc5NjgzNzUyfQ.FqyyxlzPbDmbKfy-OHIQAUfqvyQQpFLC1d6Au7wNMTg
+PUT http://localhost:8000/postsaves
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDEyNDc4OSwiZXhwIjoxNTgwMTI1OTg5fQ.ZVhWsQcIUNOKiuQ989kdD3iUpw8P1LxJDf2w9ghyVcE
 Content-Type: application/json
 
 {
@@ -104,9 +105,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6M
 
 ### GET : contact list
 GET http://localhost:8000/1/contacts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDEyNTYwNSwiZXhwIjoxNTgwMTI2ODA1fQ.GTmDBpH95pUrLWCUZDu0ny77hQYRqSs0fm2jR9YaIVA
+
 
 ### GET : conversation history with one contact
 GET http://localhost:8000/1/contacts/2/conversation
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDEyNTg3NywiZXhwIjoxNTgwMTI3MDc3fQ.tUuzK2XbA-SqqjDlqxZ5cC1cQ7F7uuPY6BJQa-Jsiuw
+
 
 ### POST : new message in a conversation
 POST http://localhost:8000/conversation
