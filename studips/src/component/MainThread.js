@@ -11,6 +11,8 @@ import Menu from './Menu';
 import { Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
 import Library from './Library';
+import messageIcon from '../images/comments-solid.svg';
+import Messaging from './Messaging';
 // import { removeAllListeners } from 'nodemon';
 
 class MainThread extends React.Component {
@@ -28,6 +30,15 @@ class MainThread extends React.Component {
 				category: null,
 				content: null
 			},
+			newPv: {
+				recipientId: null,
+				content: null
+			},
+			contactList: null,
+			isContactListVisible: true,
+			isConversationVisible: false,
+			isPvModalVisible: false,
+			conversations: [],
 			eventDate: new Date()
 		};
 		this.toggleNewPost = this.toggleNewPost.bind(this);
@@ -40,6 +51,12 @@ class MainThread extends React.Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleLikePost = this.handleLikePost.bind(this);
 		this.handleSavePost = this.handleSavePost.bind(this);
+		this.getConversation = this.getConversation.bind(this);
+		this.handleContactList = this.handleContactList.bind(this);
+		this.handleChangeNewPvMess = this.handleChangeNewPvMess.bind(this);
+		this.handleSubmitPrivateMessage = this.handleSubmitPrivateMessage.bind(this);
+		this.togglePvModal = this.togglePvModal.bind(this);
+		this.getConversationAfterPv = this.getConversationAfterPv.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -71,16 +88,17 @@ class MainThread extends React.Component {
 		const userId = tokenObject.sub
 		const postsReq = axios.get('http://localhost:8000/posts', axiosConfig)
 		const savesReq = axios.get('http://localhost:8000/postsaves', axiosConfig)
+		const contactListRequest = axios.get(`http://localhost:8000/${userId}/contacts`, axiosConfig)
 		axios
-			.all([postsReq, savesReq])
-			.then(axios.spread((postsData, postsSaves) => {
+			.all([postsReq, savesReq, contactListRequest])
+			.then(axios.spread((postsData, postsSaves, contactListData) => {
 				let newPosts = []
 				this.setState(() => {
 					for (let i = 0 ; i < postsData.data.length ; i++) {
 						newPosts.push(postsData.data[i])
 						newPosts[i].isPostSavedByUser = postsSaves.data[i].savedByUser
 					}
-					return {posts: newPosts, search: '', activeId: ''}
+					return {posts: newPosts, search: '', activeId: '', contactList: contactListData.data}
 				})
 			}))
 	}
@@ -159,6 +177,24 @@ class MainThread extends React.Component {
 						}
 					</>
 				)
+			case 'messaging':
+				return (
+					<>
+						<Messaging 
+							contactList={this.state.contactList}
+							conversations={this.state.conversations}
+							getConversation={this.getConversation}
+							getConversationAfterPv={this.getConversationAfterPv}
+							isContactListVisible={this.state.isContactListVisible}
+							isConversationVisible={this.state.isConversationVisible}
+							handleContactList={this.handleContactList}
+							handleChangeNewPvMess={this.handleChangeNewPvMess}
+							handleSubmitPrivateMessage={this.handleSubmitPrivateMessage}
+							togglePvModal={this.togglePvModal}
+							isPvModalVisible={this.state.isPvModalVisible}
+							userId={this.state.userData.id}/>
+					</>
+				)
 			break;
 		  	default:
 		  		posts = posts
@@ -208,6 +244,38 @@ class MainThread extends React.Component {
 			setTimeout(this.getThread(), 1000),
 		);
 	}
+	handleSubmitPrivateMessage(e) {
+		e.preventDefault()
+		const token = this.props.token
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		const contactId = this.state.recipientId
+		const newPvMessage = {
+			sender_id: this.state.userData.id,
+			recipient_id: this.state.recipientId,
+			content: this.state.newPv.content
+		}
+		axios
+			.post('http://localhost:8000/conversation', newPvMessage, axiosConfig)	
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+			.then(setTimeout(() => this.getConversationAfterPv(contactId), 150))
+	}
+	handleChangeNewPvMess(event) {
+		const propertyName = event.target.name;
+		const newPvMess = this.state.newPv;
+		newPvMess[propertyName] = event.target.value;
+		this.setState({ newPv: newPvMess });
+	}
+	togglePvModal() {
+		this.setState(prevState => {
+			return { isPvModalVisible: !prevState.isPvModalVisible };
+		})
+	}
 	handleLikePost(e) {
 		const token = this.props.token
 		const axiosConfig = {
@@ -240,6 +308,52 @@ class MainThread extends React.Component {
 	}	
 	handleInputChange(event) {
 		this.setState({search: event.target.value})
+	}
+	getConversation(contactId) {		
+		const token = this.props.token
+		const tokenObject = decode(token)
+		const userId = tokenObject.sub
+		const recipient_id = contactId
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		axios
+			.get(`http://localhost:8000/${userId}/contacts/${contactId}/conversation`, axiosConfig)
+			.then(data => {
+				this.setState(() => {
+					const recipient_id = contactId
+					return { conversations: data.data , recipientId: recipient_id }
+				})
+			})
+			setTimeout(() => this.handleContactList(), 500)
+	}
+	getConversationAfterPv(contactId) {		
+		const token = this.props.token
+		const tokenObject = decode(token)
+		const userId = tokenObject.sub
+		const recipient_id = contactId
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		axios
+			.get(`http://localhost:8000/${userId}/contacts/${contactId}/conversation`, axiosConfig)
+			.then(data => {
+				this.setState(() => {
+					const recipient_id = contactId
+					return { conversations: data.data , recipientId: recipient_id }
+				})
+			})
+	}
+	handleContactList() {
+		this.setState((prevState) => {
+			return {isContactListVisible: !prevState.isContactListVisible, isConversationVisible: !prevState.isConversationVisible}
+		})
 	}
 	render() {
 		const isNotConnected = this.props.token === null;
@@ -291,13 +405,19 @@ class MainThread extends React.Component {
 						onClick={this.getThread}/>
 					
 					<img
+						id='messaging'
+						className="icon"
+						src={messageIcon}
+						alt="messaging"
+						onClick={this.handleChangeTab}/>
+					<img
 						id='library'
 						className="icon"
 						src={library}
 						alt='library'
-						onClick={this.handleChangeTab}/>
+						onClick={this.handleChangeTab}/>						
 				</div>			
-			</>)		
+			</>)	
 	}	
 }
 
