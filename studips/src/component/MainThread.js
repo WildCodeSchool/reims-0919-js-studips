@@ -267,7 +267,7 @@ class MainThread extends React.Component {
 	}
 	handleChangeNewPvMess(event) {
 		const propertyName = event.target.name;
-		const newPvMess = this.state.newPv;
+		const newPvMess = {...this.state.newPv};
 		newPvMess[propertyName] = event.target.value;
 		this.setState({ newPv: newPvMess });
 	}
