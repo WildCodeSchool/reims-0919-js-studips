@@ -101,3 +101,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6M
 ### GET user's own data
 GET http://localhost:8000/profiles/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTcyNzUxNSwiZXhwIjoxNTc5NzI4MTE1fQ.1grWjFlinCydjaKVtwBOkt0fKHLkQe9RUm6CcFq6IGM
+
+### GET : contact list
+GET http://localhost:8000/1/contacts
+
+### GET : conversation history with one contact
+GET http://localhost:8000/1/contacts/2/conversation
+
+### POST : new message in a conversation
+POST http://localhost:8000/conversation
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3OTg1MjU1NiwiZXhwIjoxNTc5ODUzMTU2fQ.EETg8xGpzYhsIXaMcVms3J9ashCKOYkyRQT11Q5OWRs
+Content-Type: application/json
+
+{
+    "sender_id": 1,
+    "recipient_id": 2,
+    "content": "coucou"
+}
+
+###
