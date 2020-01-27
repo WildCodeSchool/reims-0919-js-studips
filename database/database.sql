@@ -14,7 +14,7 @@ create table user
     hobbies varchar(100) null,
     study varchar(50) not null,
     bio varchar(250) null,
-    profile_pic varchar(200) null,
+    profile_pic varchar(200) DEFAULT 'https://i.ibb.co/cr26yfF/default-avatar.jpg',
     city varchar(30) not null
 );
 create table post
