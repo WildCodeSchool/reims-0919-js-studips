@@ -14,7 +14,7 @@ create table user
     hobbies varchar(100) null,
     study varchar(50) not null,
     bio varchar(250) null,
-    profile_pic varchar(200) null,
+    profile_pic varchar(200) DEFAULT 'https://i.ibb.co/cr26yfF/default-avatar.jpg',
     city varchar(30) not null
 );
 create table post
@@ -45,6 +45,17 @@ create table `post_saves`
     post_id int,
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (post_id) REFERENCES post(id)
+);
+
+create table messages
+(
+    id int auto_increment primary key,
+    sender_id int not null,
+    recipient_id int not null,
+    creation_date timestamp default CURRENT_TIMESTAMP,
+    content varchar(300) not null,
+    FOREIGN KEY (sender_id) REFERENCES user(id),
+    FOREIGN KEY (recipient_id) REFERENCES user(id)
 );
 
 INSERT INTO `user`
@@ -195,3 +206,56 @@ INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
 (5, 4);
+
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(1, 2, 'Salut, ça roule ? Est-ce que tu vas au concert de Franky Vincent pour la Saint Valentin ???');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(2, 1, 'Ca va bien, et toi ? Evidemment, il ne faut pas rater ça ! on y va avec ma chérie, on se retrouve là bas ?');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(1, 2, 'Entendu, on se retrouve là bas alors, je devrais y être pour 21h.');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(3, 1, 'Salut ! Je vois que tu as mis en vente tes livres de 1ère année, je suis intéressé. Quel serait le prix ?');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(1, 3, 'Bonjour, si tu prends le tout, je peux te les faire pour 30 euros');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(4, 5, 'Le patron du Chiquito cherche du personnel pour faire la plonge, du coup je me suis dit que tu pourrais être intéressé.');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(5, 4, 'Cool que tu aies pensé à moi ! Par contre je suis pu dispo les weekends en soirée, je travaille déjà dans un resto');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(4, 5, 'Ah ok ! En tout cas, super pour toi !');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(6, 7, 'Je cherche un nouveau coloc pour mon appart. Du coup, direct, je te propose en premier :-)');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(7, 6, 'Ahhh ! Super ! Oui, je suis très intéressé !!');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(6, 7, 'Ce serait vraiment génial que tu nous rejoignes, en plus il y a déjà une super ambiance dans la coloc.');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(1, 7, 'Salut, ça roule depuis le temps ??');
+INSERT INTO messages
+(`sender_id`, `recipient_id`, `content`)
+VALUES
+(6, 1, 'Alors, quoi de neuf ??');

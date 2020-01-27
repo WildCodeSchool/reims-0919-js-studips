@@ -32,8 +32,8 @@ function verifyToken(req, res, next){
 
 app.get('/posts', verifyToken, (req, res) => {
 	const userId = req.authData.sub
-	const sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/%y à %H:%i") AS event_date, COUNT(likes.post_id) AS likes, CASE WHEN EXISTS (SELECT * FROM likes WHERE post.id = likes.post_id AND likes.user_id = ${userId}) THEN TRUE ELSE FALSE END AS likedByUser FROM post LEFT JOIN likes ON post.id=likes.post_id JOIN user on user.id=post.user_id GROUP BY post.id`
-	connection.query(sqlQuery, (err, results) => {
+	const sqlQuery = 'SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study, post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/%y à %H:%i") AS event_date, COUNT(likes.post_id) AS likes, CASE WHEN EXISTS (SELECT * FROM likes WHERE post.id = likes.post_id AND likes.user_id = ?) THEN TRUE ELSE FALSE END AS likedByUser FROM post LEFT JOIN likes ON post.id=likes.post_id JOIN user on user.id=post.user_id GROUP BY post.id'
+	connection.query(sqlQuery, userId, (err, results) => {
     if (err) {
 		console.log(err)
       	res.status(500).send('Erreur lors de la récupération des posts');
@@ -65,8 +65,8 @@ app.post('/posts', verifyToken, (req, res) => {
 app.post('/login', (req, res) => {
 	const userPassword = req.body.password;
 	const userEmail = req.body.email
-	const sqlQuery = `SELECT id, email, password from user where user.email='${userEmail}'`
-	connection.query(sqlQuery, (err, matchs) => {
+	const sqlQuery = 'SELECT id, email, password from user where user.email= ?'
+	connection.query(sqlQuery, userEmail, (err, matchs) => {
 		if (err) {
 			res.status(500).send('error')
 			return
@@ -76,7 +76,7 @@ app.post('/login', (req, res) => {
 			res.status(400).send('Wrong email or password')
 			return
 		} else {
-			jwt.sign({ sub: matchs[0].id }, signature, {expiresIn: '600sec'}, (err, token) => {
+			jwt.sign({ sub: matchs[0].id }, signature, {expiresIn: '1200sec'}, (err, token) => {
 				res.status(200).json({
 					token
 				});
@@ -113,8 +113,8 @@ app.get ('/profiles/:userId', verifyToken, (req, res) => {
 
 app.get('/postsaves', verifyToken, (req, res) => {
 	const userId = req.authData.sub
-	const sqlQuery = `SELECT post.id, CASE WHEN EXISTS (SELECT * FROM post_saves WHERE post.id=post_saves.post_id AND post_saves.user_id=${userId}) THEN TRUE ELSE FALSE END AS savedByUser FROM post LEFT JOIN post_saves ON post.id=post_saves.post_id GROUP BY post.id`
-	connection.query(sqlQuery, (err, results) => {
+	const sqlQuery = 'SELECT post.id, CASE WHEN EXISTS (SELECT * FROM post_saves WHERE post.id=post_saves.post_id AND post_saves.user_id= ?) THEN TRUE ELSE FALSE END AS savedByUser FROM post LEFT JOIN post_saves ON post.id=post_saves.post_id GROUP BY post.id'
+	connection.query(sqlQuery, userId, (err, results) => {
 		if (err) {
 			console.log(err);
 			res.status(500).send('error getting saved posts from user');
@@ -128,15 +128,15 @@ app.put('/postsaves', verifyToken, (req, res) => {
 	const userId = req.authData.sub
 	const postId = req.body.post_id
 	const formData = {user_id: userId, post_id: postId}
-	const sqlQuery1 = `SELECT * FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
-	connection.query(sqlQuery1, (err, results) => {
+	const sqlQuery1 = 'SELECT * FROM post_saves WHERE post_id = ? AND user_id = ?'
+	connection.query(sqlQuery1, [postId, userId], (err, results) => {
 		if (err) {
 			console.log(err);
 			res.status(500).send('error getting saved posts');
 		} else {
 			if (results[0]) {
-				const sqlQuery2 = `DELETE FROM post_saves WHERE post_id = ${postId} AND user_id = ${userId}`
-				connection.query(sqlQuery2, err => {
+				const sqlQuery2 = 'DELETE FROM post_saves WHERE post_id = ? AND user_id = ?'
+				connection.query(sqlQuery2, [postId, userId], err => {
 					if (err) {
 						console.log(err);
 						res.status(500).send("Error deleting saved post");
@@ -161,8 +161,8 @@ app.put('/postsaves', verifyToken, (req, res) => {
 
 app.get('/:userId/postsaves', verifyToken, (req, res) => {
 	const userId = req.authData.sub
-	const sqlQuery = `SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study,post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date FROM post JOIN post_saves ON post_saves.post_id = post.id JOIN user ON user.id=post.user_id WHERE post_saves.user_id = ${userId}`
-	connection.query(sqlQuery, (err, results) => {
+	const sqlQuery = 'SELECT user.firstname, user.lastname, user.city, user.profile_pic, user.study,post.*, DATE_FORMAT(post.created_at, "Posté le : %d/%m/%y à %H:%i") AS created_at, DATE_FORMAT(post.event_date, "Le %d/%m/y% à %H:%i") AS event_date FROM post JOIN post_saves ON post_saves.post_id = post.id JOIN user ON user.id=post.user_id WHERE post_saves.user_id = ?'
+	connection.query(sqlQuery, userId, (err, results) => {
 		if (err) {
 			console.log(err)
 			res.status(500).send("Error getting posts in library")
@@ -188,15 +188,15 @@ app.put('/likes', verifyToken, (req, res) => {
 	const userId = req.authData.sub
 	const postId = req.body.post_id
 	const formData = {user_id: userId, post_id: postId}
-	let sqlQuery1 = `SELECT * FROM likes WHERE post_id = ${postId} AND user_id = ${userId}`
-	connection.query(sqlQuery1, (err, results) => {
+	const sqlQuery1 = 'SELECT * FROM likes WHERE post_id = ? AND user_id = ?'
+	connection.query(sqlQuery1, [postId, userId], (err, results) => {
 		if (err) {
 			console.log(err);
 			res.status(500).send('error getting like');
 		} else {
 			if (results[0]) {
-				let sqlQuery2 = `DELETE FROM likes WHERE post_id = ${postId} AND user_id = ${userId}`
-				connection.query(sqlQuery2, err => {
+				const sqlQuery2 = 'DELETE FROM likes WHERE post_id = ? AND user_id = ?'
+				connection.query(sqlQuery2, [postId, userId], err => {
 					if (err) {
 						console.log(err);
 						res.status(500).send("Error deleting like");
@@ -205,7 +205,7 @@ app.put('/likes', verifyToken, (req, res) => {
 					}
 				})
 			} else {
-				let sqlQuery3 = 'INSERT INTO `likes` SET ?';
+				const sqlQuery3 = 'INSERT INTO `likes` SET ?';
 				connection.query(sqlQuery3, formData, (err, results2) => {
 					if (err) {
 						console.log(err);
@@ -218,6 +218,51 @@ app.put('/likes', verifyToken, (req, res) => {
 		}
 	})
 })
+
+app.get('/:userId/contacts', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const sqlQuery = 'SELECT DISTINCT user.id, user.firstname, user.lastname, user.profile_pic FROM user JOIN messages ON messages.sender_id=user.id WHERE recipient_id= ? UNION SELECT DISTINCT user.id, user.firstname, user.lastname, user.profile_pic FROM user JOIN messages ON messages.recipient_id=user.id WHERE sender_id= ?'
+	connection.query(sqlQuery, [userId, userId], (err, results) => {
+		if (err) {
+			res.status(500).send('Erreur lors de la récupération des contacts');
+		} else {			
+			res.json(results);
+		}
+	})
+})
+
+app.get('/:userId/contacts/:contactId/conversation', verifyToken, (req, res) => {
+	const userId = req.authData.sub
+	const contactId = req.params.contactId
+	const sqlQuery = 'SELECT messages.* FROM messages WHERE (sender_id= ? AND recipient_id= ?) OR (sender_id= ? AND recipient_id= ?) ORDER BY messages.id DESC'
+	connection.query(sqlQuery, [userId, contactId, contactId, userId], (err, results) => {
+		if (err) {
+			res.status(500).send('Erreur lors de la récupération de la conversation')
+		} else {
+			res.json(results);
+		}
+	})
+})
+
+app.post('/conversation', verifyToken, (req, res) => {
+  	const senderId = req.authData.sub
+	const recipientId = req.body.recipient_id
+	const content = req.body.content
+	const formData = {
+		sender_id: senderId,	
+		recipient_id: recipientId,
+		content: content
+	}
+	const sqlQuery = 'INSERT INTO messages SET ?'
+  	connection.query(sqlQuery, formData, (err, results) => {
+		if (err) {
+		console.log(err);
+		res.status(500).send("Error sending a new post");
+		} else {
+		res.sendStatus(200);
+		}
+  	});
+});
 
 app.listen(port, err => {
 	if (err) {
