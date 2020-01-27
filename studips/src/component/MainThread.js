@@ -37,7 +37,6 @@ class MainThread extends React.Component {
 			contactList: null,
 			isContactListVisible: true,
 			isConversationVisible: false,
-			isPvModalVisible: false,
 			conversations: [],
 			eventDate: new Date()
 		};
@@ -55,7 +54,6 @@ class MainThread extends React.Component {
 		this.handleContactList = this.handleContactList.bind(this);
 		this.handleChangeNewPvMess = this.handleChangeNewPvMess.bind(this);
 		this.handleSubmitPrivateMessage = this.handleSubmitPrivateMessage.bind(this);
-		this.togglePvModal = this.togglePvModal.bind(this);
 		this.getConversationAfterPv = this.getConversationAfterPv.bind(this);
 	}
 	componentDidMount() {
@@ -190,8 +188,6 @@ class MainThread extends React.Component {
 							handleContactList={this.handleContactList}
 							handleChangeNewPvMess={this.handleChangeNewPvMess}
 							handleSubmitPrivateMessage={this.handleSubmitPrivateMessage}
-							togglePvModal={this.togglePvModal}
-							isPvModalVisible={this.state.isPvModalVisible}
 							userId={this.state.userData.id}/>
 					</>
 				)
@@ -270,11 +266,6 @@ class MainThread extends React.Component {
 		const newPvMess = {...this.state.newPv};
 		newPvMess[propertyName] = event.target.value;
 		this.setState({ newPv: newPvMess });
-	}
-	togglePvModal() {
-		this.setState(prevState => {
-			return { isPvModalVisible: !prevState.isPvModalVisible };
-		})
 	}
 	handleLikePost(e) {
 		const token = this.props.token

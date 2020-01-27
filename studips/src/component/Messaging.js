@@ -1,20 +1,17 @@
 import React from 'react';
 import ContactCard from './ContactCard';
 import PrivateMessage from './PrivateMessage';
-import PvModal from './PvModal';
 
 function Messaging({
 	contactList,
 	isContactListVisible,
 	isConversationVisible,
-    isPvModalVisible,
 	getConversation,
     getConversationAfterPv,
 	conversations,
     handleContactList,
     handleChangeNewPvMess,
     handleSubmitPrivateMessage,
-    togglePvModal,
 	userId
 }) {
 	return (
@@ -35,11 +32,6 @@ function Messaging({
 			)}
 			{isConversationVisible && (
                 <>
-                    <PvModal 
-                        handleChangeNewPvMess={handleChangeNewPvMess}
-                        handleSubmitPrivateMessage={handleSubmitPrivateMessage}
-                        isPvModalVisible={isPvModalVisible}
-                        togglePvModal={togglePvModal}/>
                     <button 
 						onClick={handleContactList}
 						className='returnContactList'>Retour</button>
@@ -55,7 +47,7 @@ function Messaging({
 						<button
 							className='sendPvMessage'
 							onClick={(e) => {
-                                    handleSubmitPrivateMessage(e)
+								handleSubmitPrivateMessage(e)
 							}}>Envoyer</button>
 					</div>
                 </>
