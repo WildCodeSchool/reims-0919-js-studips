@@ -792,16 +792,30 @@ input{
 }
 
 .sendPvMessage {
-	position: fixed;
 	bottom: 10vh;
 	height: 5vh;
-	width: 60%;
-	margin-left: 15%;
+	width: 25%;
 	font-size: 19px;
 	background-color: #a40032;
 	color: white;
 	border: none;
 	border-radius: 25px;
+}
+
+.newPvMessage {
+	position: fixed;
+	bottom: 10vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+}
+
+.newPvTextArea {
+	width: 70%;
+	border: solid 2px #adadad;
+	border-radius: 5px;
 }
 
 .contactCard {
@@ -811,7 +825,7 @@ input{
 .pvMessageContact {
 	background-color: #e2e2e2;
 	border-radius: 8px;
-	margin-top: 1rem;
+	margin: 0.3rem 0;
 	width: 80%;
 	align-self: flex-end;
 	padding: 0.5em;
@@ -820,7 +834,7 @@ input{
 .pvMessageUser {
 	background-color: #e2e2e2;
 	border-radius: 8px;
-	margin-top: 1rem;
+	margin: 0.3rem 0;
 	width: 80%;
 	align-self: flex-start;
 	padding: 0.5em;

@@ -46,9 +46,18 @@ function Messaging({
                     <div className='messageList'>
                         {conversations.map(message => <PrivateMessage messageData={message} userId={userId} />)}
                     </div>
-                    <button 
-                        className='sendPvMessage'
-                        onClick={togglePvModal}>Envoyer un message</button>
+					<div className='newPvMessage'>
+						<textarea
+							name='content'
+							className='newPvTextArea'
+							onChange={handleChangeNewPvMess}>
+						</textarea>
+						<button
+							className='sendPvMessage'
+							onClick={(e) => {
+                                    handleSubmitPrivateMessage(e)
+							}}>Envoyer</button>
+					</div>
                 </>
 			)}
 		</div>
