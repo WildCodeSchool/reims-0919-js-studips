@@ -6,7 +6,8 @@ import LoginForm from './component/LoginForm';
 import Welcome from './component/Welcome';
 import { Switch, Route } from 'react-router-dom';
 import Parameter from './component/Parameter';
-import Profil from './component/Profil'
+import Profil from './component/Profil';
+import ProfilCard from './component/ProfilCard'
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -33,6 +34,14 @@ function App() {
 					{...props}
 					token={token}
 					/>
+					
+				)} />
+				<Route path='/profilCard' render={(props) => (
+					<ProfilCard 
+					{...props}
+					token={token}
+					/>
+					
 				)} />
 			</Switch>
 		</div>
