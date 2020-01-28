@@ -98,6 +98,19 @@ app.post('/register', (req, res) => {
   	});
 })
 
+app.get ('/profiles', verifyToken, (req, res) => {
+	const userdata = req.body.userdata
+	const sqlQuery = 'SELECT user.firstname, user.lastname, user.study, user.profile_pic, user.city FROM user WHERE user.firstname = ? OR user.lastname = ? OR user.city = ? OR user.study = ?'
+	connection.query(sqlQuery, [userdata, userdata, userdata, userdata], (err, results) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send('error getting user data');
+		} else {
+			res.json(results)
+		}
+	})
+})
+
 app.get ('/profiles/:userId', verifyToken, (req, res) => {
 	const userId = req.authData.sub
 	const sqlQuery = 'SELECT * FROM user WHERE user.id = ?'
