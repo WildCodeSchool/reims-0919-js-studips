@@ -303,7 +303,6 @@ class MainThread extends React.Component {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
-		// const recipient_id = contactId
 		const axiosConfig = {
         	headers: {
 				'Content-Type': 'application/json',
@@ -324,7 +323,6 @@ class MainThread extends React.Component {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
-		// const recipient_id = contactId
 		const axiosConfig = {
         	headers: {
 				'Content-Type': 'application/json',
