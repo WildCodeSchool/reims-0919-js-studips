@@ -14,7 +14,11 @@ class Menu extends Component{
 		return(
 			<div className = 'menu'>
 				<div className = 'profile'>
-				<img id='retour' src='https://zupimages.net/up/20/03/wunb.png'/>
+				<img 
+					id='retour' 
+					src='https://zupimages.net/up/20/03/wunb.png'
+					alt='retour'
+				/>
 					<div className='prof'>
 					<Link to ={{pathname: '/profil', state: {userData: this.props.userData}}}>
 					<img className= 'userPic' src ={this.props.userData.profile_pic} alt = 'profil'/>

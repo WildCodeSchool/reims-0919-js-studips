@@ -3,7 +3,6 @@ import PostCard from './PostCard';
 import '../App.css';
 import library from '../images/library.svg'
 import homeIcon from '../images/home-solid.svg';
-import searchIcon from '../images/search-solid.svg';
 import menuIcon from '../images/bars-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal';
@@ -37,7 +36,6 @@ class MainThread extends React.Component {
 			contactList: null,
 			isContactListVisible: true,
 			isConversationVisible: false,
-			isPvModalVisible: false,
 			conversations: [],
 			eventDate: new Date()
 		};
@@ -55,7 +53,6 @@ class MainThread extends React.Component {
 		this.handleContactList = this.handleContactList.bind(this);
 		this.handleChangeNewPvMess = this.handleChangeNewPvMess.bind(this);
 		this.handleSubmitPrivateMessage = this.handleSubmitPrivateMessage.bind(this);
-		this.togglePvModal = this.togglePvModal.bind(this);
 		this.getConversationAfterPv = this.getConversationAfterPv.bind(this);
 	}
 	componentDidMount() {
@@ -172,7 +169,7 @@ class MainThread extends React.Component {
 							.filter(post => post.isPostSavedByUser === 1)
 							.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 							.map((post) => {
-								return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
+								return React.Children.toArray(<PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>)
 							})
 						}
 					</>
@@ -190,8 +187,6 @@ class MainThread extends React.Component {
 							handleContactList={this.handleContactList}
 							handleChangeNewPvMess={this.handleChangeNewPvMess}
 							handleSubmitPrivateMessage={this.handleSubmitPrivateMessage}
-							togglePvModal={this.togglePvModal}
-							isPvModalVisible={this.state.isPvModalVisible}
 							userId={this.state.userData.id}/>
 					</>
 				)
@@ -271,11 +266,6 @@ class MainThread extends React.Component {
 		newPvMess[propertyName] = event.target.value;
 		this.setState({ newPv: newPvMess });
 	}
-	togglePvModal() {
-		this.setState(prevState => {
-			return { isPvModalVisible: !prevState.isPvModalVisible };
-		})
-	}
 	handleLikePost(e) {
 		const token = this.props.token
 		const axiosConfig = {
@@ -313,7 +303,6 @@ class MainThread extends React.Component {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
-		const recipient_id = contactId
 		const axiosConfig = {
         	headers: {
 				'Content-Type': 'application/json',
@@ -334,7 +323,6 @@ class MainThread extends React.Component {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
-		const recipient_id = contactId
 		const axiosConfig = {
         	headers: {
 				'Content-Type': 'application/json',
@@ -379,19 +367,19 @@ class MainThread extends React.Component {
 						handleEventDate={this.handleEventDate}/>
 				<div className='topButtons'>
 					<img
-						className='icon'
+						className='icon space:inline'
 						src={menuIcon}
 						alt='menu'
 						onClick={this.toggleMenuVisible}
 					/>
-					<div className='inputCity'>
+					<div className='inputCity space:inline'>
 						<input
 							type="text"
 							onChange={ this.handleInputChange }
 							placeholder="Search"/>
 					</div>
-					<button className='postButton' onClick={this.toggleNewPost}>
-						Poster un message
+					<button className='postButton2' onClick={this.toggleNewPost}>
+						+
 					</button>
 				</div>
 					<div className='cardList'>

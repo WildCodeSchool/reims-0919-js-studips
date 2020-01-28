@@ -2,8 +2,8 @@ import React from 'react';
 import '../App.css';
 import heartIcon from '../images/heart-solid .svg';
 import heartIconRed from '../images/heart-solid-red.svg';
-import saveIcon from '../images/download-solid.svg';
-import saveIconRed from '../images/download-solid-red.svg';
+import library from '../images/library.svg';
+import libraryRed from '../images/library-red.svg';
 
 
 function PostCard({ postData, handleLikePost, handleSavePost }) {
@@ -48,7 +48,7 @@ function PostCard({ postData, handleLikePost, handleSavePost }) {
 					<img 
 						name={postData.id}
 						className='save' 
-						src={postData.isPostSavedByUser === 1 ? saveIconRed : saveIcon}
+						src={postData.isPostSavedByUser === 1 ? libraryRed : library}
 						alt='save'
 						onClick={handleSavePost} />
 				</div>
