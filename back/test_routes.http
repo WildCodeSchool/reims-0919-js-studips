@@ -124,4 +124,13 @@ Content-Type: application/json
     "content": "coucou"
 }
 
+### GET : search in profiles
+GET http://localhost:8000/profiles
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDIxNjAxMywiZXhwIjoxNTgwMjE3MjEzfQ.vPySs_IFEFOPdhkm6qQUTw7GW8QiINbzkuuMGD04n00
+Content-Type: application/json
+
+{
+    "userdata": "Caen"
+}
+
 ###
