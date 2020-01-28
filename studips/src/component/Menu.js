@@ -21,7 +21,7 @@ class Menu extends Component{
 				/>
 					<div className='prof'>
 					<Link to ={{pathname: '/profil', state: {userData: this.props.userData}}}>
-					<img className= 'userPic' src ={this.props.userData.profile_pic} alt = 'profil'/>
+						<img className= 'userPic' src ={this.props.userData.profile_pic} alt = 'profil'/>
 					</Link>
 					<p className='userName'>{this.props.userData.lastname} , {this.props.userData.firstname}</p>
 					</div>

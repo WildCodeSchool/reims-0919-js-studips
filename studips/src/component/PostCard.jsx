@@ -4,6 +4,7 @@ import heartIcon from '../images/heart-solid .svg';
 import heartIconRed from '../images/heart-solid-red.svg';
 import library from '../images/library.svg';
 import libraryRed from '../images/library-red.svg';
+import {Link} from 'react-router-dom';
 
 
 function PostCard({ postData, handleLikePost, handleSavePost }) {
@@ -12,7 +13,9 @@ function PostCard({ postData, handleLikePost, handleSavePost }) {
 			<div className='entete'>
 				<p id='category'>{postData.category}</p>
 				<div className='userProfile'>
+				<Link to={{pathname: '/profilCard', state:{postData}}}>	
 					<img className='avatar' src={postData.profile_pic} alt='profil' />
+				</Link>
 					<div className="userInfo">
 						<p id='name'>
 							{postData.firstname} {postData.lastname}
