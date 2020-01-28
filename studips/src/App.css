@@ -869,6 +869,55 @@ input{
 	height: 60px;
 }
 
+.searchUser {
+	display: flex;
+	flex-direction: row;
+	margin: 1em 0;
+	align-items: center;
+}
+
+.searchUserInput {
+	flex: 1;
+}
+
+.searchUserButton {
+	height: 40px;
+	width: 40px;
+}
+
+.userCard {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 1em 0;
+	background-color: #e2e2e2;
+	border: solid rgb(219, 219, 219) 2px;
+	padding: 0.5em;
+}
+
+.userCardInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.postButton3 {
+	color: white;
+	background-color: #a40032;
+	border: none;
+	border-radius: 50%;
+	font-size: 1.5em;
+	width: 37px;
+	height: 37px;
+	line-height: 37px;
+	align-self: center;
+}
+
+.userCardMain {
+	display: flex;
+}
+
+
 
 /* ******************************************* END Messaging ************************************************** */ 
 
