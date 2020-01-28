@@ -34,6 +34,8 @@ class MainThread extends React.Component {
 				content: null
 			},
 			contactList: null,
+			userList: null,
+			userFilter: null,
 			isContactListVisible: true,
 			isConversationVisible: false,
 			isUserListVisible: false,
@@ -56,6 +58,8 @@ class MainThread extends React.Component {
 		this.handleSubmitPrivateMessage = this.handleSubmitPrivateMessage.bind(this);
 		this.getConversationAfterPv = this.getConversationAfterPv.bind(this);
 		this.handleUserList = this.handleUserList.bind(this);
+		this.handleChangeUserListFilter = this.handleChangeUserListFilter.bind(this);
+		this.getUserList = this.getUserList.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -191,7 +195,10 @@ class MainThread extends React.Component {
 							handleSubmitPrivateMessage={this.handleSubmitPrivateMessage}
 							userId={this.state.userData.id}
 							handleUserList={this.handleUserList}
-							isUserListVisible={this.state.isUserListVisible}/>
+							isUserListVisible={this.state.isUserListVisible}
+							handleChangeUserListFilter={this.handleChangeUserListFilter}
+							getUserList={this.getUserList}
+							userList={this.state.userList}/>
 					</>
 				)
 			break;
@@ -351,6 +358,24 @@ class MainThread extends React.Component {
 		this.setState((prevState) => {
 			return {isUserListVisible: !prevState.isUserListVisible, isContactListVisible: !prevState.isContactListVisible}
 		})
+	}
+	handleChangeUserListFilter(e) {
+		this.setState({ userFilter: e.target.value })
+	}
+	getUserList() {
+		const token = this.props.token
+		const tokenObject = decode(token)
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		const searchFilter = this.state.userFilter
+		axios
+			.get(`http://localhost:8000/profiles/search/${searchFilter}`, axiosConfig)
+			.then(response => this.setState({ userList: response.data }))
+
 	}
 	render() {
 		const isNotConnected = this.props.token === null;

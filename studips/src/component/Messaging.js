@@ -1,17 +1,21 @@
 import React from 'react';
 import ContactCard from './ContactCard';
 import PrivateMessage from './PrivateMessage';
+import UserCard from './UserCard';
 
 function Messaging({
 	contactList,
+	userList,
 	isContactListVisible,
 	isConversationVisible,
 	isUserListVisible,
 	getConversation,
     getConversationAfterPv,
+	getUserList,
 	conversations,
     handleContactList,
     handleChangeNewPvMess,
+	handleChangeUserListFilter,
     handleSubmitPrivateMessage,
 	handleUserList,
 	userId
@@ -43,7 +47,13 @@ function Messaging({
 						onClick={handleUserList}
 						className='returnContactList'>Retour
 					</button>
+					<textarea
+						onChange={(e) => handleChangeUserListFilter(e)}>
+					</textarea>
+					<button
+						onClick={getUserList}>Recherche</button>
 					<div className='userList'>
+						{userList && React.Children.toArray(userList.map(contact => <UserCard userData={contact} />))}						
 					</div>
 				</>
 			)}
