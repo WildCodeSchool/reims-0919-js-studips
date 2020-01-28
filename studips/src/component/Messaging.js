@@ -20,14 +20,14 @@ function Messaging({
 			{isContactListVisible && (
 				<div className='contactList'>
 					<p className='contactListTitle'>Liste de contacts</p>
-					{contactList.map(contact => (
+					{React.Children.toArray(contactList.map(contact => (
 						<ContactCard
 							contactData={contact}
 							isContactListVisible={isContactListVisible}
 							isConversationVisible={isConversationVisible}
 							getConversation={getConversation}
 						/>
-					))}
+					)))}
 				</div>
 			)}
 			{isConversationVisible && (
@@ -36,7 +36,7 @@ function Messaging({
 						onClick={handleContactList}
 						className='returnContactList'>Retour</button>
                     <div className='messageList'>
-                        {conversations.map(message => <PrivateMessage messageData={message} userId={userId} />)}
+                        {React.Children.toArray(conversations.map(message => <PrivateMessage messageData={message} userId={userId} />))}
                     </div>
 					<div className='newPvMessage'>
 						<textarea
