@@ -125,12 +125,7 @@ Content-Type: application/json
 }
 
 ### GET : search in profiles
-GET http://localhost:8000/profiles
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDIxNjAxMywiZXhwIjoxNTgwMjE3MjEzfQ.vPySs_IFEFOPdhkm6qQUTw7GW8QiINbzkuuMGD04n00
-Content-Type: application/json
-
-{
-    "userdata": "Caen"
-}
+GET http://localhost:8000/profiles/search/paris
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MDIyMjM4MSwiZXhwIjoxNTgwMjIzNTgxfQ.X58r2V4YL5HzKasLKSRK0yCiWxByKDbtvt5g0Lf0iCo
 
 ###
