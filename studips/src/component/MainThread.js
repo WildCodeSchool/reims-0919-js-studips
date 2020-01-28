@@ -3,7 +3,6 @@ import PostCard from './PostCard';
 import '../App.css';
 import library from '../images/library.svg'
 import homeIcon from '../images/home-solid.svg';
-import searchIcon from '../images/search-solid.svg';
 import menuIcon from '../images/bars-solid.svg';
 import axios from 'axios';
 import PostModal from './PostModal';
@@ -304,7 +303,7 @@ class MainThread extends React.Component {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
-		const recipient_id = contactId
+		// const recipient_id = contactId
 		const axiosConfig = {
         	headers: {
 				'Content-Type': 'application/json',
@@ -325,7 +324,7 @@ class MainThread extends React.Component {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub
-		const recipient_id = contactId
+		// const recipient_id = contactId
 		const axiosConfig = {
         	headers: {
 				'Content-Type': 'application/json',
