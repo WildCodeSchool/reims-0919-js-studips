@@ -898,7 +898,7 @@ input{
 .logoProfil img{
 	
 	width: 20vw;
-	margin-top: 5vh;
+	margin-bottom: 3vh;
 	box-shadow: 0px 0px 20px 1px;
 }
 
@@ -907,3 +907,19 @@ input{
 .space\:inline {
 	margin-right: 1rem;
 }
+/* **********************profilCard debut************************************************************** */
+.addPeople{
+	color: white;
+    background-color: #a40032;
+    border: none;
+    border-radius: 48px 48px 48px 48px;
+	font-size: 1.5em;
+	width: 300px;
+	height: auto;
+	line-height: 37px;
+	margin-top: 3vh;
+
+
+}
+
+/* **********************profilCard fin************************************************************** */
