@@ -100,7 +100,6 @@ app.post('/register', (req, res) => {
 
 app.get('/profiles/search/:userdata', verifyToken, (req, res) => {
 	const userdata = req.params.userdata
-	console.log(userdata)
 	const sqlQuery = 'SELECT user.firstname, user.lastname, user.study, user.profile_pic, user.city FROM user WHERE user.firstname = ? OR user.lastname = ? OR user.city = ? OR user.study = ?'
 	connection.query(sqlQuery, [userdata, userdata, userdata, userdata], (err, results) => {
 		if (err) {
