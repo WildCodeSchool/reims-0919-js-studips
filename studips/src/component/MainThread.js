@@ -169,7 +169,7 @@ class MainThread extends React.Component {
 							.filter(post => post.isPostSavedByUser === 1)
 							.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 							.map((post) => {
-								return <PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>
+								return React.Children.toArray(<PostCard handleSavePost={this.handleSavePost} postData={post} handleLikePost={this.handleLikePost}/>)
 							})
 						}
 					</>
