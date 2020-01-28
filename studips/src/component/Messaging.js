@@ -6,29 +6,46 @@ function Messaging({
 	contactList,
 	isContactListVisible,
 	isConversationVisible,
+	isUserListVisible,
 	getConversation,
     getConversationAfterPv,
 	conversations,
     handleContactList,
     handleChangeNewPvMess,
     handleSubmitPrivateMessage,
+	handleUserList,
 	userId
 }) {
 	return (
 		<div className='messaging'>
             <p className='titleMessaging'>Messagerie</p>
 			{isContactListVisible && (
-				<div className='contactList'>
-					<p className='contactListTitle'>Liste de contacts</p>
-					{React.Children.toArray(contactList.map(contact => (
-						<ContactCard
-							contactData={contact}
-							isContactListVisible={isContactListVisible}
-							isConversationVisible={isConversationVisible}
-							getConversation={getConversation}
-						/>
-					)))}
-				</div>
+				<>
+					<div className='contactList'>
+						<p className='contactListTitle'>Liste de contacts</p>
+						{React.Children.toArray(contactList.map(contact => (
+							<ContactCard
+								contactData={contact}
+								isContactListVisible={isContactListVisible}
+								isConversationVisible={isConversationVisible}
+								getConversation={getConversation}
+							/>
+						)))}
+					</div>	
+					<button 
+						className='addContactButton'
+						onClick={handleUserList}>+</button>
+				</>
+			)}
+			{isUserListVisible && (
+				<>
+					<button 
+						onClick={handleUserList}
+						className='returnContactList'>Retour
+					</button>
+					<div className='userList'>
+					</div>
+				</>
 			)}
 			{isConversationVisible && (
                 <>

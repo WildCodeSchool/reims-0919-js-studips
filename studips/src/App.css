@@ -855,10 +855,18 @@ input{
 	justify-content: center;
 }
 
-.pvModal {
+.addContactButton {
 	position: fixed;
-	top: 9vh;
-	left: 0vh;
+	bottom: 10vh;
+	right: 1em;
+	margin: 0 auto;
+	color: white;
+    background-color: #a40032;
+    border: none;
+    border-radius: 50%;
+	font-size: 2em;
+	width: 60px;
+	height: 60px;
 }
 
 

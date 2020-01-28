@@ -36,6 +36,7 @@ class MainThread extends React.Component {
 			contactList: null,
 			isContactListVisible: true,
 			isConversationVisible: false,
+			isUserListVisible: false,
 			conversations: [],
 			eventDate: new Date()
 		};
@@ -54,6 +55,7 @@ class MainThread extends React.Component {
 		this.handleChangeNewPvMess = this.handleChangeNewPvMess.bind(this);
 		this.handleSubmitPrivateMessage = this.handleSubmitPrivateMessage.bind(this);
 		this.getConversationAfterPv = this.getConversationAfterPv.bind(this);
+		this.handleUserList = this.handleUserList.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -187,7 +189,9 @@ class MainThread extends React.Component {
 							handleContactList={this.handleContactList}
 							handleChangeNewPvMess={this.handleChangeNewPvMess}
 							handleSubmitPrivateMessage={this.handleSubmitPrivateMessage}
-							userId={this.state.userData.id}/>
+							userId={this.state.userData.id}
+							handleUserList={this.handleUserList}
+							isUserListVisible={this.state.isUserListVisible}/>
 					</>
 				)
 			break;
@@ -341,6 +345,11 @@ class MainThread extends React.Component {
 	handleContactList() {
 		this.setState((prevState) => {
 			return {isContactListVisible: !prevState.isContactListVisible, isConversationVisible: !prevState.isConversationVisible}
+		})
+	}
+	handleUserList() {
+		this.setState((prevState) => {
+			return {isUserListVisible: !prevState.isUserListVisible, isContactListVisible: !prevState.isContactListVisible}
 		})
 	}
 	render() {
