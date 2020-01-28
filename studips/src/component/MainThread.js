@@ -370,19 +370,19 @@ class MainThread extends React.Component {
 						handleEventDate={this.handleEventDate}/>
 				<div className='topButtons'>
 					<img
-						className='icon'
+						className='icon space:inline'
 						src={menuIcon}
 						alt='menu'
 						onClick={this.toggleMenuVisible}
 					/>
-					<div className='inputCity'>
+					<div className='inputCity space:inline'>
 						<input
 							type="text"
 							onChange={ this.handleInputChange }
 							placeholder="Search"/>
 					</div>
-					<button className='postButton' onClick={this.toggleNewPost}>
-						Poster un message
+					<button className='postButton2' onClick={this.toggleNewPost}>
+						+
 					</button>
 				</div>
 					<div className='cardList'>
