@@ -158,7 +158,7 @@
 	width: 35vw;
 	border: 1px solid black;
 	font-size:14px ;
-
+	flex: 1;
 }
 .inputCity input{
 	width:100%;
@@ -191,10 +191,22 @@
     background-color: #a40032;
     border: none;
     border-radius: 1em;
-	padding: 0.5rem 1rem;
 	font-size: 16px;
 }
 .postButton:hover {
+    cursor: pointer;
+}
+.postButton2 {
+    color: white;
+    background-color: #a40032;
+    border: none;
+    border-radius: 50%;
+	font-size: 1.5em;
+	width: 37px;
+	height: 37px;
+	line-height: 37px;
+}
+.postButton2:hover {
     cursor: pointer;
 }
 .navbar {
@@ -330,7 +342,6 @@
 }
 .validationButton{
 	width: 70%;
-	height: 7vh;
 	border-radius: 22px;
 	padding: 2%;
 	font-size: 30px;
@@ -341,7 +352,6 @@
 }
 .loginButton{
 	width: 70%;
-	height: 7vh;
 	border-radius: 22px;
 	padding: 2%;
 	font-size: 30px;
@@ -461,7 +471,6 @@ input{
 .nextButton button{
 	width: 70%;
 	border-radius: 22px;
-	height: 7vh;
 	font-size: 30px;
 	display: flex;
 	justify-content: center;
@@ -792,16 +801,30 @@ input{
 }
 
 .sendPvMessage {
-	position: fixed;
 	bottom: 10vh;
 	height: 5vh;
-	width: 60%;
-	margin-left: 15%;
+	width: 25%;
 	font-size: 19px;
 	background-color: #a40032;
 	color: white;
 	border: none;
 	border-radius: 25px;
+}
+
+.newPvMessage {
+	position: fixed;
+	bottom: 10vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+}
+
+.newPvTextArea {
+	width: 70%;
+	border: solid 2px #adadad;
+	border-radius: 5px;
 }
 
 .contactCard {
@@ -811,7 +834,7 @@ input{
 .pvMessageContact {
 	background-color: #e2e2e2;
 	border-radius: 8px;
-	margin-top: 1rem;
+	margin: 0.3rem 0;
 	width: 80%;
 	align-self: flex-end;
 	padding: 0.5em;
@@ -820,7 +843,7 @@ input{
 .pvMessageUser {
 	background-color: #e2e2e2;
 	border-radius: 8px;
-	margin-top: 1rem;
+	margin: 0.3rem 0;
 	width: 80%;
 	align-self: flex-start;
 	padding: 0.5em;
@@ -881,3 +904,6 @@ input{
 
 /* ******************************************* END profile page ************************************************** */ 
 
+.space\:inline {
+	margin-right: 1rem;
+}
