@@ -60,6 +60,7 @@ class MainThread extends React.Component {
 		this.handleUserList = this.handleUserList.bind(this);
 		this.handleChangeUserListFilter = this.handleChangeUserListFilter.bind(this);
 		this.getUserList = this.getUserList.bind(this);
+		this.handleAddNewContact = this.handleAddNewContact.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
@@ -198,7 +199,8 @@ class MainThread extends React.Component {
 							isUserListVisible={this.state.isUserListVisible}
 							handleChangeUserListFilter={this.handleChangeUserListFilter}
 							getUserList={this.getUserList}
-							userList={this.state.userList}/>
+							userList={this.state.userList}
+							handleAddNewContact={this.handleAddNewContact}/>
 					</>
 				)
 			break;
@@ -271,6 +273,25 @@ class MainThread extends React.Component {
 			.catch(err => console.log(err))
 			.then(setTimeout(() => this.getConversationAfterPv(contactId), 150))
 	}
+	handleAddNewContact(contactId) {		
+		const token = this.props.token
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		const newPvMessage = {
+			sender_id: this.state.userData.id,
+			recipient_id: contactId,
+			content: "Bonjour, je t'ai ajouté à ma list de contacts"
+		}
+		axios
+			.post('http://localhost:8000/conversation', newPvMessage, axiosConfig)	
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+			// .then(setTimeout(() => this.getConversation(contactId), 150))
+	}
 	handleChangeNewPvMess(event) {
 		const propertyName = event.target.name;
 		const newPvMess = {...this.state.newPv};
@@ -310,7 +331,7 @@ class MainThread extends React.Component {
 	handleInputChange(event) {
 		this.setState({search: event.target.value})
 	}
-	getConversation(contactId) {		
+	getConversation(contactId) {
 		const token = this.props.token
 		const tokenObject = decode(token)
 		const userId = tokenObject.sub

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UserCard({ userData }) {
+function UserCard({ userData, handleAddNewContact }) {
     return (
         <div 
             className='userCard'
@@ -15,7 +15,9 @@ function UserCard({ userData }) {
                     <p>{userData.study}, {userData.city}</p>
                 </div>
             </div>
-            <button className='postButton3'>+</button>
+            <button 
+                className='postButton3'
+                onClick={() => handleAddNewContact(userData.id)}>+</button>
         </div>
     )
 }

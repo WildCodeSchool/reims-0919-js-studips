@@ -14,6 +14,7 @@ function Messaging({
     getConversationAfterPv,
 	getUserList,
 	conversations,
+	handleAddNewContact,
     handleContactList,
     handleChangeNewPvMess,
 	handleChangeUserListFilter,
@@ -60,7 +61,7 @@ function Messaging({
 							className='searchUserButton'/>
 					</div>
 					<div className='userList'>
-						{userList && React.Children.toArray(userList.map(contact => <UserCard userData={contact} />))}						
+						{userList && React.Children.toArray(userList.map(contact => <UserCard userData={contact} handleAddNewContact={handleAddNewContact} />))}						
 					</div>
 				</>
 			)}
