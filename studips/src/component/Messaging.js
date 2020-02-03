@@ -1,34 +1,69 @@
 import React from 'react';
 import ContactCard from './ContactCard';
 import PrivateMessage from './PrivateMessage';
+import UserCard from './UserCard';
+import searchIcon from '../images/search-solid.svg';
 
 function Messaging({
 	contactList,
+	userList,
 	isContactListVisible,
 	isConversationVisible,
+	isUserListVisible,
 	getConversation,
     getConversationAfterPv,
+	getUserList,
 	conversations,
+	handleAddNewContact,
     handleContactList,
     handleChangeNewPvMess,
+	handleChangeUserListFilter,
     handleSubmitPrivateMessage,
+	handleUserList,
 	userId
 }) {
 	return (
 		<div className='messaging'>
             <p className='titleMessaging'>Messagerie</p>
 			{isContactListVisible && (
-				<div className='contactList'>
-					<p className='contactListTitle'>Liste de contacts</p>
-					{React.Children.toArray(contactList.map(contact => (
-						<ContactCard
-							contactData={contact}
-							isContactListVisible={isContactListVisible}
-							isConversationVisible={isConversationVisible}
-							getConversation={getConversation}
-						/>
-					)))}
-				</div>
+				<>
+					<div className='contactList'>
+						<p className='contactListTitle'>Liste de contacts</p>
+						{React.Children.toArray(contactList.map(contact => (
+							<ContactCard
+								contactData={contact}
+								isContactListVisible={isContactListVisible}
+								isConversationVisible={isConversationVisible}
+								getConversation={getConversation}
+							/>
+						)))}
+					</div>	
+					<button 
+						className='addContactButton'
+						onClick={handleUserList}>+</button>
+				</>
+			)}
+			{isUserListVisible && (
+				<>
+					<button 
+						className='returnContactList'
+						onClick={handleUserList}>Retour
+					</button>
+					<div className='searchUser'>
+						<textarea
+							className='searchUserInput space:inline'
+							onChange={(e) => handleChangeUserListFilter(e)}>
+						</textarea>
+						<img
+							src={searchIcon}
+							alt='Recherche'
+							onClick={getUserList}
+							className='searchUserButton'/>
+					</div>
+					<div className='userList'>
+						{userList && React.Children.toArray(userList.map(contact => <UserCard userData={contact} handleAddNewContact={handleAddNewContact} />))}						
+					</div>
+				</>
 			)}
 			{isConversationVisible && (
                 <>
