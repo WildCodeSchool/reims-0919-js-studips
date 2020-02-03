@@ -42,6 +42,7 @@ class MainThread extends React.Component {
 			conversations: [],
 			eventDate: new Date()
 		};
+		this.cardListRef = React.createRef();
 		this.toggleNewPost = this.toggleNewPost.bind(this);
 		this.toggleMenuVisible = this.toggleMenuVisible.bind(this);
 		this.handleChangeTab = this.handleChangeTab.bind(this);
@@ -65,6 +66,9 @@ class MainThread extends React.Component {
 	componentDidMount() {
 		this.getUserData();
 		this.getThread();
+	}
+	componentDidUpdate() {
+		this.cardListRef.current.scrollTop = 0;
 	}
 	getUserData() {
 		const token = this.props.token
@@ -105,7 +109,7 @@ class MainThread extends React.Component {
 					return {posts: newPosts, search: '', activeId: '', contactList: contactListData.data}
 				})
 			}))
-	}
+	}	
 	toggleNewPost() {
 		this.setState(prevState => {
 			return { isPostModalVisible: !prevState.isPostModalVisible };
@@ -114,6 +118,7 @@ class MainThread extends React.Component {
 	handleChangeTab(event){
 		const buttonId = event.target.id;
 		this.setState({ activeId: buttonId});
+		// window.scrollTo(0, 0)
 	}
 	getTabContent() {
 		let posts = this.state.posts;
@@ -287,7 +292,7 @@ class MainThread extends React.Component {
 			content: "Bonjour, je t'ai ajouté à ma list de contacts"
 		}
 		axios
-			.post('http://localhost:8000/conversation', newPvMessage, axiosConfig)	
+			.post('http://localhost:8000/conversation', newPvMessage, axiosConfig)
 			.then(res => console.log(res))
 			.catch(err => console.log(err))
 			// .then(setTimeout(() => this.getConversation(contactId), 150))
@@ -376,9 +381,24 @@ class MainThread extends React.Component {
 		})
 	}
 	handleUserList() {
+		const token = this.props.token
+		const axiosConfig = {
+        	headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+    		}
+    	}
+		const tokenObject = decode(token)
+		const userId = tokenObject.sub
+		axios
+			.get(`http://localhost:8000/${userId}/contacts`, axiosConfig)
+			.then((response) => this.setState(() => {
+				console.log(response)
+				return {contactList: response.data}
+			}))
 		this.setState((prevState) => {
-			return {isUserListVisible: !prevState.isUserListVisible, isContactListVisible: !prevState.isContactListVisible}
-		})
+				return {isUserListVisible: !prevState.isUserListVisible, isContactListVisible: !prevState.isContactListVisible}
+			})
 	}
 	handleChangeUserListFilter(e) {
 		this.setState({ userFilter: e.target.value })
@@ -404,7 +424,7 @@ class MainThread extends React.Component {
 			return <Redirect to='/login' />;
 		}
 		return (
-			<>				
+			<>
 				{this.state.isMenuVisible && (
 					<div onClick={this.toggleMenuVisible}>
 						<Menu 
@@ -437,7 +457,7 @@ class MainThread extends React.Component {
 						+
 					</button>
 				</div>
-					<div className='cardList'>
+					<div ref={this.cardListRef} className='cardList'>
 						{this.getTabContent()}
 					</div>
 				<div className='navbar'>
@@ -445,8 +465,7 @@ class MainThread extends React.Component {
 						className="icon"
 						src={homeIcon}
 						alt="to home"
-						onClick={this.getThread}/>
-					
+						onClick={() => this.getThread()}/>
 					<img
 						id='messaging'
 						className="icon"
@@ -459,7 +478,7 @@ class MainThread extends React.Component {
 						src={library}
 						alt='library'
 						onClick={this.handleChangeTab}/>						
-				</div>			
+				</div>
 			</>)	
 	}	
 }

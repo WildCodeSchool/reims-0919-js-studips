@@ -40,7 +40,9 @@ function Messaging({
 					</div>	
 					<button 
 						className='addContactButton'
-						onClick={handleUserList}>+</button>
+						onClick={()=> {
+							handleUserList()
+						}}>+</button>
 				</>
 			)}
 			{isUserListVisible && (
