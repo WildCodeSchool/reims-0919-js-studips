@@ -878,6 +878,8 @@ input{
 
 .searchUserInput {
 	flex: 1;
+	font-size: 20px;
+	border: solid 1px black;
 }
 
 .searchUserButton {

@@ -52,10 +52,11 @@ function Messaging({
 						onClick={handleUserList}>Retour
 					</button>
 					<div className='searchUser'>
-						<textarea
+						<input
+							type='text'
 							className='searchUserInput space:inline'
 							onChange={(e) => handleChangeUserListFilter(e)}>
-						</textarea>
+						</input>
 						<img
 							src={searchIcon}
 							alt='Recherche'
