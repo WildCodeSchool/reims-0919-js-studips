@@ -62,13 +62,15 @@ class MainThread extends React.Component {
 		this.handleChangeUserListFilter = this.handleChangeUserListFilter.bind(this);
 		this.getUserList = this.getUserList.bind(this);
 		this.handleAddNewContact = this.handleAddNewContact.bind(this);
+		this.returnTop = this.returnTop.bind(this);
 	}
 	componentDidMount() {
 		this.getUserData();
 		this.getThread();
 	}
-	componentDidUpdate() {
+	returnTop() {
 		this.cardListRef.current.scrollTop = 0;
+
 	}
 	getUserData() {
 		const token = this.props.token
@@ -133,7 +135,8 @@ class MainThread extends React.Component {
 			);
 		}
 		switch(this.state.activeId) {
-		  	case 'stages':	
+		  	case 'stages':
+			  	this.returnTop()
 				posts = posts
 					.filter(post=>post.category  === 'Jobs')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
@@ -142,6 +145,7 @@ class MainThread extends React.Component {
 					})
 			break;
 		  	case 'logements':
+			  	this.returnTop()
 				posts = posts
 					.filter(post=>post.category==='Logements')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
@@ -150,6 +154,7 @@ class MainThread extends React.Component {
 					})
 			break;
 		  	case 'events':
+			  	this.returnTop()
 				posts = posts
 					.filter(post=>post.category==='Events')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
@@ -158,6 +163,7 @@ class MainThread extends React.Component {
 					})
 			break;
 		  	case 'cours':
+			  	this.returnTop()
 				posts = posts
 					.filter(post=>post.category==='Cours')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
@@ -166,6 +172,7 @@ class MainThread extends React.Component {
 					})
 			break;
 		  	case 'fournitures':
+			  	this.returnTop()
 				posts = posts
 					.filter(post=>post.category==='Fournitures')
 					.sort((a, b) => a.created_at > b.created_at ? -1 : 1)
@@ -174,6 +181,7 @@ class MainThread extends React.Component {
 					})
 			break;
 			case 'library':	
+				this.returnTop()
 				return (
 					<>
 						<Library />			
@@ -187,6 +195,7 @@ class MainThread extends React.Component {
 					</>
 				)
 			case 'messaging':
+				this.returnTop()
 				return (
 					<>
 						<Messaging 
@@ -465,7 +474,9 @@ class MainThread extends React.Component {
 						className="icon"
 						src={homeIcon}
 						alt="to home"
-						onClick={() => this.getThread()}/>
+						onClick={() => {
+							this.getThread()
+							this.returnTop()}}/>
 					<img
 						id='messaging'
 						className="icon"
