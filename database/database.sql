@@ -61,11 +61,11 @@ create table messages
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Youri', 'Ligotmi', 'pouet', 'yligotmi@msn.com','2000-06-23', 'Jeux vidéos, cinema', 'Science PO', 'Je voudrais instaurer un nouvel ordre mondial', 'https://randomuser.me/api/portraits/men/43.jpg', 'Angers');
+('Youri', 'Ligotmi', 'pouet', 'yligotmi@msn.com','2000-06-23', 'Jeux vidéos, cinema', 'Science PO', 'Je voudrais instaurer un nouvel ordre mondial', 'https://randomuser.me/api/portraits/men/43.jpg', 'Reims');
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Barack', 'Aphrite', 'pouet', 'baphrite@msn.com', '2000-10-10', 'Cinéma , sport , voiture', 'BEP cuisine', 'Futur manager chez Macdo, ma passion est de faire des frites', 'https://randomuser.me/api/portraits/men/41.jpg', 'Caen');
+('Barack', 'Aphrite', 'pouet', 'baphrite@msn.com', '2000-10-10', 'Cinéma , sport , voiture', 'BEP cuisine', 'Futur manager chez Macdo, ma passion est de faire des frites', 'https://randomuser.me/api/portraits/men/41.jpg', 'Reims');
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
@@ -77,7 +77,7 @@ VALUES
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Harry', 'Cover', 'pouet', 'hpotter@msn.com', '1999-01-04', 'Cuisine , PotterHead', 'Faculté des sciences', 'Je suis de Gryffondor', 'https://randomuser.me/api/portraits/men/8.jpg', 'Lille');
+('Harry', 'Cover', 'pouet', 'hcover@msn.com', '1999-01-04', 'Cuisine , PotterHead', 'Faculté des sciences', 'Je suis de Gryffondor', 'https://randomuser.me/api/portraits/men/8.jpg', 'Reims');
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
