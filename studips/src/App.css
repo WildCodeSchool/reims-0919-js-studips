@@ -576,9 +576,13 @@ input{
 	border: solid rgb(219, 219, 219) 2px;
 	padding: 0.5rem;
 }
+.newPostCard label {
+	font-size: 1.2rem;
+}
 .subTitle {
 	align-self: flex-start;
 	font-weight: bold;
+	font-size: 1.2rem;
 }
 .categoryChoice p {
 	margin: 0.1rem 0;
@@ -626,6 +630,17 @@ input{
 	padding: 0.5rem;
 	width: 80vw;
 	min-height: 30vh;
+}
+
+.submitNewPostButton {
+	padding: 0.2em 1em;
+	color: white;
+	background-color: #a40032;
+	border: none;
+	border-radius: 20px;
+	font-size: 1.2em;
+	line-height: 37px;
+	align-self: center;
 }
 
 
@@ -825,6 +840,7 @@ input{
 	width: 70%;
 	border: solid 2px #adadad;
 	border-radius: 5px;
+	font-size: 18px;
 }
 
 .contactCard {
@@ -838,6 +854,7 @@ input{
 	width: 80%;
 	align-self: flex-end;
 	padding: 0.5em;
+	font-size: 18px;
 }
 
 .pvMessageUser {
@@ -847,6 +864,11 @@ input{
 	width: 80%;
 	align-self: flex-start;
 	padding: 0.5em;
+	font-size: 18px;
+}
+
+.pvMessageUser p {
+	font-size: 18px;
 }
 
 .messageList {

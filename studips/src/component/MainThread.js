@@ -298,7 +298,7 @@ class MainThread extends React.Component {
 		const newPvMessage = {
 			sender_id: this.state.userData.id,
 			recipient_id: contactId,
-			content: "Bonjour, je t'ai ajouté à ma list de contacts"
+			content: "Bonjour, je t'ai ajouté à ma liste de contacts"
 		}
 		axios
 			.post('http://localhost:8000/conversation', newPvMessage, axiosConfig)
@@ -460,7 +460,7 @@ class MainThread extends React.Component {
 						<input
 							type="text"
 							onChange={ this.handleInputChange }
-							placeholder="Search"/>
+							placeholder="Recherche"/>
 					</div>
 					<button className='postButton2' onClick={this.toggleNewPost}>
 						+

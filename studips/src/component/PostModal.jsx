@@ -111,11 +111,10 @@ function PostModal({
 								name='content'
 								onChange={handleChangeNewPost}></textarea>
 						</div>
-						<input 
+						<button 
 							type="submit" 
-							className='postButton'
-							value="Envoyer"
-						/>
+							className='submitNewPostButton'
+						>Envoyer</button>
 					</form>
 				</div>
 			</>	)}
