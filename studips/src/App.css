@@ -619,6 +619,7 @@ input{
 	height: 5vh;
 	width: 80vw;
 	padding: 0.5rem;
+	font-size: 16px;
 }
 .newMessageBox {
 	background-color: #a40032;
@@ -630,6 +631,7 @@ input{
 	padding: 0.5rem;
 	width: 80vw;
 	min-height: 30vh;
+	font-size: 16px;
 }
 
 .submitNewPostButton {
