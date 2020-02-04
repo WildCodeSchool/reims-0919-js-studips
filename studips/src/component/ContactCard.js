@@ -3,7 +3,7 @@ import React from 'react';
 function ContactCard({ contactData, getConversation }) {
     return (
         <div 
-            className='contactCard'
+            className='userCard'
             id={contactData.id}
             onClick={()=>getConversation(contactData.id)}
         >
@@ -11,8 +11,9 @@ function ContactCard({ contactData, getConversation }) {
                 className='avatar' 
                 src={contactData.profile_pic}
                 alt='profile'/>
-            <div className='contactCardUserName'>
-                <p>{contactData.firstname} {contactData.lastname}</p>
+            <div className='contactCardInfos'>
+                <p className='contactCardName'>{contactData.firstname} {contactData.lastname}</p>
+                <p>{contactData.study}, {contactData.city} </p>
             </div>
         </div>
     )
