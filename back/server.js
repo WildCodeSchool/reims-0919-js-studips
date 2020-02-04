@@ -247,9 +247,10 @@ app.get('/:userId/contacts', verifyToken, (req, res) => {
 app.get('/:userId/contacts/:contactId/conversation', verifyToken, (req, res) => {
 	const userId = req.authData.sub
 	const contactId = req.params.contactId
-	const sqlQuery = 'SELECT messages.* FROM messages WHERE (sender_id= ? AND recipient_id= ?) OR (sender_id= ? AND recipient_id= ?) ORDER BY messages.id DESC'
+	const sqlQuery = 'SELECT messages.*, user.profile_pic FROM messages JOIN user ON user.id=messages.sender_id WHERE (sender_id= ? AND recipient_id= ?) OR (sender_id= ? AND recipient_id= ?) ORDER BY messages.id DESC'
 	connection.query(sqlQuery, [userId, contactId, contactId, userId], (err, results) => {
 		if (err) {
+			console.log(err)
 			res.status(500).send('Erreur lors de la récupération de la conversation')
 		} else {
 			res.json(results);

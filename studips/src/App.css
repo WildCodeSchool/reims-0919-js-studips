@@ -847,12 +847,18 @@ input{
 	margin: 1em 0;
 }
 
+.pvMessageContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+
 .pvMessageContact {
 	background-color: #e2e2e2;
 	border-radius: 8px;
 	margin: 0.3rem 0;
 	width: 80%;
-	align-self: flex-end;
 	padding: 0.5em;
 	font-size: 18px;
 }
@@ -862,13 +868,18 @@ input{
 	border-radius: 8px;
 	margin: 0.3rem 0;
 	width: 80%;
-	align-self: flex-start;
 	padding: 0.5em;
 	font-size: 18px;
 }
 
 .pvMessageUser p {
 	font-size: 18px;
+}
+
+.profilePicConversation {
+	max-width: 40px;
+	max-height: 40px;
+	border-radius: 50%;	
 }
 
 .messageList {
