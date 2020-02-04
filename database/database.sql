@@ -22,7 +22,7 @@ create table post
     id int auto_increment primary key,
     user_id int,
     created_at timestamp default CURRENT_TIMESTAMP,
-    title varchar(30) not null,
+    title varchar(75) not null,
     category enum('Cours','Logements','Fournitures','Jobs','Events'),
     content varchar(300) not null,
     event_date datetime,
@@ -61,201 +61,310 @@ create table messages
 INSERT INTO `user`
 (`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
 VALUES
-('Youri', 'Ligotmi', 'pouet', 'yligotmi@msn.com','2000-06-23', 'Jeux vidéos, cinema', 'Science PO', 'Je voudrais instaurer un nouvel ordre mondial', 'https://randomuser.me/api/portraits/men/43.jpg', 'Reims');
-INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
-VALUES
-('Barack', 'Aphrite', 'pouet', 'baphrite@msn.com', '2000-10-10', 'Cinéma , sport , voiture', 'BEP cuisine', 'Futur manager chez Macdo, ma passion est de faire des frites', 'https://randomuser.me/api/portraits/men/41.jpg', 'Reims');
-INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
-VALUES
-('Agathe', 'Zeblouse', 'pouet', 'agathe@msn.com', '1995-12-04', 'Musique , art', 'Faculté LEA', 'Je compose de la musique lors de mes temps libre', 'https://randomuser.me/api/portraits/women/68.jpg', 'Paris');
-INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
-VALUES
-('Jeremy', 'Lependulaleur', 'pouetpouet', 'jeremy@msn.com', '2002-03-04', 'Cinema, sport, jeux videos', 'DUT génie civil', "Amical et enthousiaste, j'aime rencontrer des personnes", 'https://randomuser.me/api/portraits/men/73.jpg', 'Lille');
-INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
-VALUES
-('Harry', 'Cover', 'pouet', 'hcover@msn.com', '1999-01-04', 'Cuisine , PotterHead', 'Faculté des sciences', 'Je suis de Gryffondor', 'https://randomuser.me/api/portraits/men/8.jpg', 'Reims');
-INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
-VALUES
-('Sylvain', 'Duriff', 'pouet', 'sdurif@msn.com', '2001-05-05', 'Politique, Course à pied', 'Faculté de droit', 'je suis le grand monarque cosmique', 'https://randomuser.me/api/portraits/men/51.jpg', 'Strasbourg');
-INSERT INTO `user`
-(`firstname`, `lastname`, `password`, `email`, `birthday`, `hobbies`, `study`, `bio`, `profile_pic`, `city`) 
-VALUES
-('Eric', 'Antonnai', 'cassoulet', 'ericantonnai@gmail.com', '2000-01-01', 'Motocross', 'Faculté des sciences', "je suis actif, j'aime sortir le soir et rencontrer des nouvelles personnes", 'https://randomuser.me/api/portraits/men/96.jpg', 'Paris');
+('Youri', 'Ligotmi', 'pouet', 'yligotmi@msn.com','2000-06-23', 'Jeux vidéos, cinema', 'Faculté de Psychologie', 'Juste un autre étudiant (très sérieux !) en psychologie', 'https://randomuser.me/api/portraits/men/43.jpg', 'Reims'),
+('Barack', 'Aphrite', 'pouet', 'baphrite@msn.com', '2000-10-10', 'Cinéma , sport , voiture', 'BEP cuisine', 'Futur manager chez Macdo, ma passion est de faire des frites', 'https://randomuser.me/api/portraits/men/41.jpg', 'Reims'),
+('Agathe', 'Zeblouse', 'pouet', 'agathe@msn.com', '1995-12-04', 'Musique , art', 'Faculté LEA', 'Je compose de la musique lors de mes temps libre', 'https://randomuser.me/api/portraits/women/68.jpg', 'Paris'),
+('Jeremy', 'Lependulaleur', 'pouetpouet', 'jeremy@msn.com', '2002-03-04', 'Cinema, sport, jeux videos', 'DUT génie civil', "Amical et enthousiaste, j'aime rencontrer des personnes", 'https://randomuser.me/api/portraits/men/73.jpg', 'Reims'),
+('Harry', 'Cover', 'pouet', 'hcover@msn.com', '1999-01-04', 'Cuisine , PotterHead', 'Faculté des sciences', 'Je suis de Gryffondor', 'https://randomuser.me/api/portraits/men/8.jpg', 'Reims'),
+('Sylvain', 'Duriff', 'pouet', 'sdurif@msn.com', '2001-05-05', 'Politique, Course à pied', 'Faculté de droit', 'je suis le grand monarque cosmique', 'https://randomuser.me/api/portraits/men/51.jpg', 'Strasbourg'),
+('Eric', 'Antonnai', 'pouet', 'ericantonnai@gmail.com', '2000-01-01', 'Motocross', 'Faculté de biologie', "je suis actif, j'aime sortir le soir et rencontrer des nouvelles personnes", 'https://randomuser.me/api/portraits/men/96.jpg', 'Reims'),
+('Armand' , 'Pascal', 'pouet', 'test@msn.com', '2000-01-01','VTT' ,'Sciences Po', 'Studips est super !', 'https://randomuser.me/api/portraits/men/86.jpg', 'Reims'),
+('Auriane' , 'Bozonnet', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/women/47.jpg', 'Paris' ),
+('Léon' , 'Courtet', 'pouet', 'test@msn.com', '2000-01-01','VTT' ,'STAPS' , 'Studips est super !', 'https://randomuser.me/api/portraits/men/14.jpg', 'Nice'),
+('Olivia' , 'Azaïs', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Droit', 'Studips est super !', 'https://randomuser.me/api/portraits/women/42.jpg', 'Nantes'),
+('Nadia' , 'Gide', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Médecine', 'Studips est super !', 'https://randomuser.me/api/portraits/women/21.jpg', 'Strasbourg'),
+('Bastien' , 'Castex', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'DUT Génie Civil', 'Studips est super !', 'https://randomuser.me/api/portraits/men/45.jpg', 'Reims'),
+('Antoinette' , 'Gicquel', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Psychologie', 'Studips est super !', 'https://randomuser.me/api/portraits/women/88.jpg' , 'Lyon'),
+('Fiona' , 'Chaucer', 'pouet', 'test@msn.com', '2000-01-01','VTT' , "Ecole d'infirmière", 'Studips est super !', 'https://randomuser.me/api/portraits/women/62.jpg', 'Marseille'),
+('Clovis' , 'Dufour', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/1.jpg', 'Lille'),
+('Marielle' , 'Lièvremont', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Ecole de commerce', 'Studips est super !', 'https://randomuser.me/api/portraits/women/33.jpg', 'Strasbourg'),
+('Michèle' , 'Villepin', 'pouet', 'test@msn.com', '2000-01-01','VTT' ,'Sciences Po', 'Studips est super !', 'https://randomuser.me/api/portraits/women/92.jpg', 'Reims'),
+('Sacha' , 'Boutroux', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/women/2.jpg', 'Paris' ),
+('Magali' , 'Beaux', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'STAPS', 'Studips est super !', 'https://randomuser.me/api/portraits/women/67.jpg', 'Nice'),
+('Charlotte' , 'Durand', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Droit', 'Studips est super !', 'https://randomuser.me/api/portraits/women/46.jpg', 'Strasbourg'),
+('Grégoire' , 'Vérany', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Médecine', 'Studips est super !', 'https://randomuser.me/api/portraits/men/56.jpg', 'Rennes'),
+('Carine' , 'Pernet', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'DUT Génie Civil', 'Studips est super !', 'https://randomuser.me/api/portraits/women/17.jpg', 'Reims'),
+('Benjamin' , 'Leclair', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Psychologie', 'Studips est super !', 'https://randomuser.me/api/portraits/men/85.jpg', 'Lyon'),
+('Constantin' , 'Sardou', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/59.jpg', 'Marseille'),
+('Brice' , 'Alard', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Ecole de commerce', 'Studips est super !', 'https://randomuser.me/api/portraits/men/74.jpg', 'Lille'),
+('Albert' , 'Regnard', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'DUT GEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/33.jpg', 'Rennes'),
+('Marcel' , 'Hachette', 'pouet', 'test@msn.com', '2000-01-01','VTT' ,'Sciences Po', 'Studips est super !', 'https://randomuser.me/api/portraits/men/87.jpg', 'Reims'),
+('Laurent' , 'Barrault', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/11.jpg', 'Paris' ),
+('Frédéric' , 'Abbadie', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'STAPS', 'Studips est super !', 'https://randomuser.me/api/portraits/men/11.jpg', 'Nice'),
+('Rémi' , 'Bessette', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Droit', 'Studips est super !', 'https://randomuser.me/api/portraits/men/12.jpg', 'Nantes'),
+('Jules' , 'Reverdin', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Médecine', 'Studips est super !', 'https://randomuser.me/api/portraits/men/32.jpg', 'Strasbourg'),
+('José' , 'Gagnon', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Psychologie', 'Studips est super !', 'https://randomuser.me/api/portraits/men/3.jpg', 'Reims'),
+('Ilonna' , 'Daboville', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/women/6.jpg', 'Lyon'),
+('Raymonde' , 'Gauthier', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Ecole de commerce', 'Studips est super !', 'https://randomuser.me/api/portraits/women/20.jpg', 'Marseille'),
+('Arnaud' , 'LefortFéret', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'DUT GEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/35.jpg', 'Lille'),
+('Stéphane' , 'Bougie', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'DUT Informatique', 'Studips est super !', 'https://randomuser.me/api/portraits/men/45.jpg', 'Rennes'),
+('Margaux' , 'Dufresne', 'pouet', 'test@msn.com', '2000-01-01','VTT' ,'Sciences Po', 'Studips est super !', 'https://randomuser.me/api/portraits/women/57.jpg', 'Reims'),
+('Eugène' , 'Beaubois', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/30.jpg', 'Paris' ),
+('Ève' , 'Castex', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'STAPS', 'Studips est super !', 'https://randomuser.me/api/portraits/women/44.jpg', 'Nice'),
+('Paulin' , 'Belyea', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Droit', 'Studips est super !', 'https://randomuser.me/api/portraits/men/24.jpg', 'Nantes'),
+('Solange' , 'Joguet', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Médecine', 'Studips est super !', 'https://randomuser.me/api/portraits/women/13.jpg', 'Strasbourg'),
+('Fabien' , 'Metayer', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Psychologie', 'Studips est super !', 'https://randomuser.me/api/portraits/men/44.jpg', 'Reims'),
+('Maxime' , 'Lepretre', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/86.jpg', 'Lyon'),
+('Victor' , 'Collin', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Ecole de commerce', 'Studips est super !', 'https://randomuser.me/api/portraits/men/29.jpg', 'Marseille'),
+('Bastien' , 'Guillard', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'DUT Informatique', 'Studips est super !', 'https://randomuser.me/api/portraits/men/7.jpg', 'Lille'),
+('William' , 'Lecomte', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'DUT GEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/64.jpg', 'Rennes'),
+('Cassandra' , 'Wolff', 'pouet', 'test@msn.com', '2000-01-01','VTT' ,'Sciences Po', 'Studips est super !', 'https://randomuser.me/api/portraits/women/9.jpg', 'Reims'),
+('Arnaud' , 'Brunet', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/17.jpg', 'Paris' ),
+('Aurore' , 'Ragot', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'STAPS', 'Studips est super !', 'https://randomuser.me/api/portraits/women/41.jpg', 'Nice'),
+('Sasha' , 'Favre', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Droit', 'Studips est super !', 'https://randomuser.me/api/portraits/women/71.jpg', 'Nantes'),
+('Christophe' , 'Chiron', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Psychologie', 'Studips est super !', 'https://randomuser.me/api/portraits/men/18.jpg', 'Toulouse'),
+('Josephine' , 'Champion', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/women/82.jpg', 'Reims'),
+('Suzanne' , 'Lefort', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Ecole de commerce', 'Studips est super !', 'https://randomuser.me/api/portraits/women/81.jpg', 'Lyon'),
+('Matthieu' , 'Marques', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'DUT GEA', 'Studips est super !', 'https://randomuser.me/api/portraits/men/42.jpg', 'Marseille'),
+('Mila' , 'Guillou', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté de Droit', 'Studips est super !', 'https://randomuser.me/api/portraits/women/64.jpg', 'Lille'),
+('Olivia' , 'Dumortier', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'STAPS', 'Studips est super !', 'https://randomuser.me/api/portraits/women/52.jpg', 'Nantes'),
+('François' , 'Perret', 'pouet', 'test@msn.com', '2000-01-01','VTT' ,'Sciences Po', 'Studips est super !', 'https://randomuser.me/api/portraits/men/94.jpg', 'Reims'),
+('Laurie' , 'Leriche', 'pouet', 'test@msn.com', '2000-01-01','VTT' , 'Faculté LEA', 'Studips est super !', 'https://randomuser.me/api/portraits/women/58.jpg', 'Paris' );
 
-
 INSERT INTO `post`
-(`user_id`, `title`, `category`, `content`) 
+(`user_id`, `title`, `category`, `content`, `event_date`) 
 VALUES
-(1, 'Recherche appartement', 'Logements', "Bonjour amis dipsers, je suis actuellement à la recherche d'un appartement dans la région de Marseille, si possible pret du vieux port pour contempler la vue et respirer le vent salé. Contactez moi si vous avez des pistes, merci à tous");
-INSERT INTO `post`
-(`user_id`, `title`, `category`, `content`) 
-VALUES
-(2, "Recherche d'un job", 'Jobs', "Bonjour cher amis, je suis actuellement à la recherche d'un job étudiant avec des horaires modulable dans le Xe arrondissement. Contactez moi si vous avez des offres , merci les copains");
-INSERT INTO `post`
-(`user_id`, `title`, `category`, `content`)
-VALUES
-(3, 'Donne livre de cuisine', 'Fournitures', "Bonsoir les dipser, j'ai 2 livres de cuisine qui traitent principalement sur la cuisson des frites, j'offre cela aux personnes ayant vraiment besoin , contactez moi si vous etes intéréssé, bisoux");
-INSERT INTO `post`
-(`user_id`, `title`, `category`, `content`) 
-VALUES
-(4, 'Recherche Serveur', 'Jobs', 'Coucou , mon patron recherche un deuxieme étudiant pour le service du soir dans un bar/restaurants au niveau de la place dErlon. Si vous avez déja une experience dans la restauration contactez moi ou envoyé un mail avec votre CV et lettre de motivation à cmonmail@mail.com. Bonne chance !');
-INSERT INTO `post`
-(`user_id`, `title`, `category`, `content`, `event_date`)
-VALUES
-(5, 'Mega Teuf', 'Events', "Salut les dipser, ma mère organise une super fiesta pour l'anniversaire de notre chat dans son sous-sol , pas de dress-code. MP moi si vous voulez une invitation, A plus !", '2020-02-04');
-INSERT INTO `post`
-(`user_id`, `title`, `category`, `content`) 
-VALUES
-(7, 'Je quitte mon appart', 'Logements', "Hey les copains, je quitte mon appartement car je retourne chez mes parents, c'est un F2 en plein centre ville (plus d'info sur www.logement.com).");
-INSERT INTO `post`
-(`user_id`, `title`, `category`, `content`)
-VALUES
-(6, 'Cours de Tai-chi cosmique', 'Cours', 'Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).');
+(5, 'Mega Teuf', 'Events', "Salut les dipser, ma mère organise une super fiesta pour l'anniversaire de notre chat dans son sous-sol , pas de dress-code. MP moi si vous voulez une invitation, A plus !", '2020-02-10'),
+(10, "Pot cafet", 'Events', "Pot cafet à la fac de sciences ! Venez nombreux, 15€ l'entrée et open bar.", '2020-02-09'),
+(2, "Recherche d'un job", 'Jobs', "Bonjour cher amis, je suis actuellement à la recherche d'un job étudiant avec des horaires modulable sur Reims et alentours. Contactez moi si vous avez des offres , merci les copains", null),
+(3, 'Donne livre de cuisine', 'Fournitures', "Bonsoir les dipser, j'ai 2 livres de cuisine qui traitent principalement sur la cuisson des frites, j'offre cela aux personnes ayant vraiment besoin , contactez moi si vous etes intéréssé, bisoux", null),
+(12, "Soirée médecine",'Events' , "La cafet de la fac des sciences accueille la soirée médecine. Entrée libre.", '2020-02-18'),
+(30, "Exposition art contemporain",'Events' , "Le musée des arts contemporains propose une exposition sur la peinture neo-surréaliste post gothique. Réservez sur le site du musée", '2020-02-20'),
+(23, 'Recherche Serveur', 'Jobs', 'Coucou , mon patron recherche un deuxieme étudiant pour le service du soir dans un bar/restaurants au niveau de la place dErlon. Si vous avez déja une experience dans la restauration contactez moi ou envoyé un mail avec votre CV et lettre de motivation à cmonmail@mail.com. Bonne chance !', null),
+(6, 'Cours de Tai-chi cosmique', 'Cours', 'Ami du grand monarque bonjour, je donne des cours particulier de tai-chi cosmique, ce qui vous permettra de réaliser une experience astral hors du commun. Si vous etes interesse contactez moi au plus vite (place limitée).', null),
+(7, 'Je quitte mon appart', 'Logements', "Hey les copains, je quitte mon appartement car je retourne chez mes parents, c'est un F2 en plein centre ville (plus d'info sur www.logement.com).", null),
+(12, 'Recherche nouveau colloc', 'Logements', "Bien le bonjour ! Nous sommes 3 dans un grand appartement en colloc. Nous cherchons un 4ème résident. Contactez moi en privé si vous êtes intéressés.", null),
+(14, 'Cherche vendeur/vendeuse', 'Jobs', "Salut tout le monde, il y a une place dispo pour quelques heures dans la boutique de prêt à porter où je travaille. Contactez moi si intéressés.", null),
+(18, 'cherche manuel de compta', 'Fournitures', "Bonsoir, je suis à la recherche d'un manuel de compta. Si quelqu'un à quelque choseà proposer, je suis preneur.", null),
+(22, 'cherche collocation !', 'Logements', "Bonjour. Je suis à la recherche d'une nouvelle colloc. Quelqu'un aurait-il des pistes ? Me contacter en privé.", null),
+(26, 'Poste de plongeur', 'Jobs', 'Salut les dipsers, il y a un poste pour faire la plonge dans le resto où je travaille. Contactez-moi si vous êtes intéressés.', null),
+(13, "Concert de Franky Vincent",'Events' , "La petite Halle vous propose pour la Saint Valentin un concert de Franky Vincent et ses danseuses.", '2020-02-14'),
+(30, 'Appartement à louer', 'Logements', "Au cas où cela puisse intéresser, mon proprio a un autre studio  qu'il souhaite louer, c'est dans le centre ville. N'hésitez pas à me contacter !", null),
+(34, 'Cherche job', 'Jobs', "Salut ! Je cherche un petit boulot dans la vente. J'ai deux ans d'expérience dans ce domaine. Contactez moi si intéressés !", null),
+(58, "Présentation de Studips",'Events' , "La petite Halle accueille les élèves de la Wild Code School pour présenter leur projet Studips. Pensez à réserver vos billets.", '2020-02-04'),
+(38, 'Urgent cherche logement', 'Logements', "Bonsoir les dipsers ! La rentrée approche et le temps passe vite. Je cherche rapidement un logement avant le second semestre ! Merci de votre aide.", null),
+(1, 'Recherche appartement', 'Logements', "Salut les dipsers ! Je recherche un appart sur Reims, proche centre ville. Si quelqu'un a des pistes, contactez moi !", null),
+(46, 'Vds livres de littérature classique', 'Fournitures', "Bonsoir à tous, je vends des livres de première année de philo, c'est tout le programme de littérature classique. MP si intéressés !", null),
+(15, "Soirée infirmières",'Events' , "Venez nombreux à la première soirée infirmière de l'année ! C'est au Macumba à partir de 22h. Entrée 10 euros", '2020-02-04'),
+(50, 'Cherche livre de cuisine', 'Fournitures', "Je suis un collectionneur de livres de cuisines, n'hésitez pas à me contacter si vous enavez, je suis preneur.", null);
 
 INSERT INTO `likes`
 (`user_id`, `post_id`)
 VALUES
-(1, 5);
-INSERT INTO `likes`
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(5, 2),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(1, 3),
+(2, 3),
+(3, 3),
+(4, 3),
+(5, 3),
+(6, 3),
+(7, 3),
+(8, 3),
+(9, 3),
+(10, 3),
+(11, 3),
+(12, 3),
+(13, 3),
+(14, 3),
+(15, 3),
+(16, 3),
+(17, 3),
+(18, 3),
+(19, 3),
+(20, 3),
+(1, 5),
+(2, 5),
+(3, 5),
+(4, 5),
+(5, 5),
+(6, 5),
+(7, 5),
+(8, 5),
+(9, 5),
+(11, 5),
+(12, 5),
+(13, 5),
+(14, 5),
+(15, 5),
+(16, 5),
+(17, 5),
+(18, 5),
+(21, 5),
+(22, 5),
+(23, 5),
+(24, 7),
+(25, 7),
+(26, 7),
+(27, 7),
+(28, 7),
+(29, 7),
+(30, 7),
+(31, 7),
+(32, 7),
+(33, 7),
+(1, 15),
+(1, 15),
+(2, 15),
+(3, 15),
+(4, 15),
+(5, 15),
+(6, 15),
+(7, 15),
+(8, 15),
+(9, 15),
+(10, 15),
+(11, 15),
+(12, 15),
+(13, 15),
+(14, 15),
+(15, 15),
+(16, 15),
+(17, 15),
+(18, 15),
+(19, 15),
+(20, 15),
+(21, 15),
+(22, 15),
+(23, 15),
+(24, 15),
+(25, 15),
+(26, 15),
+(27, 15),
+(28, 15),
+(29, 15),
+(30, 15),
+(31, 15),
+(32, 15),
+(33, 15),
+(34, 15),
+(35, 15),
+(36, 15),
+(37, 15),
+(38, 15),
+(39, 15),
+(40, 15),
+(41, 15),
+(1, 18),
+(1, 18),
+(2, 18),
+(3, 18),
+(4, 18),
+(5, 18),
+(6, 18),
+(7, 18),
+(8, 18),
+(9, 18),
+(10, 18),
+(11, 18),
+(12, 18),
+(13, 18),
+(14, 18),
+(15, 18),
+(16, 18),
+(17, 18),
+(18, 18),
+(19, 18),
+(20, 18),
+(21, 18),
+(22, 18),
+(23, 18),
+(24, 18),
+(25, 18),
+(39, 18),
+(40, 18),
+(41, 18),
+(1, 22),
+(1, 22),
+(2, 22),
+(3, 22),
+(4, 22),
+(5, 22),
+(6, 22),
+(7, 22),
+(8, 22),
+(9, 22),
+(10, 22),
+(11, 22),
+(12, 22),
+(13, 22),
+(14, 22),
+(15, 22),
+(16, 22),
+(17, 22),
+(18, 22),
+(19, 22),
+(20, 22),
+(21, 22),
+(22, 22),
+(23, 22),
+(24, 22),
+(25, 22),
+(39, 22),
+(40, 1),
+(41, 1),
+(42, 1),
+(1, 4),
+(2, 5),
+(3, 9),
+(4, 12),
+(5, 13),
+(6, 15),
+(7, 15),
+(8, 15),
+(9, 15),
+(1, 17),
+(2, 18),
+(3, 21),
+(4, 21),
+(5, 21),
+(6, 23),
+(7, 23),
+(30, 20),
+(31, 20),
+(32, 20),
+(33, 20);
+
+INSERT INTO `post_saves`
 (`user_id`, `post_id`)
 VALUES
-(2, 5);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(3, 5);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(4, 5);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(5, 5);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(6, 5);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(7, 5);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(1, 6);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(2, 6);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
-(3, 6);
-INSERT INTO `likes`
-(`user_id`, `post_id`)
-VALUES
+(1, 5),
+(2, 5),
+(3, 5),
+(4, 5),
+(5, 5),
+(6, 5),
+(7, 5),
+(1, 6),
+(2, 6),
+(3, 6),
 (5, 4);
 
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(1, 5);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(2, 5);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(3, 5);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(4, 5);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(5, 5);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(6, 5);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(7, 5);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(1, 6);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(2, 6);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(3, 6);
-INSERT INTO `post_saves`
-(`user_id`, `post_id`)
-VALUES
-(5, 4);
-
 INSERT INTO messages
 (`sender_id`, `recipient_id`, `content`)
 VALUES
-(1, 2, 'Salut, ça roule ? Est-ce que tu vas au concert de Franky Vincent pour la Saint Valentin ???');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(2, 1, 'Ca va bien, et toi ? Evidemment, il ne faut pas rater ça ! on y va avec ma chérie, on se retrouve là bas ?');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(1, 2, 'Entendu, on se retrouve là bas alors, je devrais y être pour 21h.');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(3, 1, 'Salut ! Je vois que tu as mis en vente tes livres de 1ère année, je suis intéressé. Quel serait le prix ?');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(1, 3, 'Bonjour, si tu prends le tout, je peux te les faire pour 30 euros');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(4, 5, 'Le patron du Chiquito cherche du personnel pour faire la plonge, du coup je me suis dit que tu pourrais être intéressé.');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(5, 4, 'Cool que tu aies pensé à moi ! Par contre je suis pu dispo les weekends en soirée, je travaille déjà dans un resto');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(4, 5, 'Ah ok ! En tout cas, super pour toi !');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(6, 7, 'Je cherche un nouveau coloc pour mon appart. Du coup, direct, je te propose en premier :-)');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(7, 6, 'Ahhh ! Super ! Oui, je suis très intéressé !!');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(6, 7, 'Ce serait vraiment génial que tu nous rejoignes, en plus il y a déjà une super ambiance dans la coloc.');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
-(1, 7, 'Salut, ça roule depuis le temps ??');
-INSERT INTO messages
-(`sender_id`, `recipient_id`, `content`)
-VALUES
+(1, 2, 'Salut, ça roule ? Est-ce que tu vas au concert de Franky Vincent pour la Saint Valentin ???'),
+(2, 1, 'Ca va bien, et toi ? Evidemment, il ne faut pas rater ça ! on y va avec ma chérie, on se retrouve là bas ?'),
+(1, 2, 'Entendu, on se retrouve là bas alors, je devrais y être pour 21h.'),
+(3, 1, 'Salut ! Je vois que tu as mis en vente tes livres de 1ère année, je suis intéressé. Quel serait le prix ?'),
+(1, 3, 'Bonjour, si tu prends le tout, je peux te les faire pour 30 euros'),
+(4, 5, 'Le patron du Chiquito cherche du personnel pour faire la plonge, du coup je me suis dit que tu pourrais être intéressé.'),
+(5, 4, 'Cool que tu aies pensé à moi ! Par contre je suis pu dispo les weekends en soirée, je travaille déjà dans un resto'),
+(4, 5, 'Ah ok ! En tout cas, super pour toi !'),
+(6, 7, 'Je cherche un nouveau coloc pour mon appart. Du coup, direct, je te propose en premier :-)'),
+(7, 6, 'Ahhh ! Super ! Oui, je suis très intéressé !!'),
+(6, 7, 'Ce serait vraiment génial que tu nous rejoignes, en plus il y a déjà une super ambiance dans la coloc.'),
+(1, 7, 'Salut, ça roule depuis le temps ??'),
 (6, 1, 'Alors, quoi de neuf ??');
