@@ -3,7 +3,7 @@ import React from 'react';
 function ContactCard({ contactData, getConversation }) {
     return (
         <div 
-            className='userCard'
+            className='contactCard'
             id={contactData.id}
             onClick={()=>getConversation(contactData.id)}
         >

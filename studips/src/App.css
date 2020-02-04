@@ -795,7 +795,7 @@ input{
 }
 
 .contactListTitle {
-	border-radius: 0px 48px 48px 0px;
+	border-radius: 48px 48px 48px 48px;
 	width: 80%;
 	height: 11vw;
 	font-size: 24px;;
@@ -856,7 +856,12 @@ input{
 }
 
 .contactCard {
+	display: flex;
+	flex-direction: row;
 	margin: 1em 0;
+	background-color: #e2e2e2;
+	border: solid rgb(219, 219, 219) 2px;
+	padding: 0.5em;
 }
 
 .pvMessageContainer {
@@ -935,6 +940,7 @@ input{
 .userCard {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	margin: 1em 0;
 	background-color: #e2e2e2;
 	border: solid rgb(219, 219, 219) 2px;
